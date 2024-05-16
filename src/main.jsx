@@ -1,6 +1,12 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import {
+    BrowserRouter,
+    Routes,
+    Route,
+    createBrowserRouter,
+    RouterProvider,
+} from "react-router-dom";
 
 // CSS
 import "./assets/bootstrap-5.3.3/css/bootstrap.min.css";
@@ -16,14 +22,29 @@ import Search from "./pages/Search.jsx";
 // É possível recolher os atores?
 // Informação em PT
 
+const router = createBrowserRouter([
+    {
+        path: "/movies-lib/",
+        element: <App />,
+        children: [
+            {
+                path: "/movies-lib/",
+                element: <Home />,
+            },
+            {
+                path: "/movies-lib/movie/:id/",
+                element: <Movie />,
+            },
+            {
+                path: "/movies-lib/search/",
+                element: <Search />,
+            },
+        ],
+    },
+]);
+
 ReactDOM.createRoot(document.getElementById("root")).render(
-    <App>
-        <BrowserRouter basename={process.env.PUBLIC_URL}>
-            <Routes>
-                <Route path="/" element={<Home />}></Route>
-                <Route path="/movie/:id" element={<Movie />}></Route>
-                <Route path="/search" element={<Search />}></Route>
-            </Routes>
-        </BrowserRouter>
-    </App>
+    <React.StrictMode>
+        <RouterProvider router={router} />
+    </React.StrictMode>
 );
