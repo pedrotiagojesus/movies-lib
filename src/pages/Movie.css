@@ -1,0 +1,93 @@
+.movie-page {
+    margin: 2rem auto;
+}
+
+.movie-page svg {
+    font-size: 1.5rem;
+    color: #f7d354;
+}
+
+.movie-page .movie-card {
+    text-align: center;
+}
+
+.movie-page .movie-card img,
+.movie-page .movie-card h2,
+.movie-page .movie-card p {
+    margin-bottom: 1rem;
+}
+
+.movie-page .movie-card h2 {
+    font-size: 2rem;
+}
+
+.movie-page .movie-card p {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem;
+}
+
+.movie-page .tagline {
+    font-size: 1.25rem;
+    margin-bottom: 2rem;
+}
+
+.movie-page .list-info {
+    display: flex;
+    gap: 2.5rem;
+    margin-bottom: 2.5rem;
+}
+
+.movie-page .info {
+}
+
+.movie-page .info h3 {
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.movie-page .info p {
+    margin-bottom: 0;
+}
+
+.movie-page .description {
+    padding-bottom: 10rem;
+}
+
+.movie-page .description p {
+    line-height: 1.4rem;
+}
+
+.movie-page .credit-container {
+    --bs-gutter-y: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.movie-page .credit-card {
+    height: 100%;
+
+    --bs-card-bg: #1a1a1a;
+    --bs-card-border-radius: 0;
+    --bs-card-border-width: 0;
+    --bs-card-inner-border-radius: 0;
+    --bs-card-subtitle-color: #ffffff94;
+}
+
+.movie-page .credit-card .img-wrapper {
+    --bs-aspect-ratio: calc(3 / 2 * 100%);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.movie-page .credit-card .card-img-top {
+    max-width: 100%;
+    height: auto;
+}
+
+.movie-page .credit-card .card-subtitle {
+    font-style: italic;
+    font-size: 1rem;
+}

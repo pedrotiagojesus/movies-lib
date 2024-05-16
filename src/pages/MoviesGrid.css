@@ -1,0 +1,81 @@
+.container .title {
+    font-size: 2.5rem;
+    margin: 2rem 0 1rem;
+    position: relative;
+    line-height: 1;
+    padding-left: 10px;
+}
+
+.container .title::after {
+    content: "";
+    height: 100%;
+    width: 3px;
+    background-color: #f7d354;
+    position: absolute;
+    left: 0;
+    border-radius: 30px;
+}
+
+.title .query-text {
+    color: #f7d354;
+}
+
+.movies-container {
+    --bs-gutter-y: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.movies-container .movie-card {
+    height: 100%;
+
+    --bs-card-bg: #1a1a1a;
+    --bs-card-border-radius: 0;
+    --bs-card-border-width: 0;
+    --bs-card-inner-border-radius: 0;
+}
+
+.movies-container .movie-card .img-wrapper {
+    --bs-aspect-ratio: calc(3 / 2 * 100%);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.movies-container .movie-card .card-img-top {
+    max-width: 100%;
+    height: auto;
+}
+
+.movies-container .movie-card .card-title {
+    height: 6.5rem;
+    overflow: hidden;
+    -webkit-line-clamp: 3;
+    text-overflow: ellipsis;
+    -webkit-box-orient: vertical;
+    display: -webkit-box;
+}
+
+.movies-container .movie-card .info {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: var(--bs-card-title-spacer-y);
+}
+
+.movies-container .movie-card p {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    margin-bottom: 0;
+}
+
+.movies-container .movie-card svg {
+    color: #f7d354;
+}
+
+.movies-container .movie-card a {
+    border-radius: 4px;
+    padding: 1rem 0.5rem;
+    text-align: center;
+    transition: 0.4s;
+    font-weight: bold;
+    width: 100%;
+}

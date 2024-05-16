@@ -1,0 +1,48 @@
+#navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background-color: #121212;
+
+    --bs-navbar-brand-color: #121212;
+    --bs-link-hover-color-rgb: #312718;
+    --bs-navbar-brand-font-size: 1.5rem;
+}
+
+#navbar .navbar-brand {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background-color: #e2b616;
+    padding: 0.25rem 0.5rem;
+    font-weight: bold;
+    border-radius: 10px;
+    transition: 0.2s;
+    font-family: "Jaro", sans-serif;
+}
+
+#navbar .navbar-brand:hover {
+    background-color: #e2b616d1;
+}
+
+#navbar form {
+    display: flex;
+    gap: 0.5rem;
+}
+
+#navbar form input {
+    padding: 0.2rem 0.8rem;
+    border-radius: 4px;
+    border: none;
+}
+
+#navbar form button {
+    border-radius: 4px;
+    padding: 0.3rem;
+    font-size: 1.3rem;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    transition: 0.4s;
+}
