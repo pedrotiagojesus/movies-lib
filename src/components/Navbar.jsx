@@ -19,7 +19,7 @@ const Navbar = () => {
     return (
         <nav id="navbar" className="navbar fixed-top">
             <div className="container">
-                <Link to="/" className="navbar-brand">
+                <Link to="/movies-lib/" className="navbar-brand">
                     <BiCameraMovie /> MoviesLib
                 </Link>
                 <form role="search" onSubmit={handleSubmit}>
