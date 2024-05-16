@@ -50,7 +50,7 @@ const Search = () => {
                     {movies &&
                         movies.length > 0 &&
                         movies.map((movie) => (
-                            <div key={movie.id} className="col-md-3">
+                            <div key={movie.id} className="col-6 col-md-3">
                                 <MovieCard movie={movie} />
                             </div>
                         ))}
