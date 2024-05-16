@@ -12,7 +12,7 @@ const Navbar = () => {
         e.preventDefault();
 
         if (search) {
-            navigate(`/search?q=${search}`);
+            navigate(`/movies-lib/search?q=${search}`);
         }
     };
 

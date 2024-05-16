@@ -38,7 +38,7 @@ const MovieCard = ({ movie, showLink = true }) => {
                 {showLink && (
                     <Link
                         className="btn btn-primary"
-                        to={`/movie/${movie.id}`}
+                        to={`/movies-lib/movie/${movie.id}`}
                         title="See more"
                     >
                         Details

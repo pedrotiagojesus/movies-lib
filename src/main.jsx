@@ -1,12 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import {
-    BrowserRouter,
-    Routes,
-    Route,
-    createBrowserRouter,
-    RouterProvider,
-} from "react-router-dom";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 // CSS
 import "./assets/bootstrap-5.3.3/css/bootstrap.min.css";
@@ -28,16 +22,16 @@ const router = createBrowserRouter([
         element: <App />,
         children: [
             {
-                path: "/movies-lib/",
-                element: <Home />,
-            },
-            {
                 path: "/movies-lib/movie/:id/",
                 element: <Movie />,
             },
             {
                 path: "/movies-lib/search/",
                 element: <Search />,
+            },
+            {
+                path: "/movies-lib/",
+                element: <Home />,
             },
         ],
     },
