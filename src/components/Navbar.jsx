@@ -22,7 +22,7 @@ const Navbar = () => {
                 <Link to="/" className="navbar-brand">
                     <BiCameraMovie /> MoviesLib
                 </Link>
-                <form className="d-flex" role="search" onSubmit={handleSubmit}>
+                <form role="search" onSubmit={handleSubmit}>
                     <input
                         type="text"
                         placeholder="Search a movie"
