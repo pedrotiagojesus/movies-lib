@@ -3,7 +3,7 @@
     padding-bottom: 1.5rem;
 }
 
-#movie-page svg {
+#movie-page svg.icon {
     font-size: 1.5rem;
     color: #f7d354;
 }
@@ -60,6 +60,11 @@
 
 #movie-page .description p {
     line-height: 1.4rem;
+}
+
+#movie-page .credit {
+    padding-top: 2rem;
+    padding-bottom: 1.5rem;
 }
 
 #movie-page .credit-container {
