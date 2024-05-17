@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 
 import MovieCard from "../components/MovieCard";
+import Loading from "../components/Loading";
 
 import "./MoviesGrid.css";
 
@@ -34,7 +35,7 @@ const Home = () => {
         <div id="homepage" className="container">
             <h2 className="title">Best movies</h2>
             <div className="movies-container row">
-                {movies && movies.length === 0 && loading && <p>Loading...</p>}
+                {movies && movies.length === 0 && loading && <Loading />}
                 {movies && movies.length === 0 && !loading && <p>No results</p>}
                 {movies.length > 0 &&
                     movies.map((movie) => (

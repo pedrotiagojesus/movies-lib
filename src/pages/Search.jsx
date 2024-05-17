@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
-import { useTmdbGet } from "../hooks/useTmdbGet";
 
-import "./MoviesGrid.css";
 import { useSearchParams } from "react-router-dom";
 import MovieCard from "../components/MovieCard";
+import Loading from "../components/Loading";
+
+import "./MoviesGrid.css";
 
 const searchUrl = import.meta.env.VITE_SEARCH;
 const apiKey = import.meta.env.VITE_API_KEY;
@@ -40,7 +41,7 @@ const Search = () => {
                 Results for: <span className="query-text">{query}</span>
             </h2>
             <div className="movies-container row">
-                {movies && movies.length === 0 && loading && <p>Loading...</p>}
+                {movies && movies.length === 0 && loading && <Loading />}
                 {movies && movies.length === 0 && !loading && <p>No results</p>}
                 {movies &&
                     movies.length > 0 &&
