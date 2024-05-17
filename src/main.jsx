@@ -13,8 +13,6 @@ import Movie from "./pages/Movie.jsx";
 import Search from "./pages/Search.jsx";
 
 // Partilhar o idioma de origem, pais de origem, genero, data de lançamento
-// É possível recolher os atores?
-// Informação em PT
 
 const router = createBrowserRouter([
     {

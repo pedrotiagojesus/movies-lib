@@ -5,7 +5,7 @@ import {
     BsWallet2,
     BsHourglassSplit,
     BsFillFileEarmarkTextFill,
-    BsChevronLeft,
+    BsCalendar3,
     BsChevronRight,
 } from "react-icons/bs";
 
@@ -112,30 +112,37 @@ const Movie = () => {
                             </p>
                             <div className="list-info">
                                 <div className="info">
-                                    <h3>
+                                    <h5>
                                         <BsWallet2 className="icon" /> Budget
-                                    </h3>
+                                    </h5>
                                     <p>{formatCurrency(movie.budget)}</p>
                                 </div>
                                 <div className="info">
-                                    <h3>
+                                    <h5>
                                         <BsGraphUp className="icon" /> Revenue
-                                    </h3>
+                                    </h5>
                                     <p>{formatCurrency(movie.revenue)}</p>
                                 </div>
                                 <div className="info">
-                                    <h3>
+                                    <h5>
                                         <BsHourglassSplit className="icon" />{" "}
                                         Runtime
-                                    </h3>
+                                    </h5>
                                     <p>{movie.runtime} minutes</p>
+                                </div>
+                                <div className="info">
+                                    <h5>
+                                        <BsCalendar3 className="icon" /> Release
+                                        date
+                                    </h5>
+                                    <p>{movie.release_date}</p>
                                 </div>
                             </div>
                             <div className="info description">
-                                <h3>
+                                <h5>
                                     <BsFillFileEarmarkTextFill className="icon" />{" "}
                                     Overview
-                                </h3>
+                                </h5>
                                 <p>{movie.overview} </p>
                             </div>
                         </div>
