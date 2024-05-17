@@ -1,0 +1,47 @@
+.person-card {
+    height: 100%;
+
+    --bs-card-bg: #1a1a1a;
+    --bs-card-border-radius: 0;
+    --bs-card-border-width: 0;
+    --bs-card-inner-border-radius: 0;
+    --bs-card-subtitle-color: #ffffff94;
+}
+
+.person-card .img-wrapper {
+    --bs-aspect-ratio: calc(3 / 2 * 100%);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.person-card .img-wrapper > * {
+    position: relative;
+    width: auto;
+    height: auto;
+    font-size: 7rem;
+    color: #ffffff50;
+}
+
+.person-card .card-img-top {
+    max-width: 100%;
+    height: auto;
+}
+
+.person-card .card-title {
+    height: 3rem;
+    overflow: hidden;
+    -webkit-line-clamp: 2;
+    text-overflow: ellipsis;
+    -webkit-box-orient: vertical;
+    display: -webkit-box;
+    font-size: 1.25rem;
+}
+
+.person-card .card-subtitle {
+    font-style: italic;
+    font-size: 1rem;
+}

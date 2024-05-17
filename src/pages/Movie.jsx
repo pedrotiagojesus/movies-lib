@@ -15,6 +15,8 @@ import "@splidejs/react-splide/css";
 import "./Movie.css";
 import "../Splide.css";
 
+import PersonCard from "../components/PersonCard";
+
 const moviesUrl = import.meta.env.VITE_API;
 const apiKey = import.meta.env.VITE_API_KEY;
 const imageUrl = import.meta.env.VITE_IMG;
@@ -163,25 +165,11 @@ const Movie = () => {
                                 <SplideTrack>
                                     {movieCredit.cast.map((cast, i) => (
                                         <SplideSlide key={`cast-${i}`}>
-                                            <div className="card credit-card">
-                                                <div
-                                                    className="ratio img-wrapper"
-                                                    style={{
-                                                        backgroundImage: `url(${imageUrl}${cast.profile_path})`,
-                                                    }}
-                                                ></div>
-                                                <div className="card-body">
-                                                    <h4
-                                                        className="card-title"
-                                                        title={cast.character}
-                                                    >
-                                                        {cast.character}
-                                                    </h4>
-                                                    <h5 className="card-subtitle">
-                                                        {cast.name}
-                                                    </h5>
-                                                </div>
-                                            </div>
+                                            <PersonCard
+                                                image={cast.profile_path}
+                                                title={cast.character}
+                                                subtitle={cast.name}
+                                            />
                                         </SplideSlide>
                                     ))}
                                 </SplideTrack>
@@ -219,25 +207,11 @@ const Movie = () => {
                                 <SplideTrack>
                                     {movieCredit.crew.map((crew, i) => (
                                         <SplideSlide key={`crew-${i}`}>
-                                            <div className="card credit-card">
-                                                <div
-                                                    className="ratio img-wrapper"
-                                                    style={{
-                                                        backgroundImage: `url(${imageUrl}${crew.profile_path})`,
-                                                    }}
-                                                ></div>
-                                                <div className="card-body">
-                                                    <h4
-                                                        className="card-title"
-                                                        title={crew.name}
-                                                    >
-                                                        {crew.name}
-                                                    </h4>
-                                                    <h5 className="card-subtitle">
-                                                        {crew.department}
-                                                    </h5>
-                                                </div>
-                                            </div>
+                                            <PersonCard
+                                                image={crew.profile_path}
+                                                title={crew.name}
+                                                subtitle={crew.department}
+                                            />
                                         </SplideSlide>
                                     ))}
                                 </SplideTrack>

@@ -76,39 +76,3 @@
 #movie-page .credit-container:last-child {
     margin-bottom: 0;
 }
-
-#movie-page .credit-card {
-    height: 100%;
-
-    --bs-card-bg: #1a1a1a;
-    --bs-card-border-radius: 0;
-    --bs-card-border-width: 0;
-    --bs-card-inner-border-radius: 0;
-    --bs-card-subtitle-color: #ffffff94;
-}
-
-#movie-page .credit-card .img-wrapper {
-    --bs-aspect-ratio: calc(3 / 2 * 100%);
-    background-size: cover;
-    background-repeat: no-repeat;
-}
-
-#movie-page .credit-card .card-img-top {
-    max-width: 100%;
-    height: auto;
-}
-
-#movie-page .credit-card .card-title {
-    height: 3rem;
-    overflow: hidden;
-    -webkit-line-clamp: 2;
-    text-overflow: ellipsis;
-    -webkit-box-orient: vertical;
-    display: -webkit-box;
-    font-size: 1.25rem;
-}
-
-#movie-page .credit-card .card-subtitle {
-    font-style: italic;
-    font-size: 1rem;
-}
