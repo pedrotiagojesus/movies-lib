@@ -27,7 +27,7 @@ const Home = () => {
     };
 
     useEffect(() => {
-        const apiUrl = `${moviesUrl}top_rated?${apiKey}`;
+        const apiUrl = `${moviesUrl}top_rated?${apiKey}&page=1`;
         getMovies(apiUrl);
     }, []);
 
