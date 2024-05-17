@@ -1,6 +1,5 @@
 #movie-page {
     padding-top: 2rem;
-    padding-bottom: 1.5rem;
 }
 
 #movie-page svg.icon {
@@ -36,11 +35,15 @@
 
 #movie-page .list-info {
     display: flex;
-    gap: 2.5rem;
-    margin-bottom: 2.5rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 1rem;
 }
 
 #movie-page .info {
+    background-color: #1a1a1a;
+    padding: 0.75rem 1.25rem;
+    border-radius: 3px;
 }
 
 #movie-page .info h3 {
@@ -52,10 +55,6 @@
 
 #movie-page .info p {
     margin-bottom: 0;
-}
-
-#movie-page .description {
-    padding-bottom: 10rem;
 }
 
 #movie-page .description p {
@@ -70,6 +69,10 @@
 #movie-page .credit-container {
     --bs-gutter-y: 1.5rem;
     margin-bottom: 1.5rem;
+}
+
+#movie-page .credit-container:last-child {
+    margin-bottom: 0;
 }
 
 #movie-page .credit-card {

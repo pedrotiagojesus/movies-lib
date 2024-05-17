@@ -93,17 +93,23 @@ const Movie = () => {
         <div id="movie-page" className="container">
             {movie && (
                 <>
+                    <h2 className="title d-md-none">{movie.title}</h2>
+                    <p className="tagline d-md-none">{movie.tagline}</p>
                     <div className="row">
                         <div className="col-md-4">
                             <img
                                 src={`${imageUrl}${movie.poster_path}`}
-                                alt={movie}
-                                className="img-fluid"
+                                alt={movie.title}
+                                className="img-fluid mb-3 mb-md-0"
                             />
                         </div>
                         <div className="col-md-8">
-                            <h2 className="title">{movie.title}</h2>
-                            <p className="tagline">{movie.tagline}</p>
+                            <h2 className="title d-none d-md-block">
+                                {movie.title}
+                            </h2>
+                            <p className="tagline d-none d-md-block">
+                                {movie.tagline}
+                            </p>
                             <div className="list-info">
                                 <div className="info">
                                     <h3>
