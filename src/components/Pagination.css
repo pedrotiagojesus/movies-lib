@@ -1,0 +1,32 @@
+.movie-list-pagination {
+    margin-top: 1.5rem;
+}
+
+.movie-list-pagination .pagination {
+    --bs-pagination-padding-x: 0.75rem;
+    --bs-pagination-padding-y: 0.375rem;
+    --bs-pagination-font-size: 1rem;
+    --bs-pagination-color: #f7d354;
+    --bs-pagination-bg: #ffffff25;
+
+    --bs-pagination-focus-box-shadow: none;
+
+    --bs-pagination-border-width: var(--bs-border-width);
+    --bs-pagination-border-color: #ffffff25;
+    --bs-pagination-border-radius: 3px;
+
+    --bs-pagination-hover-color: #f7d354;
+    --bs-pagination-hover-bg: #ffffff50;
+    --bs-pagination-hover-border-color: #ffffff50;
+
+    --bs-pagination-focus-color: #f7d354;
+    --bs-pagination-focus-bg: #ffffff50;
+
+    --bs-pagination-active-color: #f7d354;
+    --bs-pagination-active-bg: #ffffff75;
+    --bs-pagination-active-border-color: #ffffff;
+
+    --bs-pagination-disabled-color: #f7d35450;
+    --bs-pagination-disabled-bg: #ffffff10;
+    --bs-pagination-disabled-border-color: #ffffff10;
+}

@@ -5,16 +5,22 @@ import MovieCard from "../components/MovieCard";
 import Loading from "../components/Loading";
 
 import "./MoviesGrid.css";
+import Pagination from "../components/Pagination";
 
 const searchUrl = import.meta.env.VITE_SEARCH;
 const apiKey = import.meta.env.VITE_API_KEY;
 
 const Search = () => {
-    const [searchParams] = useSearchParams();
-
     const [movies, setMovies] = useState([]);
-    const [loading, setLoading] = useState(false);
+    const [totalPages, setTotalPages] = useState(0);
+
+    const [searchParams] = useSearchParams();
     const query = searchParams.get("q");
+    const page = searchParams.get("page");
+
+    const [loading, setLoading] = useState(false);
+
+    const urlRoute = `/movies-lib/search?q=${query}`;
 
     const getMovies = async (apiUrl) => {
         setLoading(true);
@@ -25,15 +31,22 @@ const Search = () => {
                 setLoading(false);
                 if (response.results) {
                     setMovies(response.results);
+                    setTotalPages(response.total_pages);
                 }
             })
             .catch((err) => console.error(err));
     };
 
     useEffect(() => {
-        const apiUrl = `${searchUrl}?${apiKey}&query=${query}`;
+        let queryStringPage = "";
+
+        if (page) {
+            queryStringPage = `&page=${page}`;
+        }
+
+        const apiUrl = `${searchUrl}?${apiKey}&query=${query}${queryStringPage}`;
         getMovies(apiUrl);
-    }, [query]);
+    }, [query, page]);
 
     return (
         <div id="search-page" className="container">
@@ -51,6 +64,11 @@ const Search = () => {
                         </div>
                     ))}
             </div>
+            <Pagination
+                urlRoute={urlRoute}
+                totalPages={totalPages}
+                currentNumPage={page}
+            />
         </div>
     );
 };

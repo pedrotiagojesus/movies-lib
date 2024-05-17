@@ -16,11 +16,11 @@ import Search from "./pages/Search.jsx";
 
 const router = createBrowserRouter([
     {
-        path: "/movies-lib/",
+        path: "/movies-lib",
         element: <App />,
         children: [
             {
-                path: "/movies-lib/",
+                path: "/movies-lib",
                 element: <Home />,
             },
             {
