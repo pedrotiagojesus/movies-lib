@@ -22,7 +22,6 @@
 
 .movies-container {
     --bs-gutter-y: 1.5rem;
-    margin-bottom: 1.5rem;
 }
 
 .movies-container .movie-card {

@@ -1,3 +1,13 @@
 .App {
     padding-top: 84px;
 }
+
+#homepage {
+    padding-top: 2rem;
+    padding-bottom: 1.5rem;
+}
+
+#search-page {
+    padding-top: 2rem;
+    padding-bottom: 1.5rem;
+}
