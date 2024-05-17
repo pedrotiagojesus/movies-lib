@@ -31,7 +31,7 @@ const Home = () => {
     }, []);
 
     return (
-        <div className="container">
+        <div id="homepage" className="container">
             <h2 className="title">Best movies</h2>
             <div className="movies-container row">
                 {movies && movies.length === 0 && loading && <p>Loading...</p>}

@@ -35,29 +35,20 @@ const Search = () => {
     }, [query]);
 
     return (
-        <div>
-            <div className="container">
-                <h2 className="title">
-                    Results for: <span className="query-text">{query}</span>
-                </h2>
-                <div className="movies-container row">
-                    {movies && movies.length === 0 && loading && (
-                        <p>Loading...</p>
-                    )}
-                    {movies && movies.length === 0 && !loading && (
-                        <p>No results</p>
-                    )}
-                    {movies &&
-                        movies.length > 0 &&
-                        movies.map((movie) => (
-                            <div
-                                key={movie.id}
-                                className="col-6 col-md-4 col-lg-3"
-                            >
-                                <MovieCard movie={movie} />
-                            </div>
-                        ))}
-                </div>
+        <div id="search-page" className="container">
+            <h2 className="title">
+                Results for: <span className="query-text">{query}</span>
+            </h2>
+            <div className="movies-container row">
+                {movies && movies.length === 0 && loading && <p>Loading...</p>}
+                {movies && movies.length === 0 && !loading && <p>No results</p>}
+                {movies &&
+                    movies.length > 0 &&
+                    movies.map((movie) => (
+                        <div key={movie.id} className="col-6 col-md-4 col-lg-3">
+                            <MovieCard movie={movie} />
+                        </div>
+                    ))}
             </div>
         </div>
     );
