@@ -1,8 +1,8 @@
+import "./MovieCard.css";
+
 import { Link } from "react-router-dom";
 
 import { FaStar } from "react-icons/fa";
-import { BiSolidCalendarAlt } from "react-icons/bi";
-import { useState } from "react";
 import { BsCardImage } from "react-icons/bs";
 
 const imageUrl = import.meta.env.VITE_IMG;
@@ -14,6 +14,13 @@ const MovieCard = ({ movie, showLink = true }) => {
         backgroundImage = `url(${imageUrl}${movie.poster_path})`;
         emptyImage = "";
     }
+
+    const getYear = () => {
+        let objectDate = new Date(movie.release_date);
+        return objectDate.getFullYear();
+    };
+
+    getYear();
 
     return (
         <div className="card movie-card">
@@ -32,9 +39,6 @@ const MovieCard = ({ movie, showLink = true }) => {
 
                 <div className="info">
                     <p>
-                        <BiSolidCalendarAlt /> {movie.release_date}
-                    </p>
-                    <p>
                         <FaStar /> {movie.vote_average}
                     </p>
                 </div>
@@ -48,6 +52,11 @@ const MovieCard = ({ movie, showLink = true }) => {
                         Details
                     </Link>
                 )}
+            </div>
+
+            <div className="badge-info">
+                <span className="badge">{movie.original_language}</span>
+                <span className="badge">{getYear()}</span>
             </div>
         </div>
     );

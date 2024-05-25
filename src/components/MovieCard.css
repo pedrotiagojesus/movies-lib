@@ -1,0 +1,81 @@
+.movie-card {
+    height: 100%;
+
+    --bs-card-bg: #1a1a1a;
+    --bs-card-border-radius: 0;
+    --bs-card-border-width: 0;
+    --bs-card-inner-border-radius: 0;
+}
+
+.movie-card .img-wrapper {
+    --bs-aspect-ratio: calc(3 / 2 * 100%);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.movie-card .img-wrapper > * {
+    position: relative;
+    width: auto;
+    height: auto;
+    font-size: 7rem;
+    color: #ffffff50;
+}
+
+.movie-card .card-img-top {
+    max-width: 100%;
+    height: auto;
+}
+
+.movie-card .card-title {
+    height: 4.5rem;
+    overflow: hidden;
+    -webkit-line-clamp: 3;
+    text-overflow: ellipsis;
+    -webkit-box-orient: vertical;
+    display: -webkit-box;
+    font-size: 1.25rem;
+}
+
+.movie-card .info {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: var(--bs-card-title-spacer-y);
+}
+
+.movie-card p {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    margin-bottom: 0;
+}
+
+.movie-card svg {
+    color: #f7d354;
+}
+
+.movie-card a {
+    border-radius: 4px;
+    padding: 0.75rem 0.5rem;
+    text-align: center;
+    transition: 0.4s;
+    font-weight: 500;
+    width: 100%;
+}
+
+.movie-card .badge-info {
+    position: absolute;
+    right: 1rem;
+    top: 1rem;
+    display: flex;
+    gap: 0.25rem;
+}
+
+.movie-card .badge-info .badge {
+    --bs-badge-font-weight: 300;
+    --bs-badge-color: #000000;
+    background-color: #e2b616d1;
+}
