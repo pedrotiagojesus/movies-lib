@@ -1,4 +1,4 @@
-.container .title {
+.title {
     font-size: 2.5rem;
     margin-bottom: 1rem;
     position: relative;
@@ -6,7 +6,7 @@
     padding-left: 10px;
 }
 
-.container .title::after {
+.title::after {
     content: "";
     height: 100%;
     width: 3px;
