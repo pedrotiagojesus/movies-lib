@@ -1,13 +1,5 @@
-.App {
-    padding-top: 4.75rem;
-}
-
-#homepage {
-    padding-top: 2rem;
+main {
+    padding-top: calc(var(--header-heiht) + 2rem);
     padding-bottom: 1.5rem;
-}
-
-#search-page {
-    padding-top: 2rem;
-    padding-bottom: 1.5rem;
+    display: flex;
 }

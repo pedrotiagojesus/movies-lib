@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useHref, useSearchParams } from "react-router-dom";
+import { useLocation, useParams, useSearchParams } from "react-router-dom";
 
 import MovieCard from "../components/MovieCard";
 import Loading from "../components/Loading";
@@ -7,7 +7,7 @@ import Loading from "../components/Loading";
 import "./MoviesGrid.css";
 import Pagination from "../components/Pagination";
 
-const moviesUrl = import.meta.env.VITE_API;
+const viteBaseApi = import.meta.env.VITE_BASE_API;
 const apiKey = import.meta.env.VITE_API_KEY;
 
 const Home = () => {
@@ -17,9 +17,9 @@ const Home = () => {
 
     const [searchParams] = useSearchParams();
     const page = searchParams.get("page");
+    const gender = searchParams.get("gender");
 
-    const urlRoute = "/movies-lib";
-    const baseApiMovieUrl = `${moviesUrl}top_rated?${apiKey}`;
+    const urlRoute = `/movies-lib`;
 
     const getMovies = async (apiUrl) => {
         setLoading(true);
@@ -30,8 +30,8 @@ const Home = () => {
                 setLoading(false);
                 if (response.results) {
                     setMovies(response.results);
-                    setTotalPages(response.total_pages);
                 }
+                setTotalPages(response.total_pages);
             })
             .catch((err) => console.error(err));
     };
@@ -43,13 +43,18 @@ const Home = () => {
             queryStringPage = `&page=${page}`;
         }
 
-        const apiUrl = `${baseApiMovieUrl}${queryStringPage}`;
+        if (gender) {
+            queryStringPage = `&with_genres=${gender}`;
+        }
+
+        const apiUrl = `${viteBaseApi}discover/movie?${apiKey}${queryStringPage}`;
         getMovies(apiUrl);
-    }, [page]);
+    }, [page, gender]);
 
     return (
-        <div id="homepage" className="container">
-            <h2 className="title">Best movies</h2>
+        <div id="homepage">
+            <h2 className="title">Movies</h2>
+            <p>List all movies.</p>
             <div className="movies-container row">
                 {movies && movies.length === 0 && loading && <Loading />}
                 {movies && movies.length === 0 && !loading && <p>No results</p>}

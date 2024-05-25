@@ -3,6 +3,7 @@
     justify-content: space-between;
     align-items: center;
     background-color: #121212;
+    height: var(--header-heiht);
 
     --bs-navbar-padding-y: 1rem;
     --bs-navbar-brand-color: #121212;

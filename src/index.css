@@ -24,6 +24,8 @@ html {
     --bs-body-bg: #000;
     --bs-body-color: #fff;
     --bs-body-font-family: "Roboto", sans-serif;
+
+    --header-heiht: 4.75rem;
 }
 
 @media only screen and (min-width: 576px) {

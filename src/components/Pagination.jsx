@@ -1,16 +1,36 @@
 import { Link } from "react-router-dom";
 import "./Pagination.css";
+import { useCurrentURL } from "../hooks/useCurrentUrl";
 
-const Pagination = ({ urlRoute, totalPages, currentNumPage }) => {
+const Pagination = ({ totalPages, currentNumPage }) => {
+    const { pathname, search, searchParams } = useCurrentURL();
+
     if (totalPages == 0) {
         return;
     }
 
-    const buildUrl = (route, page) => {
-        if (route.includes("?")) {
-            return `${route}&page=${page}`;
+    const buildUrl = (page) => {
+        const entryArr = ["q", "discover"];
+        let queryString = ``;
+
+        entryArr.map((entry) => {
+            if (search.includes(entry)) {
+                if (queryString.includes("?")) {
+                    queryString = `${queryString}&`;
+                } else {
+                    queryString = `${queryString}?`;
+                }
+
+                queryString = `${queryString}${entry}=${searchParams.get(
+                    entry
+                )}`;
+            }
+        });
+
+        if (queryString === "") {
+            return `${pathname}?page=${page}`;
         } else {
-            return `${route}?page=${page}`;
+            return `${pathname}${queryString}&page=${page}`;
         }
     };
 
@@ -41,7 +61,7 @@ const Pagination = ({ urlRoute, totalPages, currentNumPage }) => {
     const previousPageNum = currentNumPage - parseInt(1);
 
     const previousPageLink =
-        previousPageNum >= 0 ? buildUrl(urlRoute, previousPageNum) : "";
+        previousPageNum >= 0 ? buildUrl(previousPageNum) : "";
     const previousPageDisabled = previousPageNum <= 0 ? "disabled" : "";
 
     pageItem.push(
@@ -63,10 +83,7 @@ const Pagination = ({ urlRoute, totalPages, currentNumPage }) => {
 
         pageItem.push(
             <li className="page-item" key={i}>
-                <Link
-                    className={`page-link ${active}`}
-                    to={buildUrl(urlRoute, i)}
-                >
+                <Link className={`page-link ${active}`} to={buildUrl(i)}>
                     {i}
                 </Link>
             </li>
@@ -76,8 +93,7 @@ const Pagination = ({ urlRoute, totalPages, currentNumPage }) => {
     // Next button
     const nextPageNum = currentNumPage + parseInt(1);
 
-    const nextPageLink =
-        nextPageNum <= totalPages ? buildUrl(urlRoute, nextPageNum) : "";
+    const nextPageLink = nextPageNum <= totalPages ? buildUrl(nextPageNum) : "";
     const nextPageDisabled = nextPageNum >= totalPages ? "disabled" : "";
 
     pageItem.push(
