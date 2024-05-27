@@ -16,6 +16,10 @@ const MovieCard = ({ movie, showLink = true }) => {
     }
 
     const getYear = () => {
+        if (movie.release_date === "") {
+            return;
+        }
+
         let objectDate = new Date(movie.release_date);
         return objectDate.getFullYear();
     };

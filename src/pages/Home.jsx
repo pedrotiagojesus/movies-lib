@@ -1,11 +1,12 @@
 import { useState, useEffect } from "react";
-import { useLocation, useParams, useSearchParams } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 
 import MovieCard from "../components/MovieCard";
 import Loading from "../components/Loading";
 
 import "./MoviesGrid.css";
 import Pagination from "../components/Pagination";
+import SelectBoxSortBy from "../components/SelectBoxSortBy";
 
 const viteBaseApi = import.meta.env.VITE_BASE_API;
 const apiKey = import.meta.env.VITE_API_KEY;
@@ -13,6 +14,7 @@ const apiKey = import.meta.env.VITE_API_KEY;
 const Home = () => {
     const [movies, setMovies] = useState([]);
     const [totalPages, setTotalPages] = useState(0);
+    const [sortBy, setSortBy] = useState("popularity.desc");
     const [loading, setLoading] = useState(false);
 
     const [searchParams] = useSearchParams();
@@ -40,21 +42,37 @@ const Home = () => {
         let queryStringPage = "";
 
         if (page) {
-            queryStringPage = `&page=${page}`;
+            queryStringPage = `${queryStringPage}&page=${page}`;
         }
 
         if (gender) {
-            queryStringPage = `&with_genres=${gender}`;
+            queryStringPage = `${queryStringPage}&with_genres=${gender}`;
         }
+
+        queryStringPage = `${queryStringPage}&sort_by=${sortBy}`;
 
         const apiUrl = `${viteBaseApi}discover/movie?${apiKey}${queryStringPage}`;
         getMovies(apiUrl);
-    }, [page, gender]);
+    }, [page, gender, sortBy]);
+
+    const handleSelectSortBy = (value) => {
+        setSortBy(value);
+    };
 
     return (
         <div id="homepage">
-            <h2 className="title">Movies</h2>
-            <p>List all movies.</p>
+            <div className="d-flex">
+                <div className="flex-fill">
+                    <h2 className="title">Movies</h2>
+                    <p>List all movies.</p>
+                </div>
+                <div>
+                    <SelectBoxSortBy
+                        selected={sortBy}
+                        handleSelect={handleSelectSortBy}
+                    />
+                </div>
+            </div>
             <div className="movies-container row">
                 {movies && movies.length === 0 && loading && <Loading />}
                 {movies && movies.length === 0 && !loading && <p>No results</p>}
