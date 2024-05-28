@@ -55,7 +55,11 @@ const Filter = () => {
                                     className={`nav-link btn btn-primary ${
                                         genderId == row.id ? "active" : ""
                                     }`}
-                                    to={`/movies-lib?gender=${row.id}`}
+                                    to={`/movies-lib${
+                                        genderId == row.id
+                                            ? ""
+                                            : `?gender=${row.id}`
+                                    }`}
                                 >
                                     {row.name}
                                 </Link>

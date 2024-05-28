@@ -1,61 +1,57 @@
 import React from "react";
+import { FaSortDown, FaSortUp } from "react-icons/fa";
 
-const SelectBoxSortBy = ({ selected, handleSelect }) => {
+const SelectBoxSortBy = ({
+    selected,
+    handleSelect,
+    sortDirection,
+    handleDirection,
+}) => {
     const sortByArr = [
         {
-            name: "Popularidade Asc.",
-            value: "popularity.asc",
+            name: "Popularidade",
+            value: "popularity",
         },
         {
-            name: "Popularidade Desc.",
-            value: "popularity.desc",
+            name: "Título",
+            value: "title",
         },
         {
-            name: "Título Asc.",
-            value: "title.asc",
+            name: "Data de lançamento",
+            value: "primary_release_date",
         },
         {
-            name: "Título Desc.",
-            value: "title.desc",
+            name: "Média de votos",
+            value: "vote_average",
         },
         {
-            name: "Data de lançamento Asc.",
-            value: "primary_release_date.asc",
-        },
-        {
-            name: "Data de lançamento Desc.",
-            value: "primary_release_date.desc",
-        },
-        {
-            name: "Média de votos Asc.",
-            value: "vote_average.asc",
-        },
-        {
-            name: "Média de votos Desc.",
-            value: "vote_average.desc",
-        },
-        {
-            name: "Nº. de votos Asc.",
-            value: "vote_count.asc",
-        },
-        {
-            name: "Nº.  de votos Desc.",
-            value: "vote_count.desc",
+            name: "Nº. de votos",
+            value: "vote_count",
         },
     ];
 
     return (
-        <select
-            className="form-select"
-            value={selected}
-            onChange={(e) => handleSelect(e.target.value)}
-        >
-            {sortByArr.map((sortByRow) => (
-                <option key={sortByRow.value} value={sortByRow.value}>
-                    {sortByRow.name}
-                </option>
-            ))}
-        </select>
+        <>
+            <select
+                className="form-select"
+                value={selected}
+                onChange={(e) => handleSelect(e.target.value)}
+            >
+                {sortByArr.map((sortByRow) => (
+                    <option key={sortByRow.value} value={sortByRow.value}>
+                        {sortByRow.name}
+                    </option>
+                ))}
+            </select>
+            <div className="btn btn-primary">
+                {sortDirection === "asc" && (
+                    <FaSortUp onClick={() => handleDirection("desc")} />
+                )}
+                {sortDirection === "desc" && (
+                    <FaSortDown onClick={() => handleDirection("asc")} />
+                )}
+            </div>
+        </>
     );
 };
 

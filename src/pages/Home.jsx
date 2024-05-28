@@ -16,7 +16,8 @@ const apiKey = import.meta.env.VITE_API_KEY;
 const Home = () => {
     const [movies, setMovies] = useState([]);
     const [totalPages, setTotalPages] = useState(0);
-    const [sortBy, setSortBy] = useState("popularity.desc");
+    const [sortBy, setSortBy] = useState("popularity");
+    const [sortByDirection, setSortByDirection] = useState("desc");
     const [loading, setLoading] = useState(false);
 
     const [searchParams] = useSearchParams();
@@ -51,14 +52,18 @@ const Home = () => {
             queryStringPage = `${queryStringPage}&with_genres=${gender}`;
         }
 
-        queryStringPage = `${queryStringPage}&sort_by=${sortBy}`;
+        queryStringPage = `${queryStringPage}&sort_by=${sortBy}.${sortByDirection}`;
 
         const apiUrl = `${viteBaseApi}discover/movie?${apiKey}${queryStringPage}`;
         getMovies(apiUrl);
-    }, [page, gender, sortBy]);
+    }, [page, gender, sortBy, sortByDirection]);
 
     const handleSelectSortBy = (value) => {
         setSortBy(value);
+    };
+
+    const handleSelectSortByDirection = (value) => {
+        setSortByDirection(value);
     };
 
     return (
@@ -73,6 +78,8 @@ const Home = () => {
                     <SelectBoxSortBy
                         selected={sortBy}
                         handleSelect={handleSelectSortBy}
+                        sortDirection={sortByDirection}
+                        handleDirection={handleSelectSortByDirection}
                     />
                 </div>
             </div>
