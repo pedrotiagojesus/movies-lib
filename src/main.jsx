@@ -3,11 +3,11 @@ import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 // CSS
-import "./assets/bootstrap-5.3.3/css/bootstrap.min.css";
+import "bootstrap/dist/css/bootstrap.min.css";
 import "./index.css";
 
 // JS
-import "./assets/bootstrap-5.3.3/js/bootstrap.min.js";
+import "bootstrap/dist/js/bootstrap.min.js";
 
 // pages
 import App from "./App.jsx";
