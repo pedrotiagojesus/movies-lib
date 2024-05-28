@@ -7,6 +7,8 @@ import Loading from "../components/Loading";
 import "./MoviesGrid.css";
 import Pagination from "../components/Pagination";
 import SelectBoxSortBy from "../components/SelectBoxSortBy";
+import FilterTrigger from "../components/Modal/FilterTrigger";
+import Filter from "../components/Modal/Filter";
 
 const viteBaseApi = import.meta.env.VITE_BASE_API;
 const apiKey = import.meta.env.VITE_API_KEY;
@@ -66,7 +68,8 @@ const Home = () => {
                     <h2 className="title">Movies</h2>
                     <p>List all movies.</p>
                 </div>
-                <div>
+                <div className="d-flex align-items-start gap-3">
+                    <FilterTrigger />
                     <SelectBoxSortBy
                         selected={sortBy}
                         handleSelect={handleSelectSortBy}
@@ -88,6 +91,7 @@ const Home = () => {
                 totalPages={totalPages}
                 currentNumPage={page}
             />
+            <Filter />
         </div>
     );
 };

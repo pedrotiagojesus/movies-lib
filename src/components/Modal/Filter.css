@@ -1,0 +1,26 @@
+#filter-modal.modal {
+    --bs-modal-header-border-color: #ffffff25;
+}
+
+#filter-modal .modal-header .btn {
+    --bs-btn-color: #ffffff50;
+    transition: 0.5s;
+}
+
+#filter-modal .filter-items {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+#filter-modal .filter-items a {
+    border: 1px solid #ffffff25;
+    padding: 0.25rem 0.75rem;
+    border-radius: 5px;
+    font-size: 0.9rem;
+}
+
+#filter-modal .modal-header {
+    display: flex;
+    justify-content: space-between;
+}
