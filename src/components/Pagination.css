@@ -7,12 +7,12 @@
     --bs-pagination-padding-y: 0.375rem;
     --bs-pagination-font-size: 1rem;
     --bs-pagination-color: #f7d354;
-    --bs-pagination-bg: #ffffff25;
+    --bs-pagination-bg: #1a1a1a;
 
     --bs-pagination-focus-box-shadow: none;
 
     --bs-pagination-border-width: var(--bs-border-width);
-    --bs-pagination-border-color: #ffffff25;
+    --bs-pagination-border-color: #1a1a1a;
     --bs-pagination-border-radius: 3px;
 
     --bs-pagination-hover-color: #f7d354;

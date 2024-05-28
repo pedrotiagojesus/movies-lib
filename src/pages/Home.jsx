@@ -35,8 +35,11 @@ const Home = () => {
                 setLoading(false);
                 if (response.results) {
                     setMovies(response.results);
+                    setTotalPages(response.total_pages);
+                } else {
+                    setMovies([]);
+                    setTotalPages(0);
                 }
-                setTotalPages(response.total_pages);
             })
             .catch((err) => console.error(err));
     };

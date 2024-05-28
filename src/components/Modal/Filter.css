@@ -1,5 +1,6 @@
 #filter-modal.modal {
-    --bs-modal-header-border-color: #ffffff25;
+    --bs-modal-header-border-color: #1a1a1a;
+    --bs-modal-bg: #1a1a1a;
 }
 
 #filter-modal .modal-header .btn {
@@ -14,7 +15,7 @@
 }
 
 #filter-modal .filter-items a {
-    border: 1px solid #ffffff25;
+    border: 1px solid #1a1a1a;
     padding: 0.25rem 0.75rem;
     border-radius: 5px;
     font-size: 0.9rem;

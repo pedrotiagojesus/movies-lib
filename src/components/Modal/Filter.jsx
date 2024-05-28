@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link, useSearchParams } from "react-router-dom";
+import { useCurrentURL } from "../../hooks/useCurrentUrl";
 
 import "./Filter.css";
 import { LiaTimesSolid } from "react-icons/lia";
@@ -10,7 +11,7 @@ const apiKey = import.meta.env.VITE_API_KEY;
 const Filter = () => {
     const [genders, setGenders] = useState([]);
 
-    const [searchParams] = useSearchParams();
+    const { pathname, search, searchParams } = useCurrentURL();
 
     const genderId = searchParams.get("gender");
 
@@ -30,6 +31,32 @@ const Filter = () => {
     useEffect(() => {
         getGenders(apiGenderUrl);
     }, []);
+
+    const buildUrl = (rowGenderId) => {
+        let url = pathname;
+
+        switch (pathname) {
+            case "/movies-lib":
+                break;
+            case "/movies-lib/search":
+                const search = searchParams.get("q");
+                url = `${url}?q=${search}`;
+                break;
+
+            default:
+                break;
+        }
+
+        if (genderId != rowGenderId) {
+            if (url.includes("?")) {
+                url = `${url}&gender=${rowGenderId}`;
+            } else {
+                url = `${url}?gender=${rowGenderId}`;
+            }
+        }
+
+        return url;
+    };
 
     return (
         <div className="modal fade" id="filter-modal" tabIndex="-1">
@@ -55,11 +82,7 @@ const Filter = () => {
                                     className={`nav-link btn btn-primary ${
                                         genderId == row.id ? "active" : ""
                                     }`}
-                                    to={`/movies-lib${
-                                        genderId == row.id
-                                            ? ""
-                                            : `?gender=${row.id}`
-                                    }`}
+                                    to={buildUrl(row.id)}
                                 >
                                     {row.name}
                                 </Link>

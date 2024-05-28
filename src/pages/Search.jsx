@@ -1,13 +1,14 @@
 import { useEffect, useState } from "react";
 
 import { useSearchParams } from "react-router-dom";
+
 import MovieCard from "../components/MovieCard";
 import Loading from "../components/Loading";
 
 import "./MoviesGrid.css";
 import Pagination from "../components/Pagination";
 
-const searchUrl = import.meta.env.VITE_SEARCH;
+const viteBaseApi = import.meta.env.VITE_BASE_API;
 const apiKey = import.meta.env.VITE_API_KEY;
 
 const Search = () => {
@@ -17,6 +18,7 @@ const Search = () => {
     const [searchParams] = useSearchParams();
     const query = searchParams.get("q");
     const page = searchParams.get("page");
+    const gender = searchParams.get("gender");
 
     const [loading, setLoading] = useState(false);
 
@@ -32,6 +34,9 @@ const Search = () => {
                 if (response.results) {
                     setMovies(response.results);
                     setTotalPages(response.total_pages);
+                } else {
+                    setMovies([]);
+                    setTotalPages(0);
                 }
             })
             .catch((err) => console.error(err));
@@ -40,13 +45,17 @@ const Search = () => {
     useEffect(() => {
         let queryStringPage = "";
 
+        queryStringPage = `&query=${query}`;
+
         if (page) {
-            queryStringPage = `&page=${page}`;
+            queryStringPage = `${queryStringPage}&page=${page}`;
         }
 
-        const apiUrl = `${searchUrl}?${apiKey}&query=${query}${queryStringPage}`;
+        const apiUrl = `${viteBaseApi}search/movie?${apiKey}${queryStringPage}`;
         getMovies(apiUrl);
-    }, [query, page]);
+
+        console.log(apiUrl);
+    }, [query, page, gender]);
 
     return (
         <div id="search-page" className="container">
