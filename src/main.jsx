@@ -7,7 +7,7 @@ import "./assets/bootstrap-5.3.3/css/bootstrap.min.css";
 import "./index.css";
 
 // JS
-import "./assets/bootstrap-5.3.3/js/bootstrap.min.js";
+// import "./assets/bootstrap-5.3.3/js/bootstrap.min.js";
 
 // pages
 import App from "./App.jsx";
