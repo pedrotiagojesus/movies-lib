@@ -22,7 +22,7 @@ const Home = () => {
 
     const [searchParams] = useSearchParams();
     const page = searchParams.get("page");
-    const gender = searchParams.get("gender");
+    const genre = searchParams.get("genre");
 
     const urlRoute = `/movies-lib`;
 
@@ -50,16 +50,16 @@ const Home = () => {
         if (page) {
             queryStringPage = `${queryStringPage}&page=${page}`;
         }
-
-        if (gender) {
-            queryStringPage = `${queryStringPage}&with_genres=${gender}`;
+        console.log(genre);
+        if (genre) {
+            queryStringPage = `${queryStringPage}&with_genres=${genre}`;
         }
 
         queryStringPage = `${queryStringPage}&sort_by=${sortBy}.${sortByDirection}`;
 
         const apiUrl = `${viteBaseApi}discover/movie?${apiKey}${queryStringPage}`;
         getMovies(apiUrl);
-    }, [page, gender, sortBy, sortByDirection]);
+    }, [page, genre, sortBy, sortByDirection]);
 
     const handleSelectSortBy = (value) => {
         setSortBy(value);
