@@ -9,30 +9,30 @@ const baseApi = import.meta.env.VITE_BASE_API;
 const apiKey = import.meta.env.VITE_API_KEY;
 
 const Filter = () => {
-    const [genders, setGenders] = useState([]);
+    const [genres, setGenres] = useState([]);
 
     const { pathname, search, searchParams } = useCurrentURL();
 
-    const genderId = searchParams.get("gender");
+    const genreId = searchParams.get("genre");
 
-    const apiGenderUrl = `${baseApi}genre/movie/list?${apiKey}`;
+    const apiGenreUrl = `${baseApi}genre/movie/list?${apiKey}`;
 
-    const getGenders = async (apiUrl) => {
+    const getGenres = async (apiUrl) => {
         await fetch(apiUrl)
             .then((response) => response.json())
             .then((response) => {
                 if (response.genres) {
-                    setGenders(response.genres);
+                    setGenres(response.genres);
                 }
             })
             .catch((err) => console.error(err));
     };
 
     useEffect(() => {
-        getGenders(apiGenderUrl);
+        getGenres(apiGenreUrl);
     }, []);
 
-    const buildUrl = (rowGenderId) => {
+    const buildUrl = (rowGenreId) => {
         let url = pathname;
 
         switch (pathname) {
@@ -47,11 +47,11 @@ const Filter = () => {
                 break;
         }
 
-        if (genderId != rowGenderId) {
+        if (genreId != rowGenreId) {
             if (url.includes("?")) {
-                url = `${url}&gender=${rowGenderId}`;
+                url = `${url}&genre=${rowGenreId}`;
             } else {
-                url = `${url}?gender=${rowGenderId}`;
+                url = `${url}?genre=${rowGenreId}`;
             }
         }
 
@@ -74,13 +74,13 @@ const Filter = () => {
                         </button>
                     </div>
                     <div className="modal-body">
-                        <h4 className="title fs-4">Gender</h4>
+                        <h4 className="title fs-4">Genre</h4>
                         <div className="filter-items">
-                            {genders.map((row) => (
+                            {genres.map((row) => (
                                 <Link
                                     key={row.id}
                                     className={`nav-link btn btn-primary ${
-                                        genderId == row.id ? "active" : ""
+                                        genreId == row.id ? "active" : ""
                                     }`}
                                     to={buildUrl(row.id)}
                                 >
