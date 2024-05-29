@@ -50,7 +50,7 @@ const Home = () => {
         if (page) {
             queryStringPage = `${queryStringPage}&page=${page}`;
         }
-        console.log(genre);
+
         if (genre) {
             queryStringPage = `${queryStringPage}&with_genres=${genre}`;
         }
