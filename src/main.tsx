@@ -9,35 +9,21 @@ import "./index.css";
 import "bootstrap/dist/js/bootstrap.min.js";
 
 // pages
-import App from "./App.js";
+import App from "./App.jsx";
 import Home from "./pages/Home.jsx";
 import Movie from "./pages/Movie.jsx";
 import Search from "./pages/Search.jsx";
 
-// Partilhar o idioma de origem, pais de origem, genero, data de lançamento
-
 const router = createHashRouter([
     {
-        path: "/movies-lib",
+        path: "/", // raiz do HashRouter
         element: <App />,
         children: [
-            {
-                path: "/movies-lib",
-                element: <Home />,
-            },
-            {
-                path: "/movies-lib/movie/:id",
-                element: <Movie />,
-            },
-            {
-                path: "/movies-lib/search",
-                element: <Search />,
-            },
+            { path: "/", element: <Home /> },
+            { path: "movie/:id", element: <Movie /> },
+            { path: "search", element: <Search /> },
         ],
     },
 ]);
 
-const rootElement = document.getElementById("root");
-if (rootElement) {
-    ReactDOM.createRoot(rootElement).render(<RouterProvider router={router} />);
-}
+ReactDOM.createRoot(document.getElementById("root")!).render(<RouterProvider router={router} />);
