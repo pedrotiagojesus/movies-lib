@@ -8,22 +8,26 @@ import "./index.css";
 // JS
 import "bootstrap/dist/js/bootstrap.min.js";
 
-// pages
+// Pages
 import App from "./App.jsx";
 import Home from "./pages/Home.jsx";
 import Movie from "./pages/Movie.jsx";
 import Search from "./pages/Search.jsx";
 
+// Rotas com HashRouter
 const router = createHashRouter([
-    {
-        path: "/", // raiz do HashRouter
-        element: <App />,
-        children: [
-            { path: "/", element: <Home /> },
-            { path: "movie/:id", element: <Movie /> },
-            { path: "search", element: <Search /> },
-        ],
-    },
+  {
+    path: "/",           // raiz do HashRouter
+    element: <App />,    // componente base (navbar, layout, etc)
+    children: [
+      { path: "/", element: <Home /> },       // página inicial
+      { path: "movie/:id", element: <Movie /> }, // detalhe de filme
+      { path: "search", element: <Search /> },   // página de pesquisa
+    ],
+  },
 ]);
 
-ReactDOM.createRoot(document.getElementById("root")!).render(<RouterProvider router={router} />);
+// Renderiza app
+ReactDOM.createRoot(document.getElementById("root")!).render(
+  <RouterProvider router={router} />
+);
