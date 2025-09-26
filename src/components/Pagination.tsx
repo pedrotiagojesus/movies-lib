@@ -2,14 +2,19 @@ import { Link } from "react-router-dom";
 import "./Pagination.css";
 import { useCurrentURL } from "../hooks/useCurrentUrl";
 
-const Pagination = ({ totalPages, currentNumPage }) => {
+interface PaginationProps {
+    totalPages: number;
+    currentNumPage: number;
+}
+
+const Pagination = ({ totalPages, currentNumPage }: PaginationProps) => {
     const { pathname, search, searchParams } = useCurrentURL();
 
     if (totalPages == 0) {
         return;
     }
 
-    const buildUrl = (page) => {
+    const buildUrl = (page: number) => {
         const entryArr = ["q", "discover"];
         let queryString = ``;
 
@@ -21,9 +26,7 @@ const Pagination = ({ totalPages, currentNumPage }) => {
                     queryString = `${queryString}?`;
                 }
 
-                queryString = `${queryString}${entry}=${searchParams.get(
-                    entry
-                )}`;
+                queryString = `${queryString}${entry}=${searchParams.get(entry)}`;
             }
         });
 
@@ -34,7 +37,6 @@ const Pagination = ({ totalPages, currentNumPage }) => {
         }
     };
 
-    currentNumPage = parseInt(currentNumPage) || 1;
     let startPage, endPage;
 
     const pageItem = [];
@@ -58,26 +60,20 @@ const Pagination = ({ totalPages, currentNumPage }) => {
     }
 
     // Previous button
-    const previousPageNum = currentNumPage - parseInt(1);
+    const previousPageNum = currentNumPage - 1;
 
-    const previousPageLink =
-        previousPageNum >= 0 ? buildUrl(previousPageNum) : "";
+    const previousPageLink = previousPageNum >= 0 ? buildUrl(previousPageNum) : "";
     const previousPageDisabled = previousPageNum <= 0 ? "disabled" : "";
 
     pageItem.push(
         <li className="page-item" key={0}>
-            <Link
-                className={`page-link ${previousPageDisabled}`}
-                to={previousPageLink}
-                disabled={previousPageDisabled}
-            >
+            <Link className={`page-link ${previousPageDisabled}`} to={previousPageLink}>
                 Previous
             </Link>
         </li>
     );
 
     // Build pagination items
-
     for (let i = startPage; i <= endPage; i++) {
         let active = currentNumPage == i ? "active" : "";
 
@@ -91,28 +87,21 @@ const Pagination = ({ totalPages, currentNumPage }) => {
     }
 
     // Next button
-    const nextPageNum = currentNumPage + parseInt(1);
+    const nextPageNum = currentNumPage + 1;
 
     const nextPageLink = nextPageNum <= totalPages ? buildUrl(nextPageNum) : "";
     const nextPageDisabled = nextPageNum >= totalPages ? "disabled" : "";
 
     pageItem.push(
         <li className="page-item" key={999999999}>
-            <Link
-                className={`page-link ${nextPageDisabled}`}
-                to={nextPageLink}
-                disabled={nextPageDisabled}
-            >
+            <Link className={`page-link ${nextPageDisabled}`} to={nextPageLink}>
                 Next
             </Link>
         </li>
     );
 
     return (
-        <nav
-            className="movie-list-pagination"
-            aria-label="Movie list navigation"
-        >
+        <nav className="movie-list-pagination" aria-label="Movie list navigation">
             <ul className="pagination">{pageItem}</ul>
         </nav>
     );

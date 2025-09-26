@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
-import { useParams, useSearchParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
+
+// Icons
 import {
     BsGraphUp,
     BsWallet2,
@@ -9,26 +11,39 @@ import {
     BsChevronRight,
 } from "react-icons/bs";
 
+// Slider
 import { Splide, SplideSlide, SplideTrack } from "@splidejs/react-splide";
 import "@splidejs/react-splide/css";
 
+// CSS
 import "./Movie.css";
 import "../Splide.css";
 
+// Components
 import PersonCard from "../components/PersonCard";
 
+// Configs
+import {
+  sliderOptions,
+  sliderImageOptions,
+  sliderVideoOptions,
+} from "../config/splideOptions";
+
+
+// Env
 const moviesUrl = import.meta.env.VITE_API;
 const apiKey = import.meta.env.VITE_API_KEY;
 const imageUrl = import.meta.env.VITE_IMG;
 
 const Movie = () => {
     const { id } = useParams();
-    const [movie, setMovie] = useState(null);
-    const [movieCredit, setMovieCredit] = useState(null);
-    const [movieImage, setMovieImage] = useState(null);
-    const [movieVideo, setMovieVideo] = useState([]);
+    const [movie, setMovie] = useState<Movie | null>(null);
+    const [movieCast, setMovieCast] = useState<MovieCast[]>([]);
+    const [movieCrew, setMovieCrew] = useState<MovieCrew[]>([]);
+    const [movieImage, setMovieImage] = useState<MovieImageBackdrop[]>([]);
+    const [movieVideo, setMovieVideo] = useState<MovieVideo[]>([]);
 
-    const formatCurrency = (number) => {
+    const formatCurrency = (number: number) => {
         return number.toLocaleString("en-US", {
             style: "currency",
             currency: "USD",
@@ -36,52 +51,46 @@ const Movie = () => {
     };
 
     // Get Movie
-    const getMovie = async (apiUrl) => {
+    const getMovie = async (apiUrl: string) => {
         const res = await fetch(apiUrl);
-        const data = await res.json();
+        const data: Movie = await res.json();
 
         setMovie(data);
     };
 
     // Get Movie Credits
-    const getMovieCredit = async (apiUrl) => {
+    const getMovieCredit = async (apiUrl: string) => {
         const res = await fetch(apiUrl);
-        const data = await res.json();
+        const data: MovieCreditsResponse = await res.json();
 
-        setMovieCredit(data);
+        setMovieCast(data.cast);
+        setMovieCrew(data.crew);
     };
 
     // Get Movie Images
-    const getMovieImage = async (apiUrl) => {
+    const getMovieImage = async (apiUrl: string) => {
         const res = await fetch(apiUrl);
-        const data = await res.json();
+        const data: MovieImagesResponse = await res.json();
 
         setMovieImage(data.backdrops);
     };
 
     // Get Movie Video
-    const getMovieVideo = async (apiUrl) => {
+    const getMovieVideo = async (apiUrl: string) => {
         const res = await fetch(apiUrl);
-        const data = await res.json();
+        const data: MovieVideosResponse = await res.json();
 
         const allowType = ["Trailer", "Teaser"];
+        const items = data.results.filter(
+            (item: MovieVideo) => item.site === "YouTube" && allowType.includes(item.type)
+        );
 
-        setMovieVideo([]);
-
-        data.results.map((video) => {
-            if (!video.official) {
-                return;
-            }
-
-            if (!allowType.includes(video.type)) {
-                return;
-            }
-
-            setMovieVideo((prevArray) => [video, ...prevArray]);
-        });
+        setMovieVideo(items);
     };
 
     useEffect(() => {
+        if (!id) return;
+
         const movieUrl = `${moviesUrl}${id}?${apiKey}`;
         getMovie(movieUrl);
 
@@ -93,110 +102,13 @@ const Movie = () => {
 
         const videoUrl = `${moviesUrl}${id}/videos?${apiKey}&language=en`;
         getMovieVideo(videoUrl);
-    }, []);
+    }, [id]);
 
-    const sliderOptions = {
-        gap: "1rem",
-        pagination: false,
-        mediaQuery: "min",
-        breakpoints: {
-            0: {
-                perPage: 2,
-                perMove: 1,
-            },
-            576: {
-                perPage: 3,
-                perMove: 1,
-            },
-            768: {
-                perPage: 5,
-                perMove: 1,
-            },
-            992: {
-                perPage: 6,
-                perMove: 3,
-            },
-            1200: {
-                perPage: 6,
-                perMove: 3,
-            },
-            1400: {
-                perPage: 6,
-                perMove: 3,
-            },
-        },
-    };
-
-    const sliderImageOptions = {
-        gap: "1rem",
-        pagination: false,
-        mediaQuery: "min",
-        breakpoints: {
-            0: {
-                perPage: 1,
-                perMove: 1,
-            },
-            576: {
-                perPage: 2,
-                perMove: 1,
-            },
-            768: {
-                perPage: 3,
-                perMove: 1,
-            },
-            992: {
-                perPage: 4,
-                perMove: 3,
-            },
-            1200: {
-                perPage: 4,
-                perMove: 3,
-            },
-            1400: {
-                perPage: 4,
-                perMove: 3,
-            },
-        },
-    };
-
-    const sliderVideoOptions = {
-        gap: "1rem",
-        pagination: false,
-        mediaQuery: "min",
-        breakpoints: {
-            0: {
-                perPage: 1,
-                perMove: 1,
-            },
-            576: {
-                perPage: 2,
-                perMove: 1,
-            },
-            768: {
-                perPage: 2,
-                perMove: 1,
-            },
-            992: {
-                perPage: 3,
-                perMove: 3,
-            },
-            1200: {
-                perPage: 4,
-                perMove: 4,
-            },
-            1400: {
-                perPage: 4,
-                perMove: 4,
-            },
-        },
-    };
-
-    const renderVideo = (video) => {
+    const renderVideo = (video: MovieVideo) => {
         return (
             <iframe
-                src={`https://www.youtube.com/embed/${video.key}`}
+                src={`https://www.youtube-nocookie.com/embed/${video.key}`}
                 title={video.title}
-                frameBorder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                 referrerPolicy="strict-origin-when-cross-origin"
                 allowFullScreen
@@ -220,12 +132,8 @@ const Movie = () => {
                             />
                         </div>
                         <div className="col-md-8">
-                            <h2 className="title d-none d-md-block">
-                                {movie.title}
-                            </h2>
-                            <p className="tagline d-none d-md-block">
-                                {movie.tagline}
-                            </p>
+                            <h2 className="title d-none d-md-block">{movie.title}</h2>
+                            <p className="tagline d-none d-md-block">{movie.tagline}</p>
                             <div className="list-info">
                                 <div className="info">
                                     <h5>
@@ -241,23 +149,20 @@ const Movie = () => {
                                 </div>
                                 <div className="info">
                                     <h5>
-                                        <BsHourglassSplit className="icon" />{" "}
-                                        Runtime
+                                        <BsHourglassSplit className="icon" /> Runtime
                                     </h5>
                                     <p>{movie.runtime} minutes</p>
                                 </div>
                                 <div className="info">
                                     <h5>
-                                        <BsCalendar3 className="icon" /> Release
-                                        date
+                                        <BsCalendar3 className="icon" /> Release date
                                     </h5>
                                     <p>{movie.release_date}</p>
                                 </div>
                             </div>
                             <div className="info description">
                                 <h5>
-                                    <BsFillFileEarmarkTextFill className="icon" />{" "}
-                                    Overview
+                                    <BsFillFileEarmarkTextFill className="icon" /> Overview
                                 </h5>
                                 <p>{movie.overview} </p>
                             </div>
@@ -266,7 +171,7 @@ const Movie = () => {
                 </>
             )}
             <div className="movie-details">
-                {movieImage && (
+                {movieImage.length > 0 && (
                     <div className="image">
                         <h2 className="title">Images</h2>
                         <Splide
@@ -308,7 +213,8 @@ const Movie = () => {
                         </Splide>
                     </div>
                 )}
-                {movieVideo && (
+
+                {movieVideo.length > 0 && (
                     <div className="video">
                         <h2 className="title">Videos</h2>
                         <Splide
@@ -319,9 +225,7 @@ const Movie = () => {
                         >
                             <SplideTrack>
                                 {movieVideo.map((video, i) => (
-                                    <SplideSlide key={`video-${i}`}>
-                                        {renderVideo(video)}
-                                    </SplideSlide>
+                                    <SplideSlide key={`video-${i}`}>{renderVideo(video)}</SplideSlide>
                                 ))}
                             </SplideTrack>
 
@@ -346,17 +250,13 @@ const Movie = () => {
                         </Splide>
                     </div>
                 )}
-                {movieCredit && movieCredit.cast && (
+
+                {movieCast.length > 0 && (
                     <div className="movie-cast">
                         <h2 className="title">Cast</h2>
-                        <Splide
-                            aria-label="Cast"
-                            className="credit-container"
-                            options={sliderOptions}
-                            hasTrack={false}
-                        >
+                        <Splide aria-label="Cast" className="credit-container" options={sliderOptions} hasTrack={false}>
                             <SplideTrack>
-                                {movieCredit.cast.map((cast, i) => (
+                                {movieCast.map((cast, i) => (
                                     <SplideSlide key={`cast-${i}`}>
                                         <PersonCard
                                             image={cast.profile_path}
@@ -388,17 +288,13 @@ const Movie = () => {
                         </Splide>
                     </div>
                 )}
-                {movieCredit && movieCredit.crew && (
+
+                {movieCrew.length > 0 && (
                     <div className="movie-crew">
                         <h2 className="title">Crew</h2>
-                        <Splide
-                            aria-label="Crew"
-                            className="credit-container"
-                            options={sliderOptions}
-                            hasTrack={false}
-                        >
+                        <Splide aria-label="Crew" className="credit-container" options={sliderOptions} hasTrack={false}>
                             <SplideTrack>
-                                {movieCredit.crew.map((crew, i) => (
+                                {movieCrew.map((crew, i) => (
                                     <SplideSlide key={`crew-${i}`}>
                                         <PersonCard
                                             image={crew.profile_path}

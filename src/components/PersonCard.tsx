@@ -1,26 +1,25 @@
 import { BsFilePerson } from "react-icons/bs";
+
+// CSS
 import "./PersonCard.css";
 
+// Env
 const imageUrl = import.meta.env.VITE_IMG;
 
-const PersonCard = ({ image, title, subtitle }) => {
-    let cardImage = "";
-    let emptyImage = <BsFilePerson />;
+interface PersonCardProps {
+    image: string;
+    title: string;
+    subtitle: string;
+}
 
-    if (image) {
-        cardImage = `url(${imageUrl}${image})`;
-        emptyImage = "";
-    }
+const PersonCard = ({ image, title, subtitle }: PersonCardProps) => {
+    const hasPoster = image !== null;
+    const backgroundImage = hasPoster ? `url(${imageUrl}${image})` : undefined;
 
     return (
         <div className="card person-card">
-            <div
-                className="ratio img-wrapper"
-                style={{
-                    backgroundImage: cardImage,
-                }}
-            >
-                {emptyImage}
+            <div className="ratio img-wrapper" style={backgroundImage ? { backgroundImage } : {}}>
+                {!hasPoster && <BsFilePerson />}
             </div>
             <div className="card-body">
                 <h4 className="card-title" title={title}>

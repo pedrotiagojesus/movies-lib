@@ -1,38 +1,37 @@
-import React, { useEffect, useState } from "react";
-import { Link, useSearchParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { useCurrentURL } from "../../hooks/useCurrentUrl";
 
+// CSS
 import "./Filter.css";
+
+// Icons
 import { LiaTimesSolid } from "react-icons/lia";
 
+// Env
 const baseApi = import.meta.env.VITE_BASE_API;
 const apiKey = import.meta.env.VITE_API_KEY;
 
 const Filter = () => {
-    const [genres, setGenres] = useState([]);
+    const [genres, setGenres] = useState<MovieGenre[]>([]);
 
-    const { pathname, search, searchParams } = useCurrentURL();
+    const { pathname, searchParams } = useCurrentURL();
 
-    const genreId = searchParams.get("genre");
+    const genreId = Number(searchParams.get("genre"));
 
     const apiGenreUrl = `${baseApi}genre/movie/list?${apiKey}`;
 
-    const getGenres = async (apiUrl) => {
-        await fetch(apiUrl)
-            .then((response) => response.json())
-            .then((response) => {
-                if (response.genres) {
-                    setGenres(response.genres);
-                }
-            })
-            .catch((err) => console.error(err));
+    const getGenres = async (apiUrl: string) => {
+        const res = await fetch(apiUrl);
+        const data: MovieGenresResponse = await res.json();
+        setGenres(data.genres);
     };
 
     useEffect(() => {
         getGenres(apiGenreUrl);
-    }, []);
+    }, [apiGenreUrl]);
 
-    const buildUrl = (rowGenreId) => {
+    const buildUrl = (rowGenreId: number) => {
         let url = pathname;
 
         switch (pathname) {
@@ -59,17 +58,12 @@ const Filter = () => {
     };
 
     return (
-        <div className="modal fade" id="filter-modal" tabIndex="-1">
+        <div className="modal fade" id="filter-modal" tabIndex={-1}>
             <div className="modal-dialog modal-dialog-centered">
                 <div className="modal-content">
                     <div className="modal-header">
                         <h1 className="modal-title fs-3">Filters</h1>
-                        <button
-                            type="button"
-                            className="btn"
-                            data-bs-dismiss="modal"
-                            aria-label="Close"
-                        >
+                        <button type="button" className="btn" data-bs-dismiss="modal" aria-label="Close">
                             <LiaTimesSolid />
                         </button>
                     </div>
@@ -79,9 +73,7 @@ const Filter = () => {
                             {genres.map((row) => (
                                 <Link
                                     key={row.id}
-                                    className={`nav-link btn btn-primary ${
-                                        genreId == row.id ? "active" : ""
-                                    }`}
+                                    className={`nav-link btn btn-primary ${genreId == row.id ? "active" : ""}`}
                                     to={buildUrl(row.id)}
                                 >
                                     {row.name}

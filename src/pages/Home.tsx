@@ -1,73 +1,48 @@
 import { useState, useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
 
+// CSS
+import "./MoviesGrid.css";
+
+// Components
 import MovieCard from "../components/MovieCard";
 import Loading from "../components/Loading";
-
-import "./MoviesGrid.css";
 import Pagination from "../components/Pagination";
 import SelectBoxSortBy from "../components/SelectBoxSortBy";
 import FilterTrigger from "../components/Modal/FilterTrigger";
 import Filter from "../components/Modal/Filter";
 
+// Hooks
+import { useMovies } from "../hooks/useMovies";
+
+// Env
 const viteBaseApi = import.meta.env.VITE_BASE_API;
 const apiKey = import.meta.env.VITE_API_KEY;
 
 const Home = () => {
-    const [movies, setMovies] = useState([]);
-    const [totalPages, setTotalPages] = useState(0);
-    const [sortBy, setSortBy] = useState("popularity");
-    const [sortByDirection, setSortByDirection] = useState("desc");
-    const [loading, setLoading] = useState(false);
+    const [sortBy, setSortBy] = useState<"popularity" | "release_date" | "vote_average">("popularity");
+    const [sortByDirection, setSortByDirection] = useState<"asc" | "desc">("desc");
 
     const [searchParams] = useSearchParams();
     const page = searchParams.get("page");
     const genre = searchParams.get("genre");
 
-    const urlRoute = `/movies-lib`;
-
-    const getMovies = async (apiUrl) => {
-        setLoading(true);
-
-        await fetch(apiUrl)
-            .then((response) => response.json())
-            .then((response) => {
-                setLoading(false);
-                if (response.results) {
-                    setMovies(response.results);
-                    setTotalPages(response.total_pages);
-                } else {
-                    setMovies([]);
-                    setTotalPages(0);
-                }
-            })
-            .catch((err) => console.error(err));
-    };
+    const { movies, totalPages, loading, error, getMovies } = useMovies();
 
     useEffect(() => {
-        let queryStringPage = "";
+        const params = new URLSearchParams();
 
-        if (page) {
-            queryStringPage = `${queryStringPage}&page=${page}`;
-        }
+        if (page) params.append("page", page);
+        if (genre) params.append("with_genres", genre);
 
-        if (genre) {
-            queryStringPage = `${queryStringPage}&with_genres=${genre}`;
-        }
+        params.append("sort_by", `${sortBy}.${sortByDirection}`);
 
-        queryStringPage = `${queryStringPage}&sort_by=${sortBy}.${sortByDirection}`;
-
-        const apiUrl = `${viteBaseApi}discover/movie?${apiKey}${queryStringPage}`;
+        const apiUrl = `${viteBaseApi}discover/movie?${apiKey}&${params.toString()}`;
         getMovies(apiUrl);
     }, [page, genre, sortBy, sortByDirection]);
 
-    const handleSelectSortBy = (value) => {
-        setSortBy(value);
-    };
-
-    const handleSelectSortByDirection = (value) => {
-        setSortByDirection(value);
-    };
+    const handleSelectSortBy = (value: typeof sortBy) => setSortBy(value);
+    const handleSelectSortByDirection = (value: typeof sortByDirection) => setSortByDirection(value);
 
     return (
         <div id="homepage">
@@ -96,11 +71,7 @@ const Home = () => {
                         </div>
                     ))}
             </div>
-            <Pagination
-                urlRoute={urlRoute}
-                totalPages={totalPages}
-                currentNumPage={page}
-            />
+            <Pagination totalPages={totalPages} currentNumPage={Number(page)} />
             <Filter />
         </div>
     );

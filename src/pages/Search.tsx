@@ -1,57 +1,35 @@
-import { useEffect, useState } from "react";
-
+import { useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
 
+// CSS
+import "./MoviesGrid.css";
+
+// Components
 import MovieCard from "../components/MovieCard";
 import Loading from "../components/Loading";
-
-import "./MoviesGrid.css";
 import Pagination from "../components/Pagination";
 
+// Hooks
+import { useMovies } from "../hooks/useMovies";
+
+// Env
 const viteBaseApi = import.meta.env.VITE_BASE_API;
 const apiKey = import.meta.env.VITE_API_KEY;
 
 const Search = () => {
-    const [movies, setMovies] = useState([]);
-    const [totalPages, setTotalPages] = useState(0);
-
     const [searchParams] = useSearchParams();
     const query = searchParams.get("q");
     const page = searchParams.get("page");
     const gender = searchParams.get("gender");
 
-    const [loading, setLoading] = useState(false);
-
-    const urlRoute = `/movies-lib/search?q=${query}`;
-
-    const getMovies = async (apiUrl) => {
-        setLoading(true);
-
-        await fetch(apiUrl)
-            .then((response) => response.json())
-            .then((response) => {
-                setLoading(false);
-                if (response.results) {
-                    setMovies(response.results);
-                    setTotalPages(response.total_pages);
-                } else {
-                    setMovies([]);
-                    setTotalPages(0);
-                }
-            })
-            .catch((err) => console.error(err));
-    };
+    const { movies, totalPages, loading, error, getMovies } = useMovies();
 
     useEffect(() => {
-        let queryStringPage = "";
+        const params = new URLSearchParams();
+        params.append("query", query || "");
 
-        queryStringPage = `&query=${query}`;
-
-        if (page) {
-            queryStringPage = `${queryStringPage}&page=${page}`;
-        }
-
-        const apiUrl = `${viteBaseApi}search/movie?${apiKey}${queryStringPage}`;
+        if (page) params.append("page", page);
+        const apiUrl = `${viteBaseApi}search/movie?${apiKey}&${params.toString()}`;
         getMovies(apiUrl);
 
         console.log(apiUrl);
@@ -73,11 +51,7 @@ const Search = () => {
                         </div>
                     ))}
             </div>
-            <Pagination
-                urlRoute={urlRoute}
-                totalPages={totalPages}
-                currentNumPage={page}
-            />
+            <Pagination totalPages={totalPages} currentNumPage={Number(page)} />
         </div>
     );
 };

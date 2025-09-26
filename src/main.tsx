@@ -10,7 +10,7 @@ import "./index.css";
 import "bootstrap/dist/js/bootstrap.min.js";
 
 // pages
-import App from "./App.jsx";
+import App from "./App.js";
 import Home from "./pages/Home.jsx";
 import Movie from "./pages/Movie.jsx";
 import Search from "./pages/Search.jsx";
@@ -38,6 +38,7 @@ const router = createBrowserRouter([
     },
 ]);
 
-ReactDOM.createRoot(document.getElementById("root")).render(
-    <RouterProvider router={router} />
-);
+const rootElement = document.getElementById("root");
+if (rootElement) {
+    ReactDOM.createRoot(rootElement).render(<RouterProvider router={router} />);
+}

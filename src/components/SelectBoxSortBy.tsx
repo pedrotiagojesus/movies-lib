@@ -1,12 +1,13 @@
-import React from "react";
 import { FaSortDown, FaSortUp } from "react-icons/fa";
 
-const SelectBoxSortBy = ({
-    selected,
-    handleSelect,
-    sortDirection,
-    handleDirection,
-}) => {
+interface SelectBoxSortProps {
+    selected: string;
+    handleSelect: (value: string) => void;
+    sortDirection: string;
+    handleDirection: (value: string) => void;
+}
+
+const SelectBoxSortBy = ({ selected, handleSelect, sortDirection, handleDirection }: SelectBoxSortProps) => {
     const sortByArr = [
         {
             name: "Popularidade",
@@ -32,11 +33,7 @@ const SelectBoxSortBy = ({
 
     return (
         <>
-            <select
-                className="form-select"
-                value={selected}
-                onChange={(e) => handleSelect(e.target.value)}
-            >
+            <select className="form-select" value={selected} onChange={(e) => handleSelect(e.target.value)}>
                 {sortByArr.map((sortByRow) => (
                     <option key={sortByRow.value} value={sortByRow.value}>
                         {sortByRow.name}
@@ -44,12 +41,8 @@ const SelectBoxSortBy = ({
                 ))}
             </select>
             <div className="btn btn-primary">
-                {sortDirection === "asc" && (
-                    <FaSortUp onClick={() => handleDirection("desc")} />
-                )}
-                {sortDirection === "desc" && (
-                    <FaSortDown onClick={() => handleDirection("asc")} />
-                )}
+                {sortDirection === "asc" && <FaSortUp onClick={() => handleDirection("desc")} />}
+                {sortDirection === "desc" && <FaSortDown onClick={() => handleDirection("asc")} />}
             </div>
         </>
     );
