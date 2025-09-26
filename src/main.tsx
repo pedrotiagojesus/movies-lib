@@ -1,6 +1,5 @@
-import React from "react";
 import ReactDOM from "react-dom/client";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { createHashRouter, RouterProvider } from "react-router-dom";
 
 // CSS
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -17,7 +16,7 @@ import Search from "./pages/Search.jsx";
 
 // Partilhar o idioma de origem, pais de origem, genero, data de lançamento
 
-const router = createBrowserRouter([
+const router = createHashRouter([
     {
         path: "/movies-lib",
         element: <App />,
