@@ -1,12 +1,11 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+
+// Hooks
 import { useCurrentURL } from "../../hooks/useCurrentUrl";
 
 // CSS
 import "./Filter.css";
-
-// Icons
-import { LiaTimesSolid } from "react-icons/lia";
 
 // Endpoints
 import { MOVIES_API } from "../../api/endpoints";
@@ -60,7 +59,7 @@ const Filter = () => {
                     <div className="modal-header">
                         <h1 className="modal-title fs-3">Filters</h1>
                         <button type="button" className="btn" data-bs-dismiss="modal" aria-label="Close">
-                            <LiaTimesSolid />
+                            <i className="bi bi-x"></i>
                         </button>
                     </div>
                     <div className="modal-body">

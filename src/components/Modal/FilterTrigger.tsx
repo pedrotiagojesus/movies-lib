@@ -1,4 +1,3 @@
-import { BsFilter } from "react-icons/bs";
 
 const FilterTrigger = () => {
     return (
@@ -8,7 +7,7 @@ const FilterTrigger = () => {
             data-bs-toggle="modal"
             data-bs-target="#filter-modal"
         >
-            <BsFilter />
+            <i className="bi bi-filter"></i>
         </button>
     );
 };

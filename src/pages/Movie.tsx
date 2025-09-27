@@ -1,23 +1,12 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
-// Icons
-import {
-    BsGraphUp,
-    BsWallet2,
-    BsHourglassSplit,
-    BsFillFileEarmarkTextFill,
-    BsCalendar3,
-    BsChevronRight,
-} from "react-icons/bs";
-
 // Slider
 import { Splide, SplideSlide, SplideTrack } from "@splidejs/react-splide";
 import "@splidejs/react-splide/css";
 
 // CSS
 import "./Movie.css";
-import "../Splide.css";
 
 // Components
 import PersonCard from "../components/PersonCard";
@@ -28,6 +17,7 @@ import { sliderOptions, sliderImageOptions, sliderVideoOptions } from "../config
 // Endpoints
 import { MOVIES_API } from "../api/endpoints";
 import { IMAGE_SIZE_W500 } from "../config/tmbd";
+import SlideArrows from "../components/SlideArrows";
 
 const Movie = () => {
     const { id } = useParams();
@@ -83,7 +73,6 @@ const Movie = () => {
     };
 
     useEffect(() => {
-
         if (!id) return;
         getMovie(Number(id));
         getMovieCredit(Number(id));
@@ -133,33 +122,31 @@ const Movie = () => {
                             <div className="list-info">
                                 <div className="info">
                                     <h5>
-                                        <BsWallet2 className="icon" /> Budget
+                                        <i className="bi bi-wallet2 icon"></i> Budget
                                     </h5>
                                     <p>{formatCurrency(movie.budget)}</p>
                                 </div>
                                 <div className="info">
                                     <h5>
-                                        <BsGraphUp className="icon" /> Revenue
+                                        <i className="bi bi-graph-up icon"></i> Revenue
                                     </h5>
                                     <p>{formatCurrency(movie.revenue)}</p>
                                 </div>
                                 <div className="info">
                                     <h5>
-                                        <BsHourglassSplit className="icon" /> Runtime
+                                        <i className="bi bi-hourglass-split icon"></i> Runtime
                                     </h5>
                                     <p>{movie.runtime} minutes</p>
                                 </div>
                                 <div className="info">
                                     <h5>
-                                        <BsCalendar3 className="icon" /> Release date
+                                        <i className="bi bi-calendar-date icon"></i> Release date
                                     </h5>
                                     <p>{movie.release_date}</p>
                                 </div>
                             </div>
                             <div className="info description">
-                                <h5>
-                                    <BsFillFileEarmarkTextFill className="icon" /> Overview
-                                </h5>
+                                <h5>Overview</h5>
                                 <p>{movie.overview} </p>
                             </div>
                         </div>
@@ -187,25 +174,7 @@ const Movie = () => {
                                     </SplideSlide>
                                 ))}
                             </SplideTrack>
-
-                            <div className="splide__arrows">
-                                <button
-                                    className="splide__arrow splide__arrow--prev"
-                                    type="button"
-                                    aria-label="Previous slide"
-                                    aria-controls="splide01-track"
-                                >
-                                    <BsChevronRight />
-                                </button>
-                                <button
-                                    className="splide__arrow splide__arrow--next"
-                                    type="button"
-                                    aria-label="Next slide"
-                                    aria-controls="splide01-track"
-                                >
-                                    <BsChevronRight />
-                                </button>
-                            </div>
+                            <SlideArrows />
                         </Splide>
                     </div>
                 )}
@@ -224,25 +193,7 @@ const Movie = () => {
                                     <SplideSlide key={`video-${i}`}>{renderVideo(video)}</SplideSlide>
                                 ))}
                             </SplideTrack>
-
-                            <div className="splide__arrows">
-                                <button
-                                    className="splide__arrow splide__arrow--prev"
-                                    type="button"
-                                    aria-label="Previous slide"
-                                    aria-controls="splide01-track"
-                                >
-                                    <BsChevronRight />
-                                </button>
-                                <button
-                                    className="splide__arrow splide__arrow--next"
-                                    type="button"
-                                    aria-label="Next slide"
-                                    aria-controls="splide01-track"
-                                >
-                                    <BsChevronRight />
-                                </button>
-                            </div>
+                            <SlideArrows />
                         </Splide>
                     </div>
                 )}
@@ -262,25 +213,7 @@ const Movie = () => {
                                     </SplideSlide>
                                 ))}
                             </SplideTrack>
-
-                            <div className="splide__arrows">
-                                <button
-                                    className="splide__arrow splide__arrow--prev"
-                                    type="button"
-                                    aria-label="Previous slide"
-                                    aria-controls="splide01-track"
-                                >
-                                    <BsChevronRight />
-                                </button>
-                                <button
-                                    className="splide__arrow splide__arrow--next"
-                                    type="button"
-                                    aria-label="Next slide"
-                                    aria-controls="splide01-track"
-                                >
-                                    <BsChevronRight />
-                                </button>
-                            </div>
+                            <SlideArrows />
                         </Splide>
                     </div>
                 )}
@@ -300,25 +233,7 @@ const Movie = () => {
                                     </SplideSlide>
                                 ))}
                             </SplideTrack>
-
-                            <div className="splide__arrows">
-                                <button
-                                    className="splide__arrow splide__arrow--prev"
-                                    type="button"
-                                    aria-label="Previous slide"
-                                    aria-controls="splide01-track"
-                                >
-                                    <BsChevronRight />
-                                </button>
-                                <button
-                                    className="splide__arrow splide__arrow--next"
-                                    type="button"
-                                    aria-label="Next slide"
-                                    aria-controls="splide01-track"
-                                >
-                                    <BsChevronRight />
-                                </button>
-                            </div>
+                            <SlideArrows />
                         </Splide>
                     </div>
                 )}

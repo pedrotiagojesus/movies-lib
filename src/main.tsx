@@ -1,12 +1,14 @@
 import ReactDOM from "react-dom/client";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-// CSS
+// Bootstrap
 import "bootstrap/dist/css/bootstrap.min.css";
-import "./index.css";
+import "bootstrap/dist/js/bootstrap.bundle.min.js";
+import "bootstrap-icons/font/bootstrap-icons.min.css";
 
-// JS
-import "bootstrap/dist/js/bootstrap.min.js";
+// CSS
+import "./index.css";
+import "./Splide.css";
 
 // Pages
 import App from "./App.jsx";

@@ -1,7 +1,7 @@
-.splide__arrow {
+.splide__arrows .splide__arrow {
     background: #1a1a1a;
 }
 
-.splide__arrow svg {
-    fill: #f7d354;
+.splide__arrow .bi {
+    color: #f7d354;
 }

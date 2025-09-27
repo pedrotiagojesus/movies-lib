@@ -1,5 +1,4 @@
 import { Link, useNavigate } from "react-router-dom";
-import { BiCameraMovie, BiSearchAlt2 } from "react-icons/bi";
 import { ChangeEvent, FormEvent, useState } from "react";
 
 import "./Navbar.css";
@@ -24,12 +23,12 @@ const Navbar = () => {
         <nav id="navbar" className="navbar fixed-top">
             <div className="container">
                 <Link to="/" className="navbar-brand">
-                    <BiCameraMovie /> MoviesLib
+                    <i className="bi bi-camera-reels-fill"></i> MoviesLib
                 </Link>
                 <form role="search" onSubmit={handleSubmit}>
                     <input type="text" placeholder="Search a movie" onChange={handleChange} value={search} />
                     <button className="btn btn-primary" type="submit">
-                        <BiSearchAlt2 />
+                        <i className="bi bi-search"></i>
                     </button>
                 </form>
             </div>

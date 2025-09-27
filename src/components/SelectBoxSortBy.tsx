@@ -1,5 +1,3 @@
-import { FaSortDown, FaSortUp } from "react-icons/fa";
-
 const SelectBoxSortBy = ({ selected, handleSelect, sortDirection, handleDirection }: SelectBoxSortProps) => {
     const sortByArr = [
         {
@@ -26,7 +24,11 @@ const SelectBoxSortBy = ({ selected, handleSelect, sortDirection, handleDirectio
 
     return (
         <>
-            <select className="form-select" value={selected} onChange={(e) => handleSelect(e.target.value as SortOption)}>
+            <select
+                className="form-select"
+                value={selected}
+                onChange={(e) => handleSelect(e.target.value as SortOption)}
+            >
                 {sortByArr.map((sortByRow) => (
                     <option key={sortByRow.value} value={sortByRow.value}>
                         {sortByRow.name}
@@ -34,8 +36,8 @@ const SelectBoxSortBy = ({ selected, handleSelect, sortDirection, handleDirectio
                 ))}
             </select>
             <div className="btn btn-primary">
-                {sortDirection === "asc" && <FaSortUp onClick={() => handleDirection("desc")} />}
-                {sortDirection === "desc" && <FaSortDown onClick={() => handleDirection("asc")} />}
+                {sortDirection === "asc" && <i className="bi bi-sort-up" onClick={() => handleDirection("desc")}></i>}
+                {sortDirection === "desc" && <i className="bi bi-sort-down" onClick={() => handleDirection("asc")}></i>}
             </div>
         </>
     );

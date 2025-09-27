@@ -3,10 +3,6 @@ import { Link } from "react-router-dom";
 // CSS
 import "./MovieCard.css";
 
-// Icons
-import { FaStar } from "react-icons/fa";
-import { BsCardImage } from "react-icons/bs";
-
 // Config
 import { IMAGE_SIZE_W500 } from "../config/tmbd";
 
@@ -24,7 +20,7 @@ const MovieCard = ({ movie }: MovieCardProps) => {
     return (
         <div className="card movie-card">
             <div className="ratio img-wrapper" style={backgroundImage ? { backgroundImage } : {}}>
-                {!hasPoster && <BsCardImage />}
+                {!hasPoster && <i className="bi bi-file-person-fill"></i>}
             </div>
             <div className="card-body">
                 <h3 className="card-title" title={movie.title}>
@@ -33,7 +29,7 @@ const MovieCard = ({ movie }: MovieCardProps) => {
 
                 <div className="info">
                     <p>
-                        <FaStar /> {movie.vote_average}
+                        <i className="bi bi-star-fill"></i> {movie.vote_average}
                     </p>
                 </div>
 
