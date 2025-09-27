@@ -20,8 +20,8 @@ const viteBaseApi = import.meta.env.VITE_BASE_API;
 const apiKey = import.meta.env.VITE_API_KEY;
 
 const Home = () => {
-    const [sortBy, setSortBy] = useState<"popularity" | "release_date" | "vote_average">("popularity");
-    const [sortByDirection, setSortByDirection] = useState<"asc" | "desc">("desc");
+    const [sortBy, setSortBy] = useState<SortOption>("popularity");
+    const [sortByDirection, setSortByDirection] = useState<SortDirection>("desc");
 
     const [searchParams] = useSearchParams();
     const page = searchParams.get("page");
@@ -41,8 +41,8 @@ const Home = () => {
         getMovies(apiUrl);
     }, [page, genre, sortBy, sortByDirection]);
 
-    const handleSelectSortBy = (value: typeof sortBy) => setSortBy(value);
-    const handleSelectSortByDirection = (value: typeof sortByDirection) => setSortByDirection(value);
+    const handleSelectSortBy = (value: SortOption) => setSortBy(value);
+    const handleSelectSortByDirection = (value: SortDirection) => setSortByDirection(value);
 
     return (
         <div id="homepage">

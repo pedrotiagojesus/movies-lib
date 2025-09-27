@@ -1,12 +1,5 @@
 import { FaSortDown, FaSortUp } from "react-icons/fa";
 
-interface SelectBoxSortProps {
-    selected: string;
-    handleSelect: (value: string) => void;
-    sortDirection: string;
-    handleDirection: (value: string) => void;
-}
-
 const SelectBoxSortBy = ({ selected, handleSelect, sortDirection, handleDirection }: SelectBoxSortProps) => {
     const sortByArr = [
         {
@@ -33,7 +26,7 @@ const SelectBoxSortBy = ({ selected, handleSelect, sortDirection, handleDirectio
 
     return (
         <>
-            <select className="form-select" value={selected} onChange={(e) => handleSelect(e.target.value)}>
+            <select className="form-select" value={selected} onChange={(e) => handleSelect(e.target.value as SortOption)}>
                 {sortByArr.map((sortByRow) => (
                     <option key={sortByRow.value} value={sortByRow.value}>
                         {sortByRow.name}
