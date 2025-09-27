@@ -14,7 +14,7 @@ const Filter = () => {
     const [genres, setGenres] = useState<MovieGenre[]>([]);
     const { pathname, searchParams } = useCurrentURL();
 
-    const genreId = Number(searchParams.get("genre"));
+    const genreIds = (searchParams.get("genre") ?? "").split(",").filter(Boolean).map(Number);
 
     const getGenres = async (apiUrl: string) => {
         const res = await fetch(apiUrl);
@@ -24,7 +24,7 @@ const Filter = () => {
 
     useEffect(() => {
         getGenres(MOVIES_API.genre);
-    }, [MOVIES_API.genre]);
+    }, []);
 
     const buildUrl = (rowGenreId: number) => {
         let url = pathname;
@@ -41,11 +41,20 @@ const Filter = () => {
                 break;
         }
 
-        if (genreId != rowGenreId) {
+        let updatedGenres = [...genreIds];
+
+        if (updatedGenres.includes(rowGenreId)) {
+            updatedGenres = updatedGenres.filter((id) => id !== rowGenreId);
+        } else {
+            updatedGenres.push(rowGenreId);
+        }
+
+        if (updatedGenres.length > 0) {
+            const genresParam = updatedGenres.join(",");
             if (url.includes("?")) {
-                url = `${url}&genre=${rowGenreId}`;
+                url = `${url}&genre=${genresParam}`;
             } else {
-                url = `${url}?genre=${rowGenreId}`;
+                url = `${url}?genre=${genresParam}`;
             }
         }
 
@@ -68,7 +77,7 @@ const Filter = () => {
                             {genres.map((row) => (
                                 <Link
                                     key={row.id}
-                                    className={`nav-link btn btn-primary ${genreId == row.id ? "active" : ""}`}
+                                    className={`nav-link btn btn-primary ${genreIds.includes(row.id) ? "active" : ""}`}
                                     to={buildUrl(row.id)}
                                 >
                                     {row.name}
