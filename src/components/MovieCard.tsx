@@ -7,8 +7,8 @@ import "./MovieCard.css";
 import { FaStar } from "react-icons/fa";
 import { BsCardImage } from "react-icons/bs";
 
-// Env
-const imageUrl = import.meta.env.VITE_IMG;
+// Config
+import { IMAGE_SIZE_W500 } from "../config/tmbd";
 
 interface MovieCardProps {
     movie: MovieCard;
@@ -17,7 +17,7 @@ interface MovieCardProps {
 const MovieCard = ({ movie }: MovieCardProps) => {
 
     const hasPoster = movie.poster_path !== null;
-    const backgroundImage = hasPoster ? `url(${imageUrl}${movie.poster_path})` : undefined;
+    const backgroundImage = hasPoster ? `url(${IMAGE_SIZE_W500}${movie.poster_path})` : undefined;
 
     const year = movie.release_date ? new Date(movie.release_date).getFullYear() : "";
 
