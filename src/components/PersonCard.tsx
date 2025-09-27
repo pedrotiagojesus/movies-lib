@@ -1,10 +1,6 @@
-import { BsFilePerson } from "react-icons/bs";
-
 // CSS
+import { IMAGE_SIZE_W500 } from "../config/tmbd";
 import "./PersonCard.css";
-
-// Env
-const imageUrl = import.meta.env.VITE_IMG;
 
 interface PersonCardProps {
     image: string;
@@ -14,12 +10,12 @@ interface PersonCardProps {
 
 const PersonCard = ({ image, title, subtitle }: PersonCardProps) => {
     const hasPoster = image !== null;
-    const backgroundImage = hasPoster ? `url(${imageUrl}${image})` : undefined;
+    const backgroundImage = hasPoster ? `url(${IMAGE_SIZE_W500}${image})` : undefined;
 
     return (
         <div className="card person-card">
             <div className="ratio img-wrapper" style={backgroundImage ? { backgroundImage } : {}}>
-                {!hasPoster && <BsFilePerson />}
+                {!hasPoster && <i className="bi bi-file-person"></i>}
             </div>
             <div className="card-body">
                 <h4 className="card-title" title={title}>
