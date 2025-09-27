@@ -29,6 +29,7 @@ jobs:
             # 4️⃣ Rodar build
             - name: Build React app
               run: npm run build
+              run: echo "VITE_API_KEY=${VITE_API_KEY}"
               env:
                 VITE_API_KEY: ${{ secrets.VITE_API_KEY }}
 
