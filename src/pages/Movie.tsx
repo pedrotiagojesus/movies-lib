@@ -23,17 +23,11 @@ import "../Splide.css";
 import PersonCard from "../components/PersonCard";
 
 // Configs
-import {
-  sliderOptions,
-  sliderImageOptions,
-  sliderVideoOptions,
-} from "../config/splideOptions";
+import { sliderOptions, sliderImageOptions, sliderVideoOptions } from "../config/splideOptions";
 
-
-// Env
-const moviesUrl = import.meta.env.VITE_API;
-const apiKey = import.meta.env.VITE_API_KEY;
-const imageUrl = import.meta.env.VITE_IMG;
+// Endpoints
+import { MOVIES_API } from "../api/endpoints";
+import { IMAGE_SIZE_W500 } from "../config/tmbd";
 
 const Movie = () => {
     const { id } = useParams();
@@ -51,16 +45,16 @@ const Movie = () => {
     };
 
     // Get Movie
-    const getMovie = async (apiUrl: string) => {
-        const res = await fetch(apiUrl);
+    const getMovie = async (id: number) => {
+        const res = await fetch(MOVIES_API.movie(id));
         const data: Movie = await res.json();
 
         setMovie(data);
     };
 
     // Get Movie Credits
-    const getMovieCredit = async (apiUrl: string) => {
-        const res = await fetch(apiUrl);
+    const getMovieCredit = async (id: number) => {
+        const res = await fetch(MOVIES_API.movieCredits(id));
         const data: MovieCreditsResponse = await res.json();
 
         setMovieCast(data.cast);
@@ -68,16 +62,16 @@ const Movie = () => {
     };
 
     // Get Movie Images
-    const getMovieImage = async (apiUrl: string) => {
-        const res = await fetch(apiUrl);
+    const getMovieImage = async (id: number) => {
+        const res = await fetch(MOVIES_API.movieImages(id));
         const data: MovieImagesResponse = await res.json();
 
         setMovieImage(data.backdrops);
     };
 
     // Get Movie Video
-    const getMovieVideo = async (apiUrl: string) => {
-        const res = await fetch(apiUrl);
+    const getMovieVideo = async (id: number) => {
+        const res = await fetch(MOVIES_API.movieVideos(id));
         const data: MovieVideosResponse = await res.json();
 
         const allowType = ["Trailer", "Teaser"];
@@ -89,19 +83,12 @@ const Movie = () => {
     };
 
     useEffect(() => {
+
         if (!id) return;
-
-        const movieUrl = `${moviesUrl}${id}?${apiKey}`;
-        getMovie(movieUrl);
-
-        const creditUrl = `${moviesUrl}${id}/credits?${apiKey}`;
-        getMovieCredit(creditUrl);
-
-        const imageUrl = `${moviesUrl}${id}/images?${apiKey}&language=en`;
-        getMovieImage(imageUrl);
-
-        const videoUrl = `${moviesUrl}${id}/videos?${apiKey}&language=en`;
-        getMovieVideo(videoUrl);
+        getMovie(Number(id));
+        getMovieCredit(Number(id));
+        getMovieImage(Number(id));
+        getMovieVideo(Number(id));
     }, [id]);
 
     const renderVideo = (video: MovieVideo) => {
@@ -126,7 +113,7 @@ const Movie = () => {
                     <div className="row">
                         <div className="col-md-4">
                             <img
-                                src={`${imageUrl}${movie.poster_path}`}
+                                src={`${IMAGE_SIZE_W500}${movie.poster_path}`}
                                 alt={movie.title}
                                 className="img-fluid mb-3 mb-md-0"
                             />
@@ -134,6 +121,15 @@ const Movie = () => {
                         <div className="col-md-8">
                             <h2 className="title d-none d-md-block">{movie.title}</h2>
                             <p className="tagline d-none d-md-block">{movie.tagline}</p>
+                            {movie.genres && (
+                                <div className="genres">
+                                    {movie.genres.map((genre) => (
+                                        <span key={genre.id} className="genre">
+                                            {genre.name}
+                                        </span>
+                                    ))}
+                                </div>
+                            )}
                             <div className="list-info">
                                 <div className="info">
                                     <h5>
@@ -184,7 +180,7 @@ const Movie = () => {
                                 {movieImage.map((image, i) => (
                                     <SplideSlide key={`image-${i}`}>
                                         <img
-                                            src={`${imageUrl}${image.file_path}`}
+                                            src={`${IMAGE_SIZE_W500}${image.file_path}`}
                                             alt={`image-${i}`}
                                             className="img-fluid"
                                         />

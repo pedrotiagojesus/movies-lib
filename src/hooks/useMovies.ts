@@ -10,6 +10,7 @@ export function useMovies() {
         try {
             setLoading(true);
             setError(null);
+        console.log(apiUrl);
 
             const response = await fetch(apiUrl);
 

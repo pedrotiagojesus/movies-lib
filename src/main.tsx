@@ -17,7 +17,7 @@ import Search from "./pages/Search.jsx";
 const rootElement = document.getElementById("root");
 if (rootElement) {
   ReactDOM.createRoot(rootElement).render(
-    <BrowserRouter basename="/movies-lib">
+    <BrowserRouter basename="/movies-lib/">
       <Routes>
         <Route path="/" element={<App />}>
           <Route index element={<Home />} />

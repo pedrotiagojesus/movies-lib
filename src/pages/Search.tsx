@@ -12,9 +12,8 @@ import Pagination from "../components/Pagination";
 // Hooks
 import { useMovies } from "../hooks/useMovies";
 
-// Env
-const viteBaseApi = import.meta.env.VITE_BASE_API;
-const apiKey = import.meta.env.VITE_API_KEY;
+// Endpoints
+import { MOVIES_API } from "../api/endpoints";
 
 const Search = () => {
     const [searchParams] = useSearchParams();
@@ -29,10 +28,9 @@ const Search = () => {
         params.append("query", query || "");
 
         if (page) params.append("page", page);
-        const apiUrl = `${viteBaseApi}search/movie?${apiKey}&${params.toString()}`;
-        getMovies(apiUrl);
+        const apiUrl = MOVIES_API.search(params.toString());
 
-        console.log(apiUrl);
+        getMovies(apiUrl);
     }, [query, page, gender]);
 
     return (

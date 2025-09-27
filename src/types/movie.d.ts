@@ -7,6 +7,7 @@ interface Movie {
     runtime: number;
     release_date: string;
     overview: string;
+    genres: MovieGenre[];
 }
 
 interface MovieCard {

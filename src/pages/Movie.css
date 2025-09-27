@@ -72,3 +72,14 @@
     flex-direction: column;
     gap: 2rem;
 }
+
+#movie-page .genres {
+    margin-bottom: 1rem;
+    display: flex;
+    gap: 0.5rem;
+}
+
+#movie-page .genres .genre {
+    font-size: 0.875rem;
+    font-weight: 300;
+}

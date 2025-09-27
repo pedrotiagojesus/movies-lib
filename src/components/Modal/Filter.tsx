@@ -8,18 +8,14 @@ import "./Filter.css";
 // Icons
 import { LiaTimesSolid } from "react-icons/lia";
 
-// Env
-const baseApi = import.meta.env.VITE_BASE_API;
-const apiKey = import.meta.env.VITE_API_KEY;
+// Endpoints
+import { MOVIES_API } from "../../api/endpoints";
 
 const Filter = () => {
     const [genres, setGenres] = useState<MovieGenre[]>([]);
-
     const { pathname, searchParams } = useCurrentURL();
 
     const genreId = Number(searchParams.get("genre"));
-
-    const apiGenreUrl = `${baseApi}genre/movie/list?${apiKey}`;
 
     const getGenres = async (apiUrl: string) => {
         const res = await fetch(apiUrl);
@@ -28,8 +24,8 @@ const Filter = () => {
     };
 
     useEffect(() => {
-        getGenres(apiGenreUrl);
-    }, [apiGenreUrl]);
+        getGenres(MOVIES_API.genre);
+    }, [MOVIES_API.genre]);
 
     const buildUrl = (rowGenreId: number) => {
         let url = pathname;

@@ -15,9 +15,8 @@ import Filter from "../components/Modal/Filter";
 // Hooks
 import { useMovies } from "../hooks/useMovies";
 
-// Env
-const viteBaseApi = import.meta.env.VITE_BASE_API;
-const apiKey = import.meta.env.VITE_API_KEY;
+// Endpoints
+import { MOVIES_API } from "../api/endpoints";
 
 const Home = () => {
     const [sortBy, setSortBy] = useState<SortOption>("popularity");
@@ -37,8 +36,7 @@ const Home = () => {
 
         params.append("sort_by", `${sortBy}.${sortByDirection}`);
 
-        const apiUrl = `${viteBaseApi}discover/movie?${apiKey}&${params.toString()}`;
-        getMovies(apiUrl);
+        getMovies(MOVIES_API.discover(params.toString()));
     }, [page, genre, sortBy, sortByDirection]);
 
     const handleSelectSortBy = (value: SortOption) => setSortBy(value);
