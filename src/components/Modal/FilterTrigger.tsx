@@ -1,4 +1,3 @@
-import React from "react";
 import { BsFilter } from "react-icons/bs";
 
 const FilterTrigger = () => {

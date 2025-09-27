@@ -12,7 +12,7 @@ const Navbar = () => {
         e.preventDefault();
 
         if (search.trim()) {
-            navigate(`/movies-lib/search?q=${encodeURIComponent(search)}`);
+            navigate(`/search?q=${encodeURIComponent(search)}`);
         }
     };
 
@@ -23,7 +23,7 @@ const Navbar = () => {
     return (
         <nav id="navbar" className="navbar fixed-top">
             <div className="container">
-                <Link to="/movies-lib/" className="navbar-brand">
+                <Link to="/" className="navbar-brand">
                     <BiCameraMovie /> MoviesLib
                 </Link>
                 <form role="search" onSubmit={handleSubmit}>

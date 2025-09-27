@@ -37,7 +37,7 @@ const MovieCard = ({ movie }: MovieCardProps) => {
                     </p>
                 </div>
 
-                <Link className="btn btn-primary" to={`/movies-lib/movie/${movie.id}`} title="See more">
+                <Link className="btn btn-primary" to={`/movie/${movie.id}`} title="See more">
                     Details
                 </Link>
             </div>

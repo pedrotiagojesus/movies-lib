@@ -1,5 +1,5 @@
 import ReactDOM from "react-dom/client";
-import { createHashRouter, RouterProvider } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 // CSS
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -14,20 +14,17 @@ import Home from "./pages/Home.jsx";
 import Movie from "./pages/Movie.jsx";
 import Search from "./pages/Search.jsx";
 
-// Rotas com HashRouter
-const router = createHashRouter([
-  {
-    path: "/",           // raiz do HashRouter
-    element: <App />,    // componente base (navbar, layout, etc)
-    children: [
-      { path: "/", element: <Home /> },       // página inicial
-      { path: "movie/:id", element: <Movie /> }, // detalhe de filme
-      { path: "search", element: <Search /> },   // página de pesquisa
-    ],
-  },
-]);
-
-// Renderiza app
-ReactDOM.createRoot(document.getElementById("root")!).render(
-  <RouterProvider router={router} />
-);
+const rootElement = document.getElementById("root");
+if (rootElement) {
+  ReactDOM.createRoot(rootElement).render(
+    <BrowserRouter basename="/movies-lib">
+      <Routes>
+        <Route path="/" element={<App />}>
+          <Route index element={<Home />} />
+          <Route path="movie/:id" element={<Movie />} />
+          <Route path="search" element={<Search />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
+  );
+}
