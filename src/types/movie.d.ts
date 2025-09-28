@@ -46,6 +46,7 @@ interface MovieCreditsResponse {
 // --- Images ---
 interface MovieImageBackdrop {
     file_path: string;
+    vote_average: number;
 }
 
 interface MovieImagesResponse {
@@ -63,6 +64,7 @@ interface MovieVideo {
   type: string
   official: boolean
   published_at: string
+  size: number
 }
 
 interface MovieVideosResponse {

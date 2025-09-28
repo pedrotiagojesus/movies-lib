@@ -1,0 +1,32 @@
+.image-slider-modal {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.image-slider-modal img {
+    max-height: 80vh;
+    max-width: 90vw;
+    border-radius: 0.5rem;
+}
+
+#imageModal .btn-primary {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    border-radius: 50%;
+    opacity: 0.5;
+}
+
+#imageModal .btn-primary:hover {
+    opacity: 1;
+}
+
+#imageModal .btn-primary.left {
+    left: 1rem;
+}
+
+#imageModal .btn-primary.right {
+    right: 1rem;
+}

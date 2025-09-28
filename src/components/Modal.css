@@ -1,0 +1,23 @@
+.modal {
+    --bs-modal-bg: #1a1a1a;
+    --bs-modal-border-radius: 0;
+    --bs-modal-header-border-width: 0;
+}
+.modal .modal-header .btn-close {
+    --bs-btn-close-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23f7d354'%3e%3cpath d='M.293.293a1 1 0 0 1 1.414 0L8 6.586 14.293.293a1 1 0 1 1 1.414 1.414L9.414 8l6.293 6.293a1 1 0 0 1-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 0 1-1.414-1.414L6.586 8 .293 1.707a1 1 0 0 1 0-1.414'/%3e%3c/svg%3e");
+    --bs-btn-close-opacity: 1;
+}
+
+.modal .modal-title {
+    margin-bottom: 0;
+}
+
+/*** Trailer Modal ***/
+#trailerModal.modal .modal-body {
+    padding: 0;
+}
+
+/*** Trailer Modal ***/
+#imageModal.modal .modal-body {
+    padding: 0;
+}
