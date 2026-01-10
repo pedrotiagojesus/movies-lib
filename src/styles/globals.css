@@ -1,0 +1,63 @@
+#root {
+    --header-heiht: 4.75rem;
+}
+
+html {
+    font-size: var(--font-size);
+}
+
+main {
+    padding-top: calc(var(--header-heiht) + 2rem);
+    padding-bottom: 1.5rem;
+    display: flex;
+}
+
+.splide__arrows .splide__arrow {
+    background: #1a1a1a;
+}
+
+.splide__arrow .bi {
+    color: #f7d354;
+}
+
+.form-select {
+    --bs-body-bg: #121212;
+    --bs-border-color: transparent;
+    --bs-body-color: #f7d354;
+    font-weight: 300;
+}
+
+.form-select:focus {
+    border-color: transparent;
+    outline: 0;
+    box-shadow: none;
+}
+
+.form-select > option {
+    background-color: #121212;
+}
+
+/* SM ≥ 576px */
+@media (min-width: 576px) {
+    /* ... */
+}
+
+/* MD ≥ 768px */
+@media (min-width: 768px) {
+    /* ... */
+}
+
+/* LG ≥ 992px */
+@media (min-width: 992px) {
+    /* ... */
+}
+
+/* XL ≥ 1200px */
+@media (min-width: 1200px) {
+    /* ... */
+}
+
+/* XXL ≥ 1400px */
+@media (min-width: 1400px) {
+    /* ... */
+}

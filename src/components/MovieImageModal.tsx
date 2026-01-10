@@ -37,11 +37,11 @@ const MovieImageModal = ({ movie, movieImages }: MovieImageModalProps) => {
                     <i className="bi bi-chevron-left"></i>
                 </button>
 
-                <img
+                {/* <img
                     src={`${IMAGE_SIZE_W500}${movieImages[currentIndex].file_path}`}
                     alt={`movie-image-${currentIndex}`}
                     className="img-fluid"
-                />
+                /> */}
 
                 <button className="btn btn-primary right" onClick={nextImage}>
                     <i className="bi bi-chevron-right"></i>

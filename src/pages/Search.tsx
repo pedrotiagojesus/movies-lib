@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
 
 // CSS
@@ -10,28 +9,23 @@ import Loading from "../components/Loading";
 import Pagination from "../components/Pagination";
 
 // Hooks
-import { useMovies } from "../hooks/useMovies";
-
-// Endpoints
-import { MOVIES_API } from "../api/endpoints";
+import { useSearchMovies } from "@hooks/useSearchMovies";
 
 const Search = () => {
     const [searchParams] = useSearchParams();
-    const query = searchParams.get("q");
-    const page = searchParams.get("page");
-    const gender = searchParams.get("gender");
 
-    const { movies, totalPages, loading, error, getMovies } = useMovies();
+    const query = searchParams.get("q") ?? "";
+    const page = Number(searchParams.get("page")) || 1;
+    const genre = searchParams.get("genre") ?? undefined;
 
-    useEffect(() => {
-        const params = new URLSearchParams();
-        params.append("query", query || "");
+    const { data, isLoading, isError } = useSearchMovies({
+        query,
+        page,
+        genre,
+    });
 
-        if (page) params.append("page", page);
-        const apiUrl = MOVIES_API.search(params.toString());
-
-        getMovies(apiUrl);
-    }, [query, page, gender]);
+    const movies = data?.results ?? [];
+    const totalPages = data?.total_pages ?? 0;
 
     return (
         <div id="search-page" className="container">
@@ -39,8 +33,8 @@ const Search = () => {
                 Results for: <span className="query-text">{query}</span>
             </h2>
             <div className="movies-container row">
-                {movies && movies.length === 0 && loading && <Loading />}
-                {movies && movies.length === 0 && !loading && <p>No results</p>}
+                {movies && movies.length === 0 && isLoading && <Loading />}
+                {movies && movies.length === 0 && !isLoading && <p>No results</p>}
                 {movies &&
                     movies.length > 0 &&
                     movies.map((movie) => (

@@ -15,7 +15,19 @@
         "isolatedModules": true,
         "noEmit": true,
         "jsx": "react-jsx",
-        "types": ["vite/client"]
+        "types": ["vite/client"],
+        "paths": {
+            "@components/*": ["src/components/*"],
+            "@pages/*": ["src/pages/*"],
+            "@typesLocal/*": ["src/types/*"],
+            "@contexts/*": ["src/contexts/*"],
+            "@assets/*": ["src/assets/*"],
+            "@utils/*": ["src/utils/*"],
+            "@hooks/*": ["src/hooks/*"],
+            "@config/*": ["src/config/*"],
+            "@service/*": ["src/service/*"],
+            "@styles/*": ["src/styles/*"]
+        }
     },
     "include": ["src", "vite-env.d.ts"],
     "exclude": ["node_modules"]

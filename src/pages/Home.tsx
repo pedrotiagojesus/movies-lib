@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useSearchParams } from "react-router-dom";
 
 // CSS
@@ -13,31 +13,26 @@ import FilterTrigger from "../components/Modal/FilterTrigger";
 import Filter from "../components/Modal/Filter";
 
 // Hooks
-import { useMovies } from "../hooks/useMovies";
-
-// Endpoints
-import { MOVIES_API } from "../api/endpoints";
+import { useDiscoverMovies } from "@hooks/useDiscoverMovies";
 
 const Home = () => {
     const [sortBy, setSortBy] = useState<SortOption>("popularity");
     const [sortByDirection, setSortByDirection] = useState<SortDirection>("desc");
 
     const [searchParams] = useSearchParams();
-    const page = searchParams.get("page");
-    const genre = searchParams.get("genre");
 
-    const { movies, totalPages, loading, error, getMovies } = useMovies();
+    const page = searchParams.get("page") ? Number(searchParams.get("page")) : 1;
+    const genre = searchParams.get("genre") || undefined;
 
-    useEffect(() => {
-        const params = new URLSearchParams();
+    const { data, isLoading, isError } = useDiscoverMovies({
+        page,
+        genre,
+        sortBy,
+        sortDirection: sortByDirection,
+    });
 
-        if (page) params.append("page", page);
-        if (genre) params.append("with_genres", genre);
-
-        params.append("sort_by", `${sortBy}.${sortByDirection}`);
-
-        getMovies(MOVIES_API.discover(params.toString()));
-    }, [page, genre, sortBy, sortByDirection]);
+    const movies = data?.results ?? [];
+    const totalPages = data?.total_pages ?? 0;
 
     const handleSelectSortBy = (value: SortOption) => setSortBy(value);
     const handleSelectSortByDirection = (value: SortDirection) => setSortByDirection(value);
@@ -60,8 +55,8 @@ const Home = () => {
                 </div>
             </div>
             <div className="movies-container row">
-                {movies && movies.length === 0 && loading && <Loading />}
-                {movies && movies.length === 0 && !loading && <p>No results</p>}
+                {movies && movies.length === 0 && isLoading && <Loading />}
+                {movies && movies.length === 0 && !isLoading && <p>No results</p>}
                 {movies.length > 0 &&
                     movies.map((movie) => (
                         <div key={movie.id} className="col-6 col-md-4 col-lg-3">

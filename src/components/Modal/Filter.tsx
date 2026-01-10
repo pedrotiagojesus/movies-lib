@@ -3,28 +3,17 @@ import { Link } from "react-router-dom";
 
 // Hooks
 import { useCurrentURL } from "../../hooks/useCurrentUrl";
+import { useGenres } from "@hooks/useGenres";
 
 // CSS
 import "./Filter.css";
 
-// Endpoints
-import { MOVIES_API } from "../../api/endpoints";
-
 const Filter = () => {
-    const [genres, setGenres] = useState<MovieGenre[]>([]);
+    const { data: dataGenres } = useGenres();
+    const genres = dataGenres?.genres || [];
+
     const { pathname, searchParams } = useCurrentURL();
-
     const genreIds = (searchParams.get("genre") ?? "").split(",").filter(Boolean).map(Number);
-
-    const getGenres = async (apiUrl: string) => {
-        const res = await fetch(apiUrl);
-        const data: MovieGenresResponse = await res.json();
-        setGenres(data.genres);
-    };
-
-    useEffect(() => {
-        getGenres(MOVIES_API.genre);
-    }, []);
 
     const buildUrl = (rowGenreId: number) => {
         let url = pathname;
@@ -74,15 +63,18 @@ const Filter = () => {
                     <div className="modal-body">
                         <h4 className="title fs-4">Genre</h4>
                         <div className="filter-items">
-                            {genres.map((row) => (
-                                <Link
-                                    key={row.id}
-                                    className={`nav-link btn btn-primary ${genreIds.includes(row.id) ? "active" : ""}`}
-                                    to={buildUrl(row.id)}
-                                >
-                                    {row.name}
-                                </Link>
-                            ))}
+                            {genres &&
+                                genres.map((row) => (
+                                    <Link
+                                        key={row.id}
+                                        className={`nav-link btn btn-primary ${
+                                            genreIds.includes(row.id) ? "active" : ""
+                                        }`}
+                                        to={buildUrl(row.id)}
+                                    >
+                                        {row.name}
+                                    </Link>
+                                ))}
                         </div>
                     </div>
                 </div>

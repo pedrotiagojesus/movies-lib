@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
 // Slider
@@ -18,80 +17,22 @@ import MovieImageModal from "../components/MovieImageModal";
 // Configs
 import { sliderOptions } from "../config/splideOptions";
 
-// Endpoints
-import { MOVIES_API } from "../api/endpoints";
-
 // Utils
 import { currency, date } from "../utils/format";
+import { useMovie } from "@hooks/useMovie";
+import { useMovieCredits } from "@hooks/useMovieCredits";
+import { useMovieImages } from "@hooks/useMovieImages";
+import { useMovieVideo } from "@hooks/useMovieVideos";
 
 const Movie = () => {
     const { id } = useParams();
-    const [movie, setMovie] = useState<Movie | null>(null);
-    const [movieCast, setMovieCast] = useState<MovieCast[]>([]);
-    const [movieCrew, setMovieCrew] = useState<MovieCrew[]>([]);
-    const [movieImage, setMovieImage] = useState<MovieImageBackdrop[]>([]);
-    const [movieVideo, setMovieVideo] = useState<MovieVideo | null>(null);
 
-    // Get Movie
-    const getMovie = async (id: number) => {
-        const res = await fetch(MOVIES_API.movie(id));
-        const data: Movie = await res.json();
-
-        setMovie(data);
-    };
-
-    // Get Movie Credits
-    const getMovieCredit = async (id: number) => {
-        const res = await fetch(MOVIES_API.movieCredits(id));
-        const data: MovieCreditsResponse = await res.json();
-
-        setMovieCast(data.cast);
-        setMovieCrew(data.crew);
-    };
-
-    // Get Movie Images
-    const getMovieImage = async (id: number) => {
-        const res = await fetch(MOVIES_API.movieImages(id));
-        const data: MovieImagesResponse = await res.json();
-
-        const backdrops = data.backdrops.filter((img) => img.vote_average > 0);
-        const posters = data.posters.filter((img) => img.vote_average > 0);
-
-        const allImages = [...backdrops, ...posters];
-
-        setMovieImage(allImages);
-    };
-
-    // Get Movie Video
-    const getMovieVideo = async (id: number) => {
-        const res = await fetch(MOVIES_API.movieVideos(id));
-        const data: MovieVideosResponse = await res.json();
-
-        const trailers = data.results.filter((item: MovieVideo) => item.site === "YouTube" && item.type === "Trailer");
-
-        if (trailers.length === 0) {
-            setMovieVideo(null);
-            return;
-        }
-
-        const sorted = trailers.sort((a, b) => {
-            if (a.official !== b.official) return b.official ? 1 : -1;
-            if (a.size !== b.size) return b.size - a.size;
-            return new Date(b.published_at).getTime() - new Date(a.published_at).getTime();
-        });
-
-        const best = sorted[0];
-
-        setMovieVideo(best);
-    };
-
-    useEffect(() => {
-        if (!id) return;
-        getMovie(Number(id));
-        getMovieCredit(Number(id));
-        getMovieImage(Number(id));
-        getMovieVideo(Number(id));
-    }, [id]);
+    const { data: movie } = useMovie(id!);
+    const { data: movieImage } = useMovieImages(id);
+    const { data: movieVideo } = useMovieVideo(id);
+    const { data: credits } = useMovieCredits(id);
+    const movieCast = credits?.cast ?? [];
+    const movieCrew = credits?.crew ?? [];
 
     return (
         <>
@@ -179,7 +120,6 @@ const Movie = () => {
                     </>
                 )}
                 <div className="movie-details">
-
                     {movieCast.length > 0 && (
                         <div className="movie-cast">
                             <h2 className="title">Cast</h2>
