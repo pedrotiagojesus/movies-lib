@@ -11,6 +11,9 @@ import "./Movie.css";
 // Components
 import PersonCard from "../components/PersonCard";
 import SlideArrows from "../components/SlideArrows";
+import Modal from "../components/Modal";
+import YouTubeModal from "../components/YouTubeModal";
+import MovieImageModal from "../components/MovieImageModal";
 
 // Configs
 import { sliderOptions } from "../config/splideOptions";
@@ -20,9 +23,6 @@ import { MOVIES_API } from "../api/endpoints";
 
 // Utils
 import { currency, date } from "../utils/format";
-import Modal from "../components/Modal";
-import YouTubeModal from "../components/YouTubeModal";
-import MovieImageModal from "../components/MovieImageModal";
 
 const Movie = () => {
     const { id } = useParams();
