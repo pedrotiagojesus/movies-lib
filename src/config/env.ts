@@ -3,7 +3,7 @@ import { z } from "zod";
 const envSchema = z.object({
     // Basic Configuration
     VITE_API_KEY: z.string().default(""),
-    VITE_TIMEOUT: z.string().default("30000").transform(Number).pipe(z.number().positive()),
+    VITE_API_TIMEOUT: z.string().default("30000").transform(Number).pipe(z.number().positive()),
 });
 
 export type EnvConfig = z.infer<typeof envSchema>;
