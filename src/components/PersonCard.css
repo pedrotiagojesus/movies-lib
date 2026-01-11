@@ -1,7 +1,6 @@
 .person-card {
     height: 100%;
 
-    --bs-card-bg: #1a1a1a;
     --bs-card-border-radius: 0;
     --bs-card-border-width: 0;
     --bs-card-inner-border-radius: 0;

@@ -2,12 +2,12 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #121212;
+    background-color: var(--bg-light);
     height: var(--header-heiht);
 
     --bs-navbar-padding-y: 1rem;
-    --bs-navbar-brand-color: #121212;
-    --bs-link-hover-color-rgb: #312718;
+    --bs-navbar-brand-color: var(--bg-darker);;
+    --bs-link-hover-color-rgb: var(--bg-darker);
     --bs-navbar-brand-font-size: 1.5rem;
 }
 

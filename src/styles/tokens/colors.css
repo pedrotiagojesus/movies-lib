@@ -1,4 +1,23 @@
 :root {
-    --bs-body-bg: #000;
-    --bs-body-color: #fff;
+    --bg-darker: hsl(0, 0%, 0%);
+    --bg: hwb(0 5% 95%);
+    --bg-light: hsl(0, 0%, 10%);
+
+    --bs-body-color: hsl(0, 0%, 95%);
+    --bs-secondary-color: hsl(0, 0%, 40%);
+
+    --bs-body-bg: var(--bg-darker);
+    --bs-border-color-translucent: hsl(0, 0%, 30%);
+
+    --bs-primary: hsl(47, 91%, 50%);
+}
+
+body[data-theme="light"] {
+    --bg-darker: hsl(0, 0%, 90%);
+    --bg: hsl(0, 0%, 95%);
+    --bg-light: hsl(0, 0%, 100%);
+
+    --bs-body-color: hsl(0, 0%, 5%);
+    --bs-secondary-color: hsl(0, 0%, 30%);
+    --bs-border-color-translucent: hsl(0, 0%, 70%);
 }
