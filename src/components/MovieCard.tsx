@@ -11,7 +11,6 @@ interface MovieCardProps {
 }
 
 const MovieCard = ({ movie }: MovieCardProps) => {
-
     const hasPoster = movie.poster_path !== null;
     const backgroundImage = hasPoster ? `url(${IMAGE_SIZE_W500}${movie.poster_path})` : undefined;
 
@@ -20,25 +19,32 @@ const MovieCard = ({ movie }: MovieCardProps) => {
     return (
         <div className="card movie-card">
             <div className="ratio img-wrapper" style={backgroundImage ? { backgroundImage } : {}}>
-                {!hasPoster && <i className="bi bi-file-person-fill"></i>}
+                {!hasPoster && <i className="img-placeholder bi bi-file-person-fill"></i>}
             </div>
             <div className="card-body">
                 <h3 className="card-title" title={movie.title}>
                     {movie.title}
                 </h3>
 
-                <div className="info">
-                    <p>
-                        <i className="bi bi-star-fill"></i> {movie.vote_average}
-                    </p>
+                <div className="row justify-content-between flex-nowrap">
+                    <div className="col flex-fill">
+                        <span className="info">
+                            <i className="bi bi-star-fill"></i> {movie.vote_average.toFixed(1)}
+                        </span>
+                    </div>
+                    <div className="col d-md-none">
+                        <Link className="btn btn-primary" to={`/movie/${movie.id}`} title="See more">
+                            Details
+                        </Link>
+                    </div>
                 </div>
-
-                <Link className="btn btn-primary" to={`/movie/${movie.id}`} title="See more">
-                    Details
-                </Link>
             </div>
 
-            <div className="badge-info">
+            <Link className="btn btn-primary d-none d-md-block" to={`/movie/${movie.id}`} title="See more">
+                Details
+            </Link>
+
+            <div className="badge-info d-none">
                 <span className="badge">{movie.original_language}</span>
                 <span className="badge">{year}</span>
             </div>

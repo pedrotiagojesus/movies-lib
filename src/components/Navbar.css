@@ -2,7 +2,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: var(--bg-light);
+    background-color: #123F5E;
     height: var(--header-heiht);
 
     --bs-navbar-padding-y: 1rem;
@@ -15,7 +15,8 @@
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    background-color: #e2b616;
+    background-color: #EFC75E;
+    color: #000;
     padding: 0.25rem 0.5rem;
     font-weight: bold;
     border-radius: 10px;

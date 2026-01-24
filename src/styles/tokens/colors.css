@@ -1,15 +1,16 @@
 :root {
-    --bg-darker: hsl(0, 0%, 0%);
-    --bg: hwb(0 5% 95%);
+
+    --bg-darker: #F9F3E6;
+    --bg: #121C2D;
     --bg-light: hsl(0, 0%, 10%);
 
-    --bs-body-color: hsl(0, 0%, 95%);
+    --bs-body-color: #F5F7FA;
     --bs-secondary-color: hsl(0, 0%, 40%);
 
-    --bs-body-bg: var(--bg-darker);
+    --bs-body-bg: #0B1320;
     --bs-border-color-translucent: hsl(0, 0%, 30%);
 
-    --bs-primary: hsl(47, 91%, 50%);
+    --bs-primary: #064B73;
 }
 
 body[data-theme="light"] {

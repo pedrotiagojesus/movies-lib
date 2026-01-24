@@ -2,6 +2,9 @@
     --bs-card-bg: var(--bg);
     --bs-card-title-color: var(--bs-body-color);
     --bs-card-border-color: hsl(0, 0%, 30%);
-    --bs-card-border-width: 1px;
-    overflow: hidden;
+    --bs-card-border-width: 0;
+    --bs-card-border-radius: 0;
+}
+
+.card-title {
 }

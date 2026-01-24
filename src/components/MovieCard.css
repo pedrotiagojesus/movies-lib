@@ -1,5 +1,5 @@
 .movie-card {
-    height: 100%;
+    position: relative;
 }
 
 .movie-card .img-wrapper {
@@ -12,7 +12,7 @@
     align-items: center;
 }
 
-.movie-card .img-wrapper > * {
+.movie-card .img-wrapper .img-placeholder {
     position: relative;
     width: auto;
     height: auto;
@@ -26,9 +26,8 @@
 }
 
 .movie-card .card-title {
-    height: 4.5rem;
     overflow: hidden;
-    -webkit-line-clamp: 3;
+    -webkit-line-clamp: 2;
     text-overflow: ellipsis;
     -webkit-box-orient: vertical;
     display: -webkit-box;
@@ -37,8 +36,7 @@
 
 .movie-card .info {
     display: flex;
-    justify-content: space-between;
-    margin-bottom: var(--bs-card-title-spacer-y);
+    gap: 0.5rem;
 }
 
 .movie-card p {
@@ -53,12 +51,12 @@
 }
 
 .movie-card a {
-    border-radius: 4px;
-    padding: 0.75rem 0.5rem;
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    /*
     text-align: center;
     transition: 0.4s;
-    font-weight: 500;
-    width: 100%;
+    width: 100%; */
 }
 
 .movie-card .badge-info {
@@ -73,4 +71,43 @@
     --bs-badge-font-weight: 300;
     --bs-badge-color: #000000;
     background-color: #e2b616d1;
+}
+
+/* SM ≥ 576px */
+@media (min-width: 576px) {
+    /* ... */
+}
+
+/* MD ≥ 768px */
+@media (min-width: 768px) {
+
+    .movie-card a {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: -2;
+        opacity: 0;
+        transition: transform 1s ease-out, opacity .5s ease-out;
+    }
+
+    .movie-card:hover a, .movie-card:hover a:hover {
+        transform: translateY(100%);
+        opacity: 1;
+    }
+}
+
+/* LG ≥ 992px */
+@media (min-width: 992px) {
+    /* ... */
+}
+
+/* XL ≥ 1200px */
+@media (min-width: 1200px) {
+    /* ... */
+}
+
+/* XXL ≥ 1400px */
+@media (min-width: 1400px) {
+    /* ... */
 }
