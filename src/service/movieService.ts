@@ -55,6 +55,36 @@ export const discoverMovies = async ({
     return res.data;
 };
 
+export const trendingMovies = async ({ timeWindow }: { timeWindow: TimeWindow }) => {
+    const params: Record<string, string> = {
+        api_key: env.VITE_API_KEY,
+    };
+    const res = await client.get(`${API_ENDPOINTS.TRENDING}/${timeWindow}`, {
+        params: params,
+    });
+    return res.data;
+};
+
+export const topRatedMovies = async () => {
+    const params: Record<string, string> = {
+        api_key: env.VITE_API_KEY,
+    };
+    const res = await client.get(`${API_ENDPOINTS.TOP_RATED}`, {
+        params: params,
+    });
+    return res.data;
+};
+
+export const upcomingMovies = async () => {
+    const params: Record<string, string> = {
+        api_key: env.VITE_API_KEY,
+    };
+    const res = await client.get(`${API_ENDPOINTS.UPCOMING}`, {
+        params: params,
+    });
+    return res.data;
+};
+
 export const searchMovies = async ({ query, page, genre }: { query: string; page: number; genre?: string }) => {
     const params: Record<string, string> = {
         api_key: env.VITE_API_KEY,

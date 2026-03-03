@@ -1,4 +1,4 @@
-type SortOption = "popularity" | "title" | "primary_release_date" | "vote_average" | "vote_count";
+type SortOption = "original_title" | "popularity" | "revenue" | "primary_release_date" | "title" | "vote_average" | "vote_count";
 type SortDirection = "asc" | "desc";
 
 interface SelectBoxSortProps {

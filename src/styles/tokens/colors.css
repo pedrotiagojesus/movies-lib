@@ -11,6 +11,9 @@
     --bs-border-color-translucent: hsl(0, 0%, 30%);
 
     --bs-primary: #064B73;
+
+    --bs-link-color: #cde59a;
+    --bs-link-hover-color: #fff;
 }
 
 body[data-theme="light"] {

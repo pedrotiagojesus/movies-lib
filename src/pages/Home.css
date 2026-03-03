@@ -1,0 +1,8 @@
+#homepage {
+    width: 100%;
+}
+
+.trending-title {
+    display: flex;
+    gap: 1rem;
+}

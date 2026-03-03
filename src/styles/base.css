@@ -7,3 +7,13 @@
 @import "./tokens/button.css";
 @import "./tokens/card.css";
 
+.nav-link {
+    --bs-nav-pills-border-radius: 0;
+    --bs-nav-pills-link-active-color: #fff;
+    --bs-nav-pills-link-active-bg: transparent;
+}
+
+.nav-pills .nav-link.active,
+.nav-pills .show > .nav-link {
+    border-bottom: 2px solid #cde59a;
+}

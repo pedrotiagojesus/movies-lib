@@ -21,46 +21,46 @@ seguindo uma abordagem **mobile-first**.
 ---
 
 ## 🧱 2. Estrutura do Card
-- [ ] Definir estado normal do card com:
-  - [ ] Poster
-  - [ ] Título
-  - [ ] ⭐ Rating
-- [ ] Mover informação secundária para interação:
-  - [ ] Ano
-  - [ ] Idioma
-  - [ ] Género (1 linha, opcional)
+- [X] Definir estado normal do card com:
+  - [X] Poster
+  - [X] Título
+  - [X] ⭐ Rating
+- [X] Mover informação secundária para interação:
+  - [X] Ano
+  - [X] Idioma
+  - [X] Género (1 linha, opcional)
 
 ---
 
 ## 🎯 3. Hierarquia Visual
-- [ ] Dar mais destaque ao título (peso / contraste)
-- [ ] Reduzir destaque visual do rating
-- [ ] Garantir alinhamento consistente do rating
-- [ ] Evitar competição visual entre elementos
+- [X] Dar mais destaque ao título (peso / contraste)
+- [X] Reduzir destaque visual do rating
+- [X] Garantir alinhamento consistente do rating
+- [X] Evitar competição visual entre elementos
 
 ---
 
 ## ✂️ 4. Títulos Longos
 - [X] Aplicar line-clamp (máx. 2 linhas)
 - [X] Adicionar ellipsis
-- [ ] (Opcional) Mostrar título completo no detalhe ou tooltip
+- [X] (Opcional) Mostrar título completo no detalhe ou tooltip
 
 ---
 
 ## 🖱️ 5. Interações & Hover (Tablet / Desktop)
-- [ ] Elevação suave do card no hover
-- [ ] Shadow subtil no hover
-- [ ] Overlay escuro no poster
-- [ ] Mostrar botão “Details” apenas no hover (desktop)
+- [X] Elevação suave do card no hover
+- [X] Shadow subtil no hover
+- [X] Overlay escuro no poster
+- [X] Mostrar botão “Details” apenas no hover (desktop)
 
 ---
 
 ## 🎬 6. Micro-preview
-- [ ] Mostrar no overlay / tap:
-  - [ ] ⭐ Rating
-  - [ ] Ano
-  - [ ] Botão Details
-- [ ] Adicionar transições suaves (200–300ms, ease-out)
+- [X] Mostrar no overlay / tap:
+  - [X] ⭐ Rating
+  - [X] Ano
+  - [X] Botão Details
+- [X] Adicionar transições suaves (200–300ms, ease-out)
 
 ---
 
@@ -85,21 +85,21 @@ seguindo uma abordagem **mobile-first**.
 ---
 
 ## 🎨 9. Consistência Visual
-- [ ] Usar um único tom de dourado (logo, estrelas, botões)
-- [ ] Rever contraste do texto secundário
-- [ ] Validar contraste WCAG (mínimo AA)
-- [ ] Uniformizar estilos de botões e badges
+- [X] Usar um único tom de dourado (logo, estrelas, botões)
+- [X] Rever contraste do texto secundário
+- [X] Validar contraste WCAG (mínimo AA)
+- [X] Uniformizar estilos de botões e badges
 
 ---
 
 ## 📐 10. Escala Progressiva (a partir do mobile)
-- [ ] Tablet (768px+)
-  - [ ] 2–3 filmes por linha
-- [ ] Desktop (1024px+)
-  - [ ] 4 filmes por linha
-- [ ] Desktop largo (1600px+)
-  - [ ] 5 filmes por linha (máx. 6)
-- [ ] Usar grid fluida com `minmax`
+- [X] Tablet (768px+)
+  - [X] 2–3 filmes por linha
+- [X] Desktop (1024px+)
+  - [X] 4 filmes por linha
+- [X] Desktop largo (1600px+)
+  - [X] 5 filmes por linha (máx. 6)
+- [X] Usar grid fluida com `minmax`
 
 ---
 

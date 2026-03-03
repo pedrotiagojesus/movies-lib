@@ -1,5 +1,8 @@
 const API_ENDPOINTS = {
     DISCOVER: "discover/movie",
+    TRENDING: "trending/movie",
+    TOP_RATED: "movie/top_rated",
+    UPCOMING: "movie/upcoming",
     SEARCH: "search/movie",
     GENRE: "genre/movie/list",
     MOVIE: "movie/:id",

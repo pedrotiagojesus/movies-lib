@@ -40,3 +40,7 @@
     --bs-btn-disabled-bg: #ffffff10;
     --bs-btn-disabled-border-color: transparent;
 }
+
+.btn-link {
+    text-decoration: none;
+}

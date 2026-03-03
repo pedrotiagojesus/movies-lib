@@ -26,13 +26,13 @@ const MovieCard = ({ movie }: MovieCardProps) => {
                     {movie.title}
                 </h3>
 
-                <div className="row justify-content-between flex-nowrap">
+                <div className="row justify-content-between flex-nowrap d-md-none">
                     <div className="col flex-fill">
                         <span className="info">
                             <i className="bi bi-star-fill"></i> {movie.vote_average.toFixed(1)}
                         </span>
                     </div>
-                    <div className="col d-md-none">
+                    <div className="col">
                         <Link className="btn btn-primary" to={`/movie/${movie.id}`} title="See more">
                             Details
                         </Link>
@@ -44,9 +44,10 @@ const MovieCard = ({ movie }: MovieCardProps) => {
                 Details
             </Link>
 
-            <div className="badge-info d-none">
+            <div className="badge-info">
                 <span className="badge">{movie.original_language}</span>
                 <span className="badge">{year}</span>
+                <span className="badge show"><i className="bi bi-star-fill"></i> {movie.vote_average.toFixed(1)}</span>
             </div>
         </div>
     );

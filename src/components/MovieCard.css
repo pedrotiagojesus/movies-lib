@@ -1,5 +1,11 @@
 .movie-card {
     position: relative;
+    height: 100%;
+}
+
+.movie-card > * {
+    position: relative;
+    z-index: 2;
 }
 
 .movie-card .img-wrapper {
@@ -32,6 +38,7 @@
     -webkit-box-orient: vertical;
     display: -webkit-box;
     font-size: 1.25rem;
+    margin-bottom: 0;
 }
 
 .movie-card .info {
@@ -46,17 +53,13 @@
     margin-bottom: 0;
 }
 
-.movie-card .card-body .bi {
-    color: #f7d354;
+.movie-card .card-body {
+    background-color: var(--bs-card-bg);
 }
 
 .movie-card a {
     font-weight: 500;
     padding: 0.5rem 1rem;
-    /*
-    text-align: center;
-    transition: 0.4s;
-    width: 100%; */
 }
 
 .movie-card .badge-info {
@@ -67,10 +70,18 @@
     gap: 0.25rem;
 }
 
+.movie-card .badge-info > * {
+    transition: opacity 300ms ease-out;
+}
+
+.movie-card .badge-info > *:not(.show) {
+    opacity: 0;
+}
+
 .movie-card .badge-info .badge {
-    --bs-badge-font-weight: 300;
+    --bs-badge-border-radius: 0;
     --bs-badge-color: #000000;
-    background-color: #e2b616d1;
+    background-color: #efc75e;
 }
 
 /* SM ≥ 576px */
@@ -80,19 +91,49 @@
 
 /* MD ≥ 768px */
 @media (min-width: 768px) {
+    .movie-card {
+        transition:
+            transform 300ms ease-out,
+            box-shadow 300ms ease-out;
+    }
+
+    .movie-card:hover {
+        z-index: 4;
+        transform: scale(1.01);
+        box-shadow: 0 0.5rem 0.5rem rgb(255 255 255 / 15%);
+    }
+
+    .movie-card .img-wrapper {
+        transition: filter 300ms ease-out;
+    }
+
+    .movie-card:hover .img-wrapper {
+        filter: brightness(0.7);
+    }
 
     .movie-card a {
+        z-index: 1;
         position: absolute;
         bottom: 0;
         left: 0;
         right: 0;
-        z-index: -2;
-        opacity: 0;
-        transition: transform 1s ease-out, opacity .5s ease-out;
+        transition:
+            transform 300ms ease-out,
+            box-shadow 300ms ease-out;
     }
 
-    .movie-card:hover a, .movie-card:hover a:hover {
+    .movie-card:hover a,
+    .movie-card:hover a:hover {
         transform: translateY(100%);
+        box-shadow: 0 0.5rem 0.5rem rgb(255 255 255 / 15%);
+        z-index: 1;
+    }
+
+    .movie-card .badge-info .show {
+        opacity: 1;
+    }
+
+    .movie-card:hover .badge-info > * {
         opacity: 1;
     }
 }

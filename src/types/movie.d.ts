@@ -1,3 +1,5 @@
+type TimeWindow = "day" | "week";
+
 interface Movie {
     title: string;
     tagline: string;
