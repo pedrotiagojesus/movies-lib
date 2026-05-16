@@ -1,21 +1,25 @@
-import { ReactNode, useEffect, useRef } from "react";
+import { ReactNode, useRef } from "react";
 
 // CSS
 import "./Modal.css";
 
 type ModalProps = {
     id: string;
+    className?: string[];
     title?: string;
     children: ReactNode;
     size?: "sm" | "lg" | "xl" | "";
+    titleTag?: keyof JSX.IntrinsicElements;
 };
 
-const Modal = ({ id, title, children, size = ""}: ModalProps) => {
+const Modal = ({ id, className = [], title, children, size = "", titleTag }: ModalProps) => {
     const modalRef = useRef<HTMLDivElement | null>(null);
+    const modalClass = ["modal", "fade", ...className].join(" ");
+    const TitleTag = titleTag || "h5";
 
     return (
         <div
-            className="modal fade"
+            className={modalClass}
             id={id}
             tabIndex={-1}
             aria-labelledby={`${id}Label`}
@@ -26,9 +30,9 @@ const Modal = ({ id, title, children, size = ""}: ModalProps) => {
                 <div className="modal-content">
                     {title && (
                         <div className="modal-header">
-                            <h5 className="modal-title" id={`${id}Label`}>
+                            <TitleTag className="modal-title" id={`${id}Label`}>
                                 {title}
-                            </h5>
+                            </TitleTag>
                             <button
                                 type="button"
                                 className="btn-close"

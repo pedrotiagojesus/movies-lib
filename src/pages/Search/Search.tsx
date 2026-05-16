@@ -1,12 +1,12 @@
 import { useSearchParams } from "react-router-dom";
 
 // CSS
-import "./MoviesGrid.css";
+import "../MoviesGrid.css";
 
 // Components
-import MovieCard from "../components/MovieCard";
-import Loading from "../components/Loading";
-import Pagination from "../components/Pagination";
+import MovieCard from "@components/MovieCard/MovieCard";
+import Loading from "@components/Loading";
+import Pagination from "@components/Pagination";
 
 // Hooks
 import { useSearchMovies } from "@hooks/useSearchMovies";

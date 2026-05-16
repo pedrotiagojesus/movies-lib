@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 
 // Service
-import { trendingMovies } from "@service/movieService";
+import { trendingMovies } from "@services/movieService";
 
 // Types
 import { DiscoverResponse } from "@typesLocal/discover";

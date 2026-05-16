@@ -1,5 +1,5 @@
 .modal {
-    --bs-modal-bg: #1a1a1a;
+    --bs-modal-bg: var(--bg);
     --bs-modal-border-radius: 0;
     --bs-modal-header-border-width: 0;
 }

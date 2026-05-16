@@ -1,0 +1,60 @@
+.review-card {
+    background: var(--bs-dark);
+    border-radius: 8px;
+    padding: 1rem 1.25rem;
+    margin-bottom: 1rem;
+    color: #fff;
+}
+
+.review-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.75rem;
+}
+
+.review-avatar img {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.avatar-placeholder {
+    font-size: 48px;
+    color: #777;
+}
+
+.review-meta {
+    margin-left: 0.75rem;
+}
+
+.review-author {
+    font-size: 1rem;
+    margin: 0;
+    font-weight: 600;
+}
+
+.review-date {
+    font-size: 0.85rem;
+    opacity: 0.7;
+}
+
+.review-content {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    opacity: 0.9;
+    white-space: pre-line;
+    max-height: 4rem;
+    overflow: hidden;
+    position: relative;
+}
+
+.review-content::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 2rem;
+    width: 100%;
+    background: linear-gradient(to bottom, transparent, var(--bs-dark));
+}

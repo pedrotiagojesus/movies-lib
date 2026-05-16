@@ -3,12 +3,12 @@ import axios from "axios";
 // Config
 import { env } from "@config/env";
 
-const client = axios.create({
-    baseURL: "https://api.themoviedb.org/3/",
+const api = axios.create({
+    baseURL: env.VITE_API_ENDPOINT,
     timeout: env.VITE_API_TIMEOUT,
     headers: {
         "Content-Type": "application/json",
     },
 });
 
-export default client;
+export default api;

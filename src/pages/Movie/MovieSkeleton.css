@@ -1,0 +1,86 @@
+.skeleton {
+    background: #2a2a2a;
+    border-radius: 6px;
+    animation: pulse 1.4s infinite ease-in-out;
+}
+
+@keyframes pulse {
+    0% {
+        opacity: 0.6;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0.6;
+    }
+}
+
+/* Banner */
+.skeleton-banner {
+    height: 300px;
+    background: #1c1c1c;
+}
+
+/* Titles */
+.skeleton-title-lg {
+    width: 40%;
+    height: 32px;
+}
+
+.skeleton-title {
+    width: 70%;
+    height: 28px;
+}
+
+.skeleton-title-sm {
+    width: 40%;
+    height: 22px;
+}
+
+/* Text */
+.skeleton-text {
+    height: 16px;
+}
+
+/* Pills (genres) */
+.skeleton-pill {
+    width: 80px;
+    height: 20px;
+    border-radius: 20px;
+}
+
+/* Poster */
+.skeleton-poster {
+    width: 100%;
+    height: 380px;
+    border-radius: 8px;
+}
+
+/* Button */
+.skeleton-button {
+    width: 100%;
+    height: 40px;
+    border-radius: 6px;
+}
+
+/* Review block */
+.skeleton-review {
+    width: 100%;
+    height: 90px;
+    border-radius: 8px;
+}
+
+/* Credits list */
+.skeleton-list-item {
+    width: 100%;
+    height: 50px;
+    border-radius: 6px;
+}
+
+/* Recommendation cards */
+.skeleton-card {
+    width: 150px;
+    height: 225px;
+    border-radius: 8px;
+}

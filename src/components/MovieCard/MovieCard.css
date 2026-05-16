@@ -97,7 +97,7 @@
             box-shadow 300ms ease-out;
     }
 
-    .movie-card:hover {
+    .movie-card:hover:not(.placeholder-glow) {
         z-index: 4;
         transform: scale(1.01);
         box-shadow: 0 0.5rem 0.5rem rgb(255 255 255 / 15%);

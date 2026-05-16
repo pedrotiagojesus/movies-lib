@@ -1,13 +1,13 @@
 import { useState, useEffect } from "react";
 
-const YouTubeModal = ({ videoKey, id }: { videoKey: string; id: string }) => {
+const YouTubeModal = ({ url, id }: { url: string; id: string }) => {
     const [src, setSrc] = useState("");
 
     useEffect(() => {
         const modal = document.getElementById(id);
         if (!modal) return;
 
-        const handleShow = () => setSrc(`https://www.youtube-nocookie.com/embed/${videoKey}?autoplay=1`);
+        const handleShow = () => setSrc(url);
         const handleHide = () => setSrc("");
 
         modal.addEventListener("show.bs.modal", handleShow);
@@ -17,7 +17,7 @@ const YouTubeModal = ({ videoKey, id }: { videoKey: string; id: string }) => {
             modal.removeEventListener("show.bs.modal", handleShow);
             modal.removeEventListener("hidden.bs.modal", handleHide);
         };
-    }, [id, videoKey]);
+    }, [id, url]);
 
     return (
         <iframe

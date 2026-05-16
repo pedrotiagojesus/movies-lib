@@ -1,4 +1,4 @@
-import { getMovieImages } from "@service/movieService";
+import { getMovieImages } from "@services/movieService";
 import { useQuery } from "@tanstack/react-query";
 
 export function useMovieImages(id?: string) {

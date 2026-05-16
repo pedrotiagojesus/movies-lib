@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 
 // Service
-import { upcomingMovies } from "@service/movieService";
+import { upcomingMovies } from "@services/movieService";
 
 // Types
 import { DiscoverResponse } from "@typesLocal/discover";

@@ -1,0 +1,29 @@
+.credits-modal .modal-body {
+    display: flex;
+    overflow: hidden;
+    height: 80vh;
+    gap: 2rem;
+}
+
+.credits-sidebar {
+    width: 220px;
+    position: sticky;
+    top: 0;
+    align-self: flex-start;
+    height: fit-content;
+}
+
+.credits-content {
+    flex: 1;
+    height: 100%;
+    overflow-y: auto;
+    scroll-behavior: smooth;
+    padding-right: 1rem;
+}
+
+.people-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 1rem;
+    margin-bottom: 2rem;
+}

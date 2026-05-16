@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { getMovieCredits } from "@service/movieService";
+import { getMovieCredits } from "@services/movieService";
 
 export function useMovieCredits(id?: string) {
   return useQuery<MovieCreditsResponse>({

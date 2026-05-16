@@ -3,16 +3,13 @@ import { Link } from "react-router-dom";
 // CSS
 import "./MovieCard.css";
 
-// Config
-import { IMAGE_SIZE_W500 } from "../config/tmbd";
-
 interface MovieCardProps {
     movie: MovieCard;
 }
 
 const MovieCard = ({ movie }: MovieCardProps) => {
-    const hasPoster = movie.poster_path !== null;
-    const backgroundImage = hasPoster ? `url(${IMAGE_SIZE_W500}${movie.poster_path})` : undefined;
+    const hasPoster = movie.poster_url !== null;
+    const backgroundImage = hasPoster ? `url(${movie.poster_url})` : undefined;
 
     const year = movie.release_date ? new Date(movie.release_date).getFullYear() : "";
 
@@ -29,7 +26,7 @@ const MovieCard = ({ movie }: MovieCardProps) => {
                 <div className="row justify-content-between flex-nowrap d-md-none">
                     <div className="col flex-fill">
                         <span className="info">
-                            <i className="bi bi-star-fill"></i> {movie.vote_average.toFixed(1)}
+                            <i className="bi bi-star-fill"></i> {movie.rating.toFixed(1)}
                         </span>
                     </div>
                     <div className="col">
@@ -47,7 +44,9 @@ const MovieCard = ({ movie }: MovieCardProps) => {
             <div className="badge-info">
                 <span className="badge">{movie.original_language}</span>
                 <span className="badge">{year}</span>
-                <span className="badge show"><i className="bi bi-star-fill"></i> {movie.vote_average.toFixed(1)}</span>
+                <span className="badge show">
+                    <i className="bi bi-star-fill"></i> {movie.rating.toFixed(1)}
+                </span>
             </div>
         </div>
     );

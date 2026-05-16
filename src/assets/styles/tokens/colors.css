@@ -8,6 +8,7 @@
     --bs-secondary-color: hsl(0, 0%, 40%);
 
     --bs-body-bg: #0B1320;
+    --bs-body-bg-rgb: 11, 19, 32;
     --bs-border-color-translucent: hsl(0, 0%, 30%);
 
     --bs-primary: #064B73;

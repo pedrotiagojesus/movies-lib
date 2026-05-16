@@ -1,0 +1,139 @@
+#movie-banner {
+    width: 100%;
+    height: 60vh;
+    background-size: cover;
+    background-position: center;
+    align-items: end;
+    position: relative;
+    z-index: 1;
+}
+
+#movie-banner::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        to bottom,
+        rgba(var(--bs-body-bg-rgb), 0) 0%,
+        rgba(var(--bs-body-bg-rgb), 0.6) 40%,
+        rgba(var(--bs-body-bg-rgb), 1) 100%
+    );
+    z-index: -1;
+}
+
+#movie-page .content {
+    padding-top: 2rem;
+}
+
+#movie-page .movie-card {
+    text-align: center;
+}
+
+#movie-page .movie-card img,
+#movie-page .movie-card h2,
+#movie-page .movie-card p {
+    margin-bottom: 1rem;
+}
+
+#movie-page .movie-overview {
+    font-size: 1.2rem;
+    font-weight: 300;
+}
+
+#movie-page .movie-card p {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem;
+}
+
+#movie-page .tagline {
+    font-size: 1.25rem;
+    margin-bottom: 2rem;
+    font-style: italic;
+    font-weight: 100;
+}
+
+#movie-page .genres {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+}
+
+#movie-page .genres .genre {
+    padding: 0.25rem 0.5rem;
+    background: var(--bg-light);
+}
+
+#movie-page .description {
+    margin-bottom: 1rem;
+}
+
+#movie-page .description p {
+    line-height: 1.4rem;
+}
+
+#movie-page .credit-container:last-child {
+    margin-bottom: 0;
+}
+
+#movie-page .movie-details {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.movie-meta {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    font-size: 1rem;
+    color: #ddd;
+    margin-bottom: 1rem;
+}
+
+.movie-meta .meta-item {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.movie-meta i {
+    color: #ffcc00;
+}
+
+.movie-meta .separator {
+    opacity: 0.5;
+}
+
+#movie-page .movie-credits.list-group {
+    --bs-list-group-action-color: #fff;
+    --bs-list-group-action-hover-color: #fff;
+    --bs-list-group-action-hover-bg: transparent;
+    --bs-list-group-action-active-bg: transparent;
+    --bs-list-group-border-radius: 0;
+}
+
+#movie-page .movie-credits.list-group .list-group-item {
+    border-left: 0;
+    border-right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-block: 1rem;
+}
+
+#movie-page .movie-credits.list-group .list-group-item:first-child {
+    border-top: 0;
+    padding-top: 0;
+}
+
+#movie-page .movie-credits.list-group .list-group-item:last-child {
+    border-bottom: 0;
+    padding-bottom: 0;
+}
+
+#movie-page .movie-credits.list-group .list-group-item .bi {
+    font-size: 2rem;
+}

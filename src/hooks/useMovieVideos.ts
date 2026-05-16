@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { getMovieVideos } from "@service/movieService";
+import { getMovieVideos } from "@services/movieService";
 
 export function useMovieVideo(id?: string) {
     return useQuery<MovieVideo | null>({

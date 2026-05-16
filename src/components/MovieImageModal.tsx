@@ -4,30 +4,30 @@ import { useState } from "react";
 import "./MovieImageModal.css";
 
 // Components
-import Modal from "../components/Modal";
+import Modal from "./Modal/Modal";
 
-// Config
-import { IMAGE_SIZE_W500 } from "../config/tmbd";
+// Hooks
+import { useDominantColor } from "@hooks/useDominantColor";
 
 interface MovieImageModalProps {
     movie: Movie;
-    movieImages: MovieImageBackdrop[];
 }
 
-const MovieImageModal = ({ movie, movieImages }: MovieImageModalProps) => {
+const MovieImageModal = ({ movie }: MovieImageModalProps) => {
     const [currentIndex, setCurrentIndex] = useState(0);
 
-    const prevImage = () => setCurrentIndex((prev) => (prev === 0 ? movieImages.length - 1 : prev - 1));
-    const nextImage = () => setCurrentIndex((prev) => (prev === movieImages.length - 1 ? 0 : prev + 1));
+    const prevImage = () => setCurrentIndex((prev) => (prev === 0 ? movie.images.length - 1 : prev - 1));
+    const nextImage = () => setCurrentIndex((prev) => (prev === movie.images.length - 1 ? 0 : prev + 1));
+
+    const dominantColor = useDominantColor(movie?.poster_url);
 
     return (
         <>
-            {/* Imagem principal do filme */}
             <img
-                src={`${IMAGE_SIZE_W500}${movie.poster_path}`}
+                src={`${movie.poster_url}`}
                 alt={movie.title}
                 className="img-fluid mb-3 mb-md-0"
-                style={{ cursor: "pointer" }}
+                style={{ cursor: "pointer", boxShadow: `0 0 25px 10px ${dominantColor}` }}
                 data-bs-toggle="modal"
                 data-bs-target="#imageModal"
             />
@@ -37,11 +37,11 @@ const MovieImageModal = ({ movie, movieImages }: MovieImageModalProps) => {
                     <i className="bi bi-chevron-left"></i>
                 </button>
 
-                {/* <img
-                    src={`${IMAGE_SIZE_W500}${movieImages[currentIndex].file_path}`}
+                <img
+                    src={`${movie.images[currentIndex].image}`}
                     alt={`movie-image-${currentIndex}`}
                     className="img-fluid"
-                /> */}
+                />
 
                 <button className="btn btn-primary right" onClick={nextImage}>
                     <i className="bi bi-chevron-right"></i>

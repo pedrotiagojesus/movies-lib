@@ -1,9 +1,9 @@
 import { Link, useNavigate } from "react-router-dom";
 import { ChangeEvent, FormEvent, useState } from "react";
 
-import "./Navbar.css";
+import "./Header.css";
 
-const Navbar = () => {
+const Header = () => {
     const [search, setSearch] = useState("");
     const navigate = useNavigate();
 
@@ -36,4 +36,4 @@ const Navbar = () => {
     );
 };
 
-export default Navbar;
+export default Header;
