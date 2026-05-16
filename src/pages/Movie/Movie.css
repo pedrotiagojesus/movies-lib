@@ -63,6 +63,13 @@
 #movie-page .genres .genre {
     padding: 0.25rem 0.5rem;
     background: var(--bg-light);
+    color: inherit;
+    text-decoration: none;
+    transition: opacity 0.2s ease;
+}
+
+#movie-page .genres .genre:hover {
+    opacity: 0.7;
 }
 
 #movie-page .description {
@@ -90,7 +97,6 @@
     gap: 8px;
     font-size: 1rem;
     color: #ddd;
-    margin-bottom: 1rem;
 }
 
 .movie-meta .meta-item {
@@ -136,4 +142,18 @@
 
 #movie-page .movie-credits.list-group .list-group-item .bi {
     font-size: 2rem;
+}
+
+#movie-page .rating {
+    margin-block: 1rem;
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+#movie-page .rating .stars {
+    color: var(--bs-yellow);
+    font-size: 1.25rem;
+    display: flex;
+    gap: 0.25rem;
 }

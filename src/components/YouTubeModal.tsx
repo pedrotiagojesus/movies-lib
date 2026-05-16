@@ -22,7 +22,7 @@ const YouTubeModal = ({ url, id }: { url: string; id: string }) => {
     return (
         <iframe
             width="100%"
-            height="500"
+            height="100%"
             src={src}
             title="Movie Trailer"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"

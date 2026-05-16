@@ -1,3 +1,4 @@
+import { useRef, useState, useEffect } from "react";
 import "./ReviewCard.css";
 
 interface ReviewCardProps {
@@ -5,6 +6,16 @@ interface ReviewCardProps {
 }
 
 const ReviewCard = ({ review }: ReviewCardProps) => {
+    const [expanded, setExpanded] = useState(false);
+    const [isTruncated, setIsTruncated] = useState(false);
+    const contentRef = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        if (contentRef.current) {
+            setIsTruncated(contentRef.current.scrollHeight > contentRef.current.clientHeight);
+        }
+    }, [review.content]);
+
     const avatar = review.avatar_path
         ? review.avatar_path.startsWith("http")
             ? review.avatar_path
@@ -34,9 +45,15 @@ const ReviewCard = ({ review }: ReviewCardProps) => {
                 </div>
             </div>
 
-            <div className="review-content">
+            <div ref={contentRef} className={`review-content ${expanded ? "expanded" : ""}`}>
                 {review.content}
             </div>
+
+            {(isTruncated || expanded) && (
+                <button className="btn btn-link review-toggle p-0 mt-1" onClick={() => setExpanded((e) => !e)}>
+                    {expanded ? "Read less" : "Read more"} <i className={`bi bi-chevron-${expanded ? "up" : "down"}`}></i>
+                </button>
+            )}
         </div>
     );
 };

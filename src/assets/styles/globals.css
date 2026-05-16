@@ -16,13 +16,13 @@ main {
 }
 
 .splide__arrow .bi {
-    color: #f7d354;
+    color: var(--bs-yellow);
 }
 
 .form-select {
     --bs-body-bg: #121212;
     --bs-border-color: transparent;
-    --bs-body-color: #f7d354;
+    --bs-body-color: var(--bs-yellow);
     font-weight: 300;
 }
 

@@ -1,6 +1,5 @@
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { Splide, SplideSlide, SplideTrack } from "@splidejs/react-splide";
-import { moviesOptions } from "@config/splideOptions";
 
 // CSS
 import "./Movie.css";
@@ -8,7 +7,6 @@ import "./Movie.css";
 // Components
 import Modal from "../../components/Modal/Modal";
 import YouTubeModal from "../../components/YouTubeModal";
-import MovieImageModal from "../../components/MovieImageModal";
 import MovieCreditsModal from "@components/MovieCreditsModal/MovieCreditsModal";
 import MovieCard from "@components/MovieCard/MovieCard";
 import SlideArrows from "@components/SlideArrows";
@@ -21,11 +19,16 @@ import { currency, date, minutesToHoursMinutes } from "../../utils/format";
 
 // Hooks
 import { useMovie } from "@hooks/useMovie";
+import { useDominantColor } from "@hooks/useDominantColor";
+
+// Config
+import { moviesOptions } from "@config/splideOptions";
+import { Rating } from "@components/Rating/Rating";
 
 const Movie = () => {
     const { id } = useParams();
 
-    const { data: movie } = useMovie(id!);
+    const { data: movie, isLoading, isError } = useMovie(id!);
 
     const credits: MovieCredits | undefined = movie?.credits;
     const cast = credits?.cast ?? [];
@@ -33,16 +36,27 @@ const Movie = () => {
     const writing: MovieCrew[] = movie?.credits?.crew?.writing ?? [];
     const directing: MovieCrew[] = movie?.credits?.crew?.directing ?? [];
 
+    const directingDept = credits?.departments.find((d) => d.code === "directing");
+    const writingDept = credits?.departments.find((d) => d.code === "writing");
+
     const runtime = minutesToHoursMinutes(movie?.runtime);
+    const dominantColor = useDominantColor(movie?.poster_url);
 
     return (
         <div id="movie-page">
-            {!movie && <MovieSkeleton />}
+            {isLoading && <MovieSkeleton />}
+            {isError && (
+                <div className="container content">
+                    <div className="alert alert-danger mt-4" role="alert">
+                        <i className="bi bi-exclamation-triangle-fill me-2"></i>
+                        Failed to load movie. Please try again later.
+                    </div>
+                </div>
+            )}
             {movie && (
                 <>
                     <div
                         id="movie-banner"
-                        className="d-none d-md-flex"
                         style={{
                             backgroundImage: `url(${movie?.banner_url})`,
                         }}
@@ -52,26 +66,31 @@ const Movie = () => {
                             <p className="tagline mb-3">{movie?.tagline}</p>
                             <p className="genres">
                                 {movie.genres.map((genre) => (
-                                    <span key={genre.id} className="genre">
+                                    <Link key={genre.id} to={`/search?genre=${genre.id}`} className="genre">
                                         {genre.name}
-                                    </span>
+                                    </Link>
                                 ))}
                             </p>
                         </div>
                     </div>
 
                     <div className="container content">
-                        <h2 className="title d-md-none">{movie.title}</h2>
-                        <p className="tagline d-md-none">{movie.tagline}</p>
                         <div className="row mb-3">
                             <div className="col-sm-3">
-                                <MovieImageModal movie={movie} />
+                                <img
+                                    src={`${movie.poster_url}`}
+                                    alt={movie.title}
+                                    className="img-fluid mb-3 mb-md-0"
+                                    style={{
+                                        boxShadow: `0 0 25px 0px ${dominantColor}`,
+                                    }}
+                                />
 
                                 {movie.trailer && (
                                     <>
                                         <button
                                             type="button"
-                                            className="btn btn-primary mt-5"
+                                            className="btn btn-primary mt-42"
                                             data-bs-toggle="modal"
                                             data-bs-target="#trailerModal"
                                         >
@@ -82,17 +101,14 @@ const Movie = () => {
                             </div>
                             <div className="col-sm-6">
                                 <div className="movie-meta">
-                                    <span className="meta-item">
-                                        <i className="bi bi-star-fill"></i> {movie.rating.toFixed(1)}
-                                    </span>
-
-                                    <span className="separator">•</span>
-
-                                    <span className="meta-item">
-                                        <i className="bi bi-clock-fill"></i> {runtime.hours}h {runtime.minutes}m
-                                    </span>
-
-                                    <span className="separator">•</span>
+                                    {runtime.show && (
+                                        <>
+                                            <span className="meta-item">
+                                                <i className="bi bi-clock-fill"></i> {runtime.hours}h {runtime.minutes}m
+                                            </span>
+                                            <span className="separator">•</span>
+                                        </>
+                                    )}
 
                                     <span className="meta-item">
                                         <i className="bi bi-calendar2-event-fill"></i> {date(movie.release_date)}
@@ -102,7 +118,7 @@ const Movie = () => {
                                         <>
                                             <span className="separator">•</span>
                                             <span className="meta-item">
-                                                <i className="bi bi-wallet2"></i> {currency(movie.budget)}
+                                                <i className="bi bi-wallet2"></i> {currency(movie.budget, 0)}
                                             </span>
                                         </>
                                     )}
@@ -111,10 +127,13 @@ const Movie = () => {
                                         <>
                                             <span className="separator">•</span>
                                             <span className="meta-item">
-                                                <i className="bi bi-graph-up"></i> {currency(movie.revenue)}
+                                                <i className="bi bi-graph-up"></i> {currency(movie.revenue, 0)}
                                             </span>
                                         </>
                                     )}
+                                </div>
+                                <div className="rating">
+                                    <Rating rating={movie?.rating || 0} />
                                 </div>
 
                                 <div className="movie-overview">{movie.overview}</div>
@@ -150,7 +169,7 @@ const Movie = () => {
                                     </button>
                                 </div>
                                 <div className="list-group movie-credits">
-                                    {directing && (
+                                    {directing.length > 0 && (
                                         <button
                                             className="list-group-item list-group-item-action"
                                             data-bs-toggle="modal"
@@ -161,14 +180,14 @@ const Movie = () => {
                                                 {directing.slice(0, 3).map((person, i) => (
                                                     <span key={i}>
                                                         {person.name}
-                                                        {i < directing.length - 1 && " • "}
+                                                        {i < Math.min(directing.length, 3) - 1 && " • "}
                                                     </span>
                                                 ))}
                                             </div>
                                             <span className="bi bi-chevron-compact-right"></span>
                                         </button>
                                     )}
-                                    {writing && (
+                                    {writing.length > 0 && (
                                         <button
                                             className="list-group-item list-group-item-action"
                                             data-bs-toggle="modal"
@@ -179,14 +198,14 @@ const Movie = () => {
                                                 {writing.slice(0, 3).map((person, i) => (
                                                     <span key={i}>
                                                         {person.name}
-                                                        {i < writing.length - 1 && " • "}
+                                                        {i < Math.min(writing.length, 3) - 1 && " • "}
                                                     </span>
                                                 ))}
                                             </div>
                                             <span className="bi bi-chevron-compact-right"></span>
                                         </button>
                                     )}
-                                    {cast && (
+                                    {cast.length > 0 && (
                                         <button
                                             className="list-group-item list-group-item-action"
                                             data-bs-toggle="modal"
@@ -197,7 +216,7 @@ const Movie = () => {
                                                 {cast.slice(0, 3).map((person, i) => (
                                                     <span key={i}>
                                                         {person.name}
-                                                        {i < cast.length - 1 && " • "}
+                                                        {i < Math.min(cast.length, 3) - 1 && " • "}
                                                     </span>
                                                 ))}
                                             </div>
@@ -208,7 +227,7 @@ const Movie = () => {
                             </div>
                         </div>
                         <div>
-                            <h1 className="title">Recommendations</h1>
+                            <h2 className="title">Recommendations</h2>
                             <Splide options={moviesOptions} hasTrack={false} className="movie-slide">
                                 <SplideTrack>
                                     {movie.recommendations.results.map((movie) => (
@@ -230,23 +249,25 @@ const Movie = () => {
                         </Modal>
                     )}
 
-                    {movie.reviews && <ReviewsModal id="reviewsModal" title="Reviews" reviews={movie.reviews} />}
+                    {movie.reviews.length > 0 && (
+                        <ReviewsModal id="reviewsModal" title="Reviews" reviews={movie.reviews} />
+                    )}
 
                     {credits && <MovieCreditsModal id="creditsModal" title="Credits" credits={credits} />}
 
-                    {writing && credits?.departments.find((d) => d.code === "directing") && (
+                    {credits && directing.length > 0 && directingDept && (
                         <MovieCreditsModal
                             id="directorsModal"
-                            title={credits.departments.find((d) => d.code === "directing")!.name}
+                            title={directingDept.name}
                             credits={credits}
                             filterDepartment="directing"
                         />
                     )}
 
-                    {writing && credits?.departments.find((d) => d.code === "writing") && (
+                    {credits && writing.length > 0 && writingDept && (
                         <MovieCreditsModal
                             id="writingModal"
-                            title={credits.departments.find((d) => d.code === "writing")!.name}
+                            title={writingDept.name}
                             credits={credits}
                             filterDepartment="writing"
                         />

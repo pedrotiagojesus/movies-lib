@@ -16,7 +16,7 @@ interface MovieCreditsModalProps {
 const MovieCreditsModal = ({ id, title, credits, filterDepartment, showCastOnly }: MovieCreditsModalProps) => {
     if (showCastOnly) {
         return (
-            <Modal id={id} className={["modal-dialog-scrollable", "credits-modal"]} title="Cast">
+            <Modal id={id} className={["modal-dialog-scrollable", "credits-modal"]} title={title} size="lg">
                 <div className="credits-content single">
                     <section id="cast">
                         <div className="people-grid">
@@ -38,7 +38,7 @@ const MovieCreditsModal = ({ id, title, credits, filterDepartment, showCastOnly 
         }
 
         return (
-            <Modal id={id} className={["modal-dialog-scrollable", "credits-modal"]} title={dept?.name}>
+            <Modal id={id} className={["modal-dialog-scrollable", "credits-modal"]} title={title} size="lg">
                 <div className="credits-content single">
                     <section id={dept.code}>
                         <div className="people-grid">

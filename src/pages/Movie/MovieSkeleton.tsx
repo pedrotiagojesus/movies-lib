@@ -49,7 +49,7 @@ const MovieSkeleton = () => {
 
                         {/* Reviews skeleton */}
                         <div className="mt-4">
-                            <h3 className="title">Reviews</h3>
+                            <div className="skeleton skeleton-pill w-50 mt-3"></div>
 
                             <div className="skeleton skeleton-review mt-3"></div>
                             <div className="skeleton skeleton-review mt-3"></div>
@@ -58,7 +58,7 @@ const MovieSkeleton = () => {
 
                     {/* Credits */}
                     <div className="col-sm-3">
-                        <h3 className="title">Credits</h3>
+                        <div className="skeleton skeleton-pill w-25 mt-3"></div>
 
                         <div className="mt-3">
                             <div className="skeleton skeleton-list-item"></div>
@@ -69,7 +69,7 @@ const MovieSkeleton = () => {
                 </div>
 
                 {/* Recommendations */}
-                <h1 className="title mt-4">Recommendations</h1>
+                <div className="skeleton skeleton-pill w-50 mt-3"></div>
                 <div className="d-flex gap-3 mt-3">
                     {Array.from({ length: 6 }).map((_, i) => (
                         <div key={i} className="skeleton skeleton-card"></div>

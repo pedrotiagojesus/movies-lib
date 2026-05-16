@@ -9,7 +9,7 @@
     content: "";
     height: 100%;
     width: 3px;
-    background-color: #f7d354;
+    background-color: var(--bs-yellow);
     position: absolute;
     left: 0;
     top: 0;
@@ -17,7 +17,7 @@
 }
 
 .title .query-text {
-    color: #f7d354;
+    color: var(--bs-yellow);
 }
 
 .movies-container {

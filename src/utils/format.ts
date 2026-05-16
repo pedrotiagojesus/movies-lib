@@ -1,5 +1,5 @@
-export function currency(num: number): string {
-    return num.toLocaleString("en-US", { style: "currency", currency: "USD" });
+export function currency(num: number, decimals: number): string {
+    return num.toLocaleString("en-US", { style: "currency", currency: "USD", maximumFractionDigits: decimals });
 }
 
 export function date(value: string): string {
@@ -12,5 +12,5 @@ export function minutesToHoursMinutes(totalMinutes: number | undefined) {
     }
     const hours = Math.floor(totalMinutes / 60);
     const minutes = totalMinutes % 60;
-    return { hours, minutes };
+    return { show: hours !== 0 && minutes !== 0, hours, minutes };
 }
