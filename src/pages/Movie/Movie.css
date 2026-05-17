@@ -3,6 +3,7 @@
     height: 60vh;
     background-size: cover;
     background-position: center;
+    display: flex;
     align-items: end;
     position: relative;
     z-index: 1;
@@ -30,7 +31,6 @@
 }
 
 #movie-page .movie-card img,
-#movie-page .movie-card h2,
 #movie-page .movie-card p {
     margin-bottom: 1rem;
 }
@@ -72,25 +72,7 @@
     opacity: 0.7;
 }
 
-#movie-page .description {
-    margin-bottom: 1rem;
-}
-
-#movie-page .description p {
-    line-height: 1.4rem;
-}
-
-#movie-page .credit-container:last-child {
-    margin-bottom: 0;
-}
-
-#movie-page .movie-details {
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-}
-
-.movie-meta {
+#movie-page .movie-meta {
     display: flex;
     align-items: center;
     flex-wrap: wrap;
@@ -99,17 +81,17 @@
     color: #ddd;
 }
 
-.movie-meta .meta-item {
+#movie-page .movie-meta .meta-item {
     display: flex;
     align-items: center;
     gap: 4px;
 }
 
-.movie-meta i {
+#movie-page .movie-meta i {
     color: #ffcc00;
 }
 
-.movie-meta .separator {
+#movie-page .movie-meta .separator {
     opacity: 0.5;
 }
 
@@ -156,4 +138,11 @@
     font-size: 1.25rem;
     display: flex;
     gap: 0.25rem;
+}
+
+#movie-page .credits-label {
+    display: block;
+    font-size: 1rem; /* equivalente ao h4 */
+    font-weight: 600;
+    margin-bottom: 0.25rem;
 }

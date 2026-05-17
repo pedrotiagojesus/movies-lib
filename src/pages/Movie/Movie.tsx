@@ -176,7 +176,7 @@ const Movie = () => {
                                             data-bs-target="#directorsModal"
                                         >
                                             <div>
-                                                <h4>Director</h4>
+                                                <span className="credits-label">Director</span>
                                                 {directing.slice(0, 3).map((person, i) => (
                                                     <span key={i}>
                                                         {person.name}
@@ -194,7 +194,7 @@ const Movie = () => {
                                             data-bs-target="#writingModal"
                                         >
                                             <div>
-                                                <h4>Writing</h4>
+                                                <span className="credits-label">Writing</span>
                                                 {writing.slice(0, 3).map((person, i) => (
                                                     <span key={i}>
                                                         {person.name}
@@ -212,7 +212,7 @@ const Movie = () => {
                                             data-bs-target="#castModal"
                                         >
                                             <div>
-                                                <h4>Stars</h4>
+                                                <span className="credits-label">Stars</span>
                                                 {cast.slice(0, 3).map((person, i) => (
                                                     <span key={i}>
                                                         {person.name}
