@@ -25,7 +25,7 @@ const Homepage = () => {
     const { data: dateTopRated, isLoading: isLoadingTopRated, isError: isErrorTopRated } = useTopRated();
     const moviesTopRated = (dateTopRated?.results ?? []).slice(0, 12);
 
-    const { data: dateUpcoming, isLoading: isLoadingUpcoming, isError: isErrorUpcoming } = useUpcoming();
+    const { data: dateUpcoming, isLoading: isLoadingUpcoming, isError: isErrorUpcoming } = useUpcoming({});
     const moviesUpcoming = (dateUpcoming?.results ?? []).slice(0, 12);
 
     return (
@@ -122,7 +122,7 @@ const Homepage = () => {
                 <h2 className="title">Upcoming</h2>
                 <div className="d-flex">
                     <p className="flex-fill">Upcoming</p>
-                    <Link className="btn btn-link" to="/">
+                    <Link className="btn btn-link" to={`/movies-upcoming`}>
                         See all <i className="bi bi-arrow-right"></i>
                     </Link>
                 </div>

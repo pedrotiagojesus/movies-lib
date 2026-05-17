@@ -3,9 +3,6 @@ import { useQuery } from "@tanstack/react-query";
 // Service
 import { trendingMovies } from "@services/movieService";
 
-// Types
-import { DiscoverResponse } from "@typesLocal/discover";
-
 type TrendingParams = {
     timeWindow: TimeWindow;
 };
@@ -13,7 +10,7 @@ type TrendingParams = {
 export function useTrending({
     timeWindow
 }: TrendingParams) {
-    return useQuery<DiscoverResponse>({
+    return useQuery<MovieResults>({
         queryKey: ["trending-movies", timeWindow],
         queryFn: () =>
             trendingMovies({

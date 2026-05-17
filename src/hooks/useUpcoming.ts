@@ -3,14 +3,17 @@ import { useQuery } from "@tanstack/react-query";
 // Service
 import { upcomingMovies } from "@services/movieService";
 
-// Types
-import { DiscoverResponse } from "@typesLocal/discover";
+type UpcomingParams = {
+    page?: number;
+};
 
-export function useUpcoming() {
-    return useQuery<DiscoverResponse>({
-        queryKey: ["upcoming-movies"],
+export function useUpcoming({ page = 1 }: UpcomingParams = {}) {
+    return useQuery<MovieResults>({
+        queryKey: ["upcoming-movies", page],
         queryFn: () =>
-            upcomingMovies(),
+            upcomingMovies({
+                page: page,
+            }),
         staleTime: 1000 * 60 * 5,
     });
 }

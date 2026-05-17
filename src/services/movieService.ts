@@ -45,8 +45,14 @@ export const topRatedMovies = async () => {
     return res.data;
 };
 
-export const upcomingMovies = async () => {
-    const res = await api.get("movie/upcoming");
+export const upcomingMovies = async ({ page }: { page: number }) => {
+    console.log(page)
+    const params: Record<string, string> = {
+        page: page.toString(),
+    };
+    const res = await api.get("movie/upcoming", {
+        params: params,
+    });
     return res.data;
 };
 

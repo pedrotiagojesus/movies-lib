@@ -21,6 +21,7 @@ import Homepage from "./pages/Homepage/Homepage.js";
 import Movie from "./pages/Movie/Movie.js";
 import Search from "./pages/Search/Search.jsx";
 import Person from "@pages/Person/Person";
+import MoviesUpcoming from "@pages/MoviesUpcoming/MoviesUpcoming";
 
 const rootElement = document.getElementById("root");
 if (rootElement) {
@@ -33,6 +34,7 @@ if (rootElement) {
                         <Route path="movie/:id" element={<Movie />} />
                         <Route path="search" element={<Search />} />
                         <Route path="person/:id" element={<Person />} />
+                        <Route path="movies-upcoming" element={<MoviesUpcoming />} />
                     </Route>
                 </Routes>
             </BrowserRouter>
