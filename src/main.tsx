@@ -22,6 +22,7 @@ import Movie from "./pages/Movie/Movie.js";
 import Search from "./pages/Search/Search.jsx";
 import Person from "@pages/Person/Person";
 import MoviesUpcoming from "@pages/MoviesUpcoming/MoviesUpcoming";
+import MoviesTopRated from "@pages/MoviesTopRated/MoviesTopRated";
 
 const rootElement = document.getElementById("root");
 if (rootElement) {
@@ -35,6 +36,7 @@ if (rootElement) {
                         <Route path="search" element={<Search />} />
                         <Route path="person/:id" element={<Person />} />
                         <Route path="movies-upcoming" element={<MoviesUpcoming />} />
+                        <Route path="movies-top-rated" element={<MoviesTopRated />} />
                     </Route>
                 </Routes>
             </BrowserRouter>

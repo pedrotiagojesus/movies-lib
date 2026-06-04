@@ -31,31 +31,6 @@ export const discoverMovies = async ({
     return res.data;
 };
 
-export const trendingMovies = async ({ timeWindow }: { timeWindow: TimeWindow }) => {
-    const res = await api.get("movie/trending", {
-        params: {
-            timeWindow: timeWindow,
-        },
-    });
-    return res.data;
-};
-
-export const topRatedMovies = async () => {
-    const res = await api.get("movie/top-rated");
-    return res.data;
-};
-
-export const upcomingMovies = async ({ page }: { page: number }) => {
-    console.log(page)
-    const params: Record<string, string> = {
-        page: page.toString(),
-    };
-    const res = await api.get("movie/upcoming", {
-        params: params,
-    });
-    return res.data;
-};
-
 export const searchMovies = async ({ query, page, genre }: { query: string; page: number; genre?: string }) => {
     const params: Record<string, string> = {
         query,

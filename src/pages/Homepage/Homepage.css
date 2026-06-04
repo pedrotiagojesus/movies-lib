@@ -1,9 +1,12 @@
 #homepage {
-    width: 100%;
-    margin-top: 4rem;
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    margin-block: 3rem;
 }
 
 .trending-title {
     display: flex;
+    align-items: center;
     gap: 1rem;
 }

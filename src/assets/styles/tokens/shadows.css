@@ -1,2 +1,5 @@
 :root {
+    --bs-box-shadow: var(--shadow-md);
+    --bs-box-shadow-sm: var(--shadow-sm);
+    --bs-box-shadow-lg: var(--shadow-lg);
 }

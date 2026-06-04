@@ -6,57 +6,124 @@ html {
     font-size: var(--font-size);
 }
 
-main {
-    padding-top: var(--header-heiht);
-    padding-bottom: 4.5rem;
+body {
+    background-color: var(--bs-body-bg);
+    color: var(--bs-body-color);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
+main {
+    padding-top: var(--header-heiht);
+}
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+::-webkit-scrollbar-track {
+    background: var(--bg-darker);
+}
+::-webkit-scrollbar-thumb {
+    background: var(--surface-overlay);
+    border-radius: var(--radius-pill);
+}
+::-webkit-scrollbar-thumb:hover {
+    background: var(--surface-raised);
+}
+
+/* ── Splide arrows ── */
 .splide__arrows .splide__arrow {
-    background: #1a1a1a;
+    background: var(--surface-raised);
+    border: 1px solid var(--surface-border);
+    transition: background var(--duration-base) var(--ease-out),
+                border-color var(--duration-base) var(--ease-out);
+}
+
+.splide__arrows .splide__arrow:hover {
+    background: var(--surface-overlay);
+    border-color: var(--accent-dim);
 }
 
 .splide__arrow .bi {
-    color: var(--bs-yellow);
+    color: var(--accent);
 }
 
+/* ── Form select ── */
 .form-select {
-    --bs-body-bg: #121212;
-    --bs-border-color: transparent;
-    --bs-body-color: var(--bs-yellow);
-    font-weight: 300;
+    --bs-body-bg: var(--surface-raised);
+    --bs-border-color: var(--surface-border);
+    --bs-body-color: var(--accent);
+    background-color: var(--surface-raised);
+    border: 1px solid var(--surface-border);
+    border-radius: var(--radius-sm);
+    font-weight: 400;
+    transition: border-color var(--duration-base) var(--ease-out);
 }
 
 .form-select:focus {
-    border-color: transparent;
+    border-color: var(--accent-dim);
     outline: 0;
-    box-shadow: none;
+    box-shadow: 0 0 0 3px var(--accent-dim);
 }
 
 .form-select > option {
-    background-color: #121212;
+    background-color: var(--surface-raised);
 }
 
-/* SM ≥ 576px */
-@media (min-width: 576px) {
-    /* ... */
+/* ── Section title ── */
+.title {
+    margin-bottom: 1.25rem;
+    position: relative;
+    line-height: 1.1;
+    padding-left: 14px;
+    font-weight: 700;
+    letter-spacing: -0.01em;
 }
 
-/* MD ≥ 768px */
-@media (min-width: 768px) {
-    /* ... */
+.title::after {
+    content: "";
+    height: 100%;
+    width: 3px;
+    background: linear-gradient(to bottom, var(--accent), transparent);
+    position: absolute;
+    left: 0;
+    top: 0;
+    border-radius: var(--radius-pill);
 }
 
-/* LG ≥ 992px */
-@media (min-width: 992px) {
-    /* ... */
+.title .query-text {
+    color: var(--accent);
 }
 
-/* XL ≥ 1200px */
-@media (min-width: 1200px) {
-    /* ... */
+/* ── Movies grid ── */
+.movies-container {
+    --bs-gutter-y: 2.5rem;
+    margin-bottom: 3rem;
 }
 
-/* XXL ≥ 1400px */
-@media (min-width: 1400px) {
-    /* ... */
+/* ── Nav pills ── */
+.nav-link {
+    --bs-nav-pills-border-radius: 0;
+    --bs-nav-pills-link-active-color: var(--bs-body-color);
+    --bs-nav-pills-link-active-bg: transparent;
+    transition: color var(--duration-base) var(--ease-out);
+}
+
+.nav-pills .nav-link.active,
+.nav-pills .show > .nav-link {
+    border-bottom: 2px solid var(--accent);
+}
+
+/* ── Carousel ── */
+.carousel-control-next-icon,
+.carousel-control-prev-icon {
+    z-index: 1;
+}
+
+/* ── Splide — espaço para hover sem corte ── */
+.movie-slide .splide__track {
+    padding-block: 8px !important;
+    margin-block: -8px;
 }

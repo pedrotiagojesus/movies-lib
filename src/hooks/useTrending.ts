@@ -1,7 +1,10 @@
 import { useQuery } from "@tanstack/react-query";
 
 // Service
-import { trendingMovies } from "@services/movieService";
+import { movies } from "@services/trendingService";
+
+// Type
+import { MovieListMapped } from "@typesLocal/mapped/moviesList.types";
 
 type TrendingParams = {
     timeWindow: TimeWindow;
@@ -10,10 +13,10 @@ type TrendingParams = {
 export function useTrending({
     timeWindow
 }: TrendingParams) {
-    return useQuery<MovieResults>({
+    return useQuery<MovieListMapped>({
         queryKey: ["trending-movies", timeWindow],
         queryFn: () =>
-            trendingMovies({
+            movies({
                 timeWindow,
             }),
         staleTime: 1000 * 60 * 5,

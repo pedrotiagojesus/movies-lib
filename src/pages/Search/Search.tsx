@@ -1,7 +1,7 @@
 import { useSearchParams } from "react-router-dom";
 
 // CSS
-import "../MoviesGrid.css";
+import "./Search.css";
 
 // Components
 import MovieCard from "@components/MovieCard/MovieCard";

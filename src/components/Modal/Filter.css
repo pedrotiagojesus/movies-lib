@@ -1,11 +1,15 @@
 #filter-modal.modal {
-    --bs-modal-header-border-color: #1a1a1a;
-    --bs-modal-bg: #1a1a1a;
+    --bs-modal-bg: var(--bg-light);
+    --bs-modal-header-border-color: var(--surface-border);
 }
 
 #filter-modal .modal-header .btn {
-    --bs-btn-color: #ffffff50;
-    transition: 0.5s;
+    --bs-btn-color: var(--text-muted);
+    transition: color var(--duration-fast) var(--ease-out);
+}
+
+#filter-modal .modal-header .btn:hover {
+    --bs-btn-color: var(--bs-body-color);
 }
 
 #filter-modal .filter-items {
@@ -15,10 +19,23 @@
 }
 
 #filter-modal .filter-items a {
-    border: 1px solid #1a1a1a;
-    padding: 0.25rem 0.75rem;
-    border-radius: 5px;
-    font-size: 0.9rem;
+    border: 1px solid var(--surface-border);
+    background: var(--surface-raised);
+    color: var(--text-subtle);
+    padding: 0.3rem 0.85rem;
+    border-radius: var(--radius-pill);
+    font-size: 0.85rem;
+    text-decoration: none;
+    transition: background var(--duration-base) var(--ease-out),
+                border-color var(--duration-base) var(--ease-out),
+                color var(--duration-base) var(--ease-out);
+}
+
+#filter-modal .filter-items a:hover,
+#filter-modal .filter-items a.active {
+    background: var(--accent-dim);
+    border-color: var(--accent-glow);
+    color: var(--accent);
 }
 
 #filter-modal .modal-header {

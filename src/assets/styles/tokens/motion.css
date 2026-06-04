@@ -1,3 +1,8 @@
 :root {
+    --bs-transition-base: all var(--duration-base) var(--ease-out);
+    --bs-transition-fade: opacity var(--duration-fast) linear;
 }
 
+* {
+    scroll-behavior: smooth;
+}

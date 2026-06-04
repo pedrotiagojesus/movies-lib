@@ -1,29 +1,29 @@
 import { useSearchParams } from "react-router-dom";
 
 // CSS
-import "./MoviesUpcoming.css";
+import "./MoviesTopRated.css";
 
 // Hooks
-import { useUpcoming } from "@hooks/useUpcoming";
+import { useTopRated } from "@hooks/useTopRated";
 
 // Components
 import Loading from "@components/Loading";
 import MovieCard from "@components/MovieCard/MovieCard";
 import Pagination from "@components/Pagination";
 
-const MoviesUpcoming = () => {
+const MoviesTopRated = () => {
     const [searchParams] = useSearchParams();
 
     const page = Number(searchParams.get("page")) || 1;
 
-    const { data, isLoading, isError } = useUpcoming({ page });
+    const { data, isLoading, isError } = useTopRated({ page });
     const movies = data?.results ?? [];
     const totalPages = data?.total_pages ?? 0;
 
     return (
-        <div id="movies-upcoming-page" className="container">
-            <h1 className="title">Upcoming</h1>
-            <p>Upcoming</p>
+        <div id="movies-top-rated-page" className="container">
+            <h1 className="title">Top Rated</h1>
+            <p>Top Rated</p>
             {movies && movies.length === 0 && isLoading && <Loading />}
             {movies && movies.length === 0 && !isLoading && <p>No results</p>}
             {movies.length > 0 && (
@@ -40,4 +40,4 @@ const MoviesUpcoming = () => {
     );
 };
 
-export default MoviesUpcoming;
+export default MoviesTopRated;

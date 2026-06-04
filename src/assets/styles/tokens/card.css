@@ -1,10 +1,10 @@
 .card {
-    --bs-card-bg: var(--bg);
+    --bs-card-bg: var(--bg-card);
     --bs-card-title-color: var(--bs-body-color);
-    --bs-card-border-color: hsl(0, 0%, 30%);
-    --bs-card-border-width: 0;
-    --bs-card-border-radius: 0;
-}
-
-.card-title {
+    --bs-card-border-color: var(--surface-border);
+    --bs-card-border-width: 1px;
+    --bs-card-border-radius: var(--radius-md);
+    --bs-card-cap-bg: transparent;
+    --bs-card-spacer-y: 1rem;
+    --bs-card-spacer-x: 1rem;
 }

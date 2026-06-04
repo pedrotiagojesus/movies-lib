@@ -90,7 +90,7 @@ const Movie = () => {
                                     <>
                                         <button
                                             type="button"
-                                            className="btn btn-primary mt-42"
+                                            className="btn btn-primary mt-4"
                                             data-bs-toggle="modal"
                                             data-bs-target="#trailerModal"
                                         >

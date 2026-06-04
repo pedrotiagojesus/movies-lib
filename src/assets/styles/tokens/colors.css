@@ -1,30 +1,77 @@
 :root {
 
-    --bg-darker: #F9F3E6;
-    --bg: #121C2D;
-    --bg-light: hsl(0, 0%, 10%);
+    /* Backgrounds */
+    --bg-darker: #04080f;
+    --bg: #080f1a;
+    --bg-light: #0f1c2e;
+    --bg-card: #111d30;
 
-    --bs-body-color: #F5F7FA;
-    --bs-secondary-color: hsl(0, 0%, 40%);
+    /* Surfaces */
+    --surface-raised: #162035;
+    --surface-overlay: #1a2840;
+    --surface-border: rgba(255, 255, 255, 0.07);
 
-    --bs-body-bg: #0B1320;
-    --bs-body-bg-rgb: 11, 19, 32;
-    --bs-border-color-translucent: hsl(0, 0%, 30%);
+    /* Brand */
+    --bs-yellow: #f5c518;
+    --accent: #f5c518;
+    --accent-dim: rgba(245, 197, 24, 0.12);
+    --accent-glow: rgba(245, 197, 24, 0.25);
 
-    --bs-primary: #064B73;
+    /* Primary */
+    --bs-primary: #2d8cce;
+    --bs-primary-rgb: 45, 140, 206;
 
-    --bs-link-color: #cde59a;
+    /* Text */
+    --bs-body-color: #e8ecf0;
+    --bs-secondary-color: hsl(215, 15%, 55%);
+    --text-muted: hsl(215, 10%, 48%);
+    --text-subtle: hsl(215, 12%, 62%);
+
+    /* Bootstrap overrides */
+    --bs-body-bg: #080f1a;
+    --bs-body-bg-rgb: 8, 15, 26;
+    --bs-border-color-translucent: rgba(255, 255, 255, 0.07);
+    --bs-link-color: var(--accent);
     --bs-link-hover-color: #fff;
 
-    --bs-yellow: #f7d354;
+    /* Skeleton */
+    --skeleton-base: #111d30;
+    --skeleton-shine: #1a2d48;
+
+    /* Shadows */
+    --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.4);
+    --shadow-md: 0 4px 20px rgba(0, 0, 0, 0.5);
+    --shadow-lg: 0 8px 40px rgba(0, 0, 0, 0.6);
+    --shadow-accent: 0 4px 20px rgba(245, 197, 24, 0.2);
+
+    /* Motion */
+    --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+    --duration-fast: 150ms;
+    --duration-base: 250ms;
+    --duration-slow: 400ms;
+
+    /* Radius */
+    --radius-sm: 6px;
+    --radius-md: 10px;
+    --radius-lg: 16px;
+    --radius-pill: 999px;
 }
 
 body[data-theme="light"] {
-    --bg-darker: hsl(0, 0%, 90%);
-    --bg: hsl(0, 0%, 95%);
+    --bg-darker: hsl(220, 20%, 92%);
+    --bg: hsl(220, 20%, 96%);
     --bg-light: hsl(0, 0%, 100%);
+    --bg-card: hsl(220, 20%, 98%);
+    --surface-raised: hsl(220, 15%, 90%);
+    --surface-overlay: hsl(220, 15%, 88%);
+    --surface-border: rgba(0, 0, 0, 0.08);
 
-    --bs-body-color: hsl(0, 0%, 5%);
-    --bs-secondary-color: hsl(0, 0%, 30%);
-    --bs-border-color-translucent: hsl(0, 0%, 70%);
+    --bs-body-color: hsl(220, 20%, 10%);
+    --bs-secondary-color: hsl(220, 10%, 35%);
+    --text-muted: hsl(220, 8%, 45%);
+    --text-subtle: hsl(220, 8%, 35%);
+    --bs-border-color-translucent: rgba(0, 0, 0, 0.08);
+
+    --skeleton-base: hsl(220, 15%, 88%);
+    --skeleton-shine: hsl(220, 15%, 94%);
 }

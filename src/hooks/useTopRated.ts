@@ -1,16 +1,22 @@
 import { useQuery } from "@tanstack/react-query";
 
 // Service
-import { topRatedMovies } from "@services/movieService";
+import { topRatedMovies } from "@services/moviesService";
 
-// Types
-import { DiscoverResponse } from "@typesLocal/discover";
+// Type
+import { MovieListMapped } from "@typesLocal/mapped/moviesList.types";
 
-export function useTopRated() {
-    return useQuery<DiscoverResponse>({
-        queryKey: ["top-rated-movies"],
+type TopRatedParams = {
+    page?: number;
+};
+
+export function useTopRated({ page = 1 }: TopRatedParams = {}) {
+    return useQuery<MovieListMapped>({
+        queryKey: ["top-rated-movies", page],
         queryFn: () =>
-            topRatedMovies(),
+            topRatedMovies({
+                page: page,
+            }),
         staleTime: 1000 * 60 * 5,
     });
 }

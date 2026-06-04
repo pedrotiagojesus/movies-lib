@@ -7,10 +7,17 @@ const YouTubeModal = ({ url, id }: { url: string; id: string }) => {
         const modal = document.getElementById(id);
         if (!modal) return;
 
-        const handleShow = () => setSrc(url);
-        const handleHide = () => setSrc("");
+        const handleShow = () => {
+            const separator = url.includes("?") ? "&" : "?";
+            setSrc(`${url}${separator}autoplay=1`);
+            document.querySelector(".modal-backdrop")?.classList.add("modal-backdrop--dark");
+        };
+        const handleHide = () => {
+            setSrc("");
+            document.querySelector(".modal-backdrop")?.classList.remove("modal-backdrop--dark");
+        };
 
-        modal.addEventListener("show.bs.modal", handleShow);
+        modal.addEventListener("shown.bs.modal", handleShow);
         modal.addEventListener("hidden.bs.modal", handleHide);
 
         return () => {

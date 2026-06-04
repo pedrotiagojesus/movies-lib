@@ -1,12 +1,7 @@
-.reviews-modal-content {
-    padding-right: 0.5rem;
-}
-
-
-.reviews-modal-content .review-content {
+    .reviews-modal-content .review-content {
     max-height: unset;
 }
 
 .reviews-modal-content .review-content::after {
-    background: transparent;
+    display: none;
 }

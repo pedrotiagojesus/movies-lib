@@ -1,4 +1,4 @@
-type TimeWindow = "day" | "week";
+
 
 interface Movie {
     budget: number;

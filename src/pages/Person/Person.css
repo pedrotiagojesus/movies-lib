@@ -1,0 +1,135 @@
+#person-page {
+    margin-block: 4rem;
+}
+
+#person-page .person-photo {
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-lg);
+}
+
+.person-photo-placeholder {
+    width: 100%;
+    aspect-ratio: 3 / 4;
+    border-radius: var(--radius-md);
+    background: var(--surface-overlay);
+    border: 1px solid var(--surface-border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+    color: var(--text-muted);
+}
+
+.person-department {
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--accent);
+    opacity: 1;
+}
+
+.person-meta {
+    margin-top: 1.25rem;
+}
+
+.person-meta .meta-item {
+    display: flex;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+    margin-bottom: 0.4rem;
+    color: var(--text-subtle);
+}
+
+.person-meta .meta-label {
+    font-weight: 600;
+    color: var(--bs-body-color);
+    opacity: 1;
+    min-width: 6rem;
+}
+
+.person-biography p {
+    white-space: pre-line;
+    font-size: 0.925rem;
+    line-height: 1.75;
+    color: var(--text-subtle);
+}
+
+/* ── Filmography ── */
+.filmography-list {
+    margin-top: 0.5rem;
+}
+
+.filmography-item {
+    display: flex;
+    gap: 0.75rem;
+    font-size: 0.9rem;
+    padding: 0.4rem 0.5rem;
+    border-radius: var(--radius-sm);
+    transition: background var(--duration-fast) var(--ease-out);
+}
+
+.filmography-item:hover {
+    background: var(--surface-raised);
+}
+
+.filmography-year {
+    width: 3rem;
+    color: var(--text-muted);
+    font-size: 0.8rem;
+    padding-top: 0.1rem;
+    flex-shrink: 0;
+}
+
+.filmography-title {
+    font-weight: 500;
+    color: var(--bs-body-color);
+    text-decoration: none;
+    transition: color var(--duration-fast) var(--ease-out);
+}
+
+.filmography-title:hover {
+    color: var(--accent);
+}
+
+.filmography-role {
+    color: var(--text-muted);
+    font-size: 0.85rem;
+}
+
+.person-photo-grid {
+    border-radius: var(--radius-sm);
+    object-fit: cover;
+}
+
+/* ── Skeletons ── */
+@keyframes shimmer {
+    0% {
+        background-position: -600px 0;
+    }
+    100% {
+        background-position: 600px 0;
+    }
+}
+
+.skeleton {
+    background: linear-gradient(90deg, var(--skeleton-base) 25%, var(--skeleton-shine) 50%, var(--skeleton-base) 75%);
+    background-size: 1200px 100%;
+    animation: shimmer 1.6s infinite linear;
+    border-radius: var(--radius-sm);
+}
+
+.skeleton-photo {
+    width: 100%;
+    aspect-ratio: 3 / 4;
+    border-radius: var(--radius-md);
+}
+
+.skeleton-title-lg {
+    width: 45%;
+    height: 28px;
+}
+
+.skeleton-text {
+    height: 14px;
+}

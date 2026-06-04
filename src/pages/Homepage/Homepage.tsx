@@ -5,7 +5,6 @@ import { moviesOptions } from "@config/splideOptions";
 
 // CSS
 import "./Homepage.css";
-import "../MoviesGrid.css";
 
 // Components
 import MovieCard from "@components/MovieCard/MovieCard";
@@ -16,6 +15,7 @@ import SlideArrows from "@components/SlideArrows";
 import { useTrending } from "@hooks/useTrending";
 import { useTopRated } from "@hooks/useTopRated";
 import { useUpcoming } from "@hooks/useUpcoming";
+import { MovieListItemMapped } from "@typesLocal/mapped/moviesList.types";
 
 const Homepage = () => {
     const [timeWindow, setTimeWindow] = useState<TimeWindow>("day");
@@ -25,7 +25,7 @@ const Homepage = () => {
     const { data: dateTopRated, isLoading: isLoadingTopRated, isError: isErrorTopRated } = useTopRated();
     const moviesTopRated = (dateTopRated?.results ?? []).slice(0, 12);
 
-    const { data: dateUpcoming, isLoading: isLoadingUpcoming, isError: isErrorUpcoming } = useUpcoming({});
+    const { data: dateUpcoming, isLoading: isLoadingUpcoming, isError: isErrorUpcoming } = useUpcoming();
     const moviesUpcoming = (dateUpcoming?.results ?? []).slice(0, 12);
 
     return (
@@ -58,14 +58,6 @@ const Homepage = () => {
                         </li>
                     </ul>
                 </div>
-                <div className="d-flex">
-                    <p className="flex-fill">
-                        {timeWindow == "day" ? "What’s been trending over the past week" : "What’s trending right now"}
-                    </p>
-                    <Link className="btn btn-link" to="/">
-                        See all <i className="bi bi-arrow-right"></i>
-                    </Link>
-                </div>
 
                 {moviesTrending && moviesTrending.length === 0 && !isLoadingTrending && <p>No results</p>}
                 <Splide options={moviesOptions} hasTrack={false} className="movie-slide">
@@ -79,7 +71,7 @@ const Homepage = () => {
 
                         {!isLoadingTrending &&
                             moviesTrending &&
-                            moviesTrending.map((movie) => (
+                            moviesTrending.map((movie: MovieListItemMapped) => (
                                 <SplideSlide key={movie.id}>
                                     <MovieCard movie={movie} />
                                 </SplideSlide>
@@ -92,7 +84,7 @@ const Homepage = () => {
                 <h2 className="title">Top Rated</h2>
                 <div className="d-flex">
                     <p className="flex-fill">Top rated</p>
-                    <Link className="btn btn-link" to="/">
+                    <Link className="btn btn-link" to={`/movies-top-rated`}>
                         See all <i className="bi bi-arrow-right"></i>
                     </Link>
                 </div>
@@ -109,7 +101,7 @@ const Homepage = () => {
 
                         {!isLoadingTopRated &&
                             moviesTopRated &&
-                            moviesTopRated.map((movie) => (
+                            moviesTopRated.map((movie: MovieListItemMapped) => (
                                 <SplideSlide key={movie.id}>
                                     <MovieCard movie={movie} />
                                 </SplideSlide>
@@ -139,7 +131,7 @@ const Homepage = () => {
 
                         {!isLoadingUpcoming &&
                             moviesUpcoming &&
-                            moviesUpcoming.map((movie) => (
+                            moviesUpcoming.map((movie: MovieListItemMapped) => (
                                 <SplideSlide key={movie.id}>
                                     <MovieCard movie={movie} />
                                 </SplideSlide>

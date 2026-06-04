@@ -2,28 +2,65 @@
     display: flex;
     overflow: hidden;
     height: 80vh;
-    gap: 2rem;
+    gap: 1.5rem;
+    padding: 1.25rem;
 }
 
+/* ── Sidebar ── */
 .credits-sidebar {
-    width: 220px;
+    width: 200px;
+    flex-shrink: 0;
     position: sticky;
     top: 0;
     align-self: flex-start;
     height: fit-content;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
 }
 
+.credits-sidebar .nav-link {
+    padding: 0.45rem 0.75rem;
+    border-radius: var(--radius-sm);
+    font-size: 0.875rem;
+    color: var(--text-subtle);
+    transition: background var(--duration-fast) var(--ease-out),
+                color var(--duration-fast) var(--ease-out);
+}
+
+.credits-sidebar .nav-link:hover {
+    background: var(--surface-raised);
+    color: var(--bs-body-color);
+}
+
+.credits-sidebar .nav-link.active {
+    background: var(--accent-dim);
+    color: var(--accent);
+    font-weight: 600;
+}
+
+/* ── Content ── */
 .credits-content {
     flex: 1;
     height: 100%;
     overflow-y: auto;
     scroll-behavior: smooth;
-    padding-right: 1rem;
+    padding-right: 0.5rem;
 }
 
+.credits-content::-webkit-scrollbar {
+    width: 4px;
+}
+
+.credits-content::-webkit-scrollbar-thumb {
+    background: var(--surface-overlay);
+    border-radius: var(--radius-pill);
+}
+
+/* ── People grid ── */
 .people-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
     gap: 1rem;
     margin-bottom: 2rem;
 }

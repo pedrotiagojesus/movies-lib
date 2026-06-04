@@ -15,7 +15,7 @@ const Pagination = ({ totalPages, currentNumPage }: PaginationProps) => {
     }
 
     const buildUrl = (page: number) => {
-        const entryArr = ["q", "discover"];
+        const entryArr = ["q", "discover", "timeWindow"];
         let queryString = ``;
 
         entryArr.map((entry) => {
