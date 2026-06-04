@@ -24,17 +24,18 @@ import { useDominantColor } from "@hooks/useDominantColor";
 // Config
 import { moviesOptions } from "@config/splideOptions";
 import { Rating } from "@components/Rating/Rating";
+import { MovieCreditsMapped, MovieCrewMember } from "@typesLocal/movie.types";
 
 const Movie = () => {
     const { id } = useParams();
 
     const { data: movie, isLoading, isError } = useMovie(id!);
 
-    const credits: MovieCredits | undefined = movie?.credits;
+    const credits: MovieCreditsMapped | null = movie?.credits ?? null;
     const cast = credits?.cast ?? [];
 
-    const writing: MovieCrew[] = movie?.credits?.crew?.writing ?? [];
-    const directing: MovieCrew[] = movie?.credits?.crew?.directing ?? [];
+    const writing: MovieCrewMember[] = movie?.credits?.crew?.writing ?? [];
+    const directing: MovieCrewMember[] = movie?.credits?.crew?.directing ?? [];
 
     const directingDept = credits?.departments.find((d) => d.code === "directing");
     const writingDept = credits?.departments.find((d) => d.code === "writing");
@@ -80,7 +81,7 @@ const Movie = () => {
                                 <img
                                     src={`${movie.poster_url}`}
                                     alt={movie.title}
-                                    className="img-fluid mb-3 mb-md-0"
+                                    className="img-fluid mb-3 mb-md-4"
                                     style={{
                                         boxShadow: `0 0 25px 0px ${dominantColor}`,
                                     }}
@@ -90,7 +91,7 @@ const Movie = () => {
                                     <>
                                         <button
                                             type="button"
-                                            className="btn btn-primary mt-4"
+                                            className="btn btn-primary mb-3"
                                             data-bs-toggle="modal"
                                             data-bs-target="#trailerModal"
                                         >
@@ -99,7 +100,7 @@ const Movie = () => {
                                     </>
                                 )}
                             </div>
-                            <div className="col-sm-6">
+                            <div className="col">
                                 <div className="movie-meta">
                                     {runtime.show && (
                                         <>
@@ -156,89 +157,93 @@ const Movie = () => {
                                     </div>
                                 )}
                             </div>
-                            <div className="col-sm-3">
-                                <div className="d-flex justify-content-between">
-                                    <h3 className="title">Credits</h3>
+                            {credits && (
+                                <div className="col-sm-3">
+                                    <div className="d-flex justify-content-between">
+                                        <h3 className="title">Credits</h3>
 
-                                    <button
-                                        className="btn btn-link"
-                                        data-bs-toggle="modal"
-                                        data-bs-target="#creditsModal"
-                                    >
-                                        See all
-                                    </button>
+                                        <button
+                                            className="btn btn-link"
+                                            data-bs-toggle="modal"
+                                            data-bs-target="#creditsModal"
+                                        >
+                                            See all
+                                        </button>
+                                    </div>
+                                    <div className="list-group movie-credits">
+                                        {directing.length > 0 && (
+                                            <button
+                                                className="list-group-item list-group-item-action"
+                                                data-bs-toggle="modal"
+                                                data-bs-target="#directorsModal"
+                                            >
+                                                <div>
+                                                    <span className="credits-label">Director</span>
+                                                    {directing.slice(0, 3).map((person, i) => (
+                                                        <span key={i}>
+                                                            {person.name}
+                                                            {i < Math.min(directing.length, 3) - 1 && " • "}
+                                                        </span>
+                                                    ))}
+                                                </div>
+                                                <span className="bi bi-chevron-compact-right"></span>
+                                            </button>
+                                        )}
+                                        {writing.length > 0 && (
+                                            <button
+                                                className="list-group-item list-group-item-action"
+                                                data-bs-toggle="modal"
+                                                data-bs-target="#writingModal"
+                                            >
+                                                <div>
+                                                    <span className="credits-label">Writing</span>
+                                                    {writing.slice(0, 3).map((person, i) => (
+                                                        <span key={i}>
+                                                            {person.name}
+                                                            {i < Math.min(writing.length, 3) - 1 && " • "}
+                                                        </span>
+                                                    ))}
+                                                </div>
+                                                <span className="bi bi-chevron-compact-right"></span>
+                                            </button>
+                                        )}
+                                        {cast.length > 0 && (
+                                            <button
+                                                className="list-group-item list-group-item-action"
+                                                data-bs-toggle="modal"
+                                                data-bs-target="#castModal"
+                                            >
+                                                <div>
+                                                    <span className="credits-label">Stars</span>
+                                                    {cast.slice(0, 3).map((person, i) => (
+                                                        <span key={i}>
+                                                            {person.name}
+                                                            {i < Math.min(cast.length, 3) - 1 && " • "}
+                                                        </span>
+                                                    ))}
+                                                </div>
+                                                <span className="bi bi-chevron-compact-right"></span>
+                                            </button>
+                                        )}
+                                    </div>
                                 </div>
-                                <div className="list-group movie-credits">
-                                    {directing.length > 0 && (
-                                        <button
-                                            className="list-group-item list-group-item-action"
-                                            data-bs-toggle="modal"
-                                            data-bs-target="#directorsModal"
-                                        >
-                                            <div>
-                                                <span className="credits-label">Director</span>
-                                                {directing.slice(0, 3).map((person, i) => (
-                                                    <span key={i}>
-                                                        {person.name}
-                                                        {i < Math.min(directing.length, 3) - 1 && " • "}
-                                                    </span>
-                                                ))}
-                                            </div>
-                                            <span className="bi bi-chevron-compact-right"></span>
-                                        </button>
-                                    )}
-                                    {writing.length > 0 && (
-                                        <button
-                                            className="list-group-item list-group-item-action"
-                                            data-bs-toggle="modal"
-                                            data-bs-target="#writingModal"
-                                        >
-                                            <div>
-                                                <span className="credits-label">Writing</span>
-                                                {writing.slice(0, 3).map((person, i) => (
-                                                    <span key={i}>
-                                                        {person.name}
-                                                        {i < Math.min(writing.length, 3) - 1 && " • "}
-                                                    </span>
-                                                ))}
-                                            </div>
-                                            <span className="bi bi-chevron-compact-right"></span>
-                                        </button>
-                                    )}
-                                    {cast.length > 0 && (
-                                        <button
-                                            className="list-group-item list-group-item-action"
-                                            data-bs-toggle="modal"
-                                            data-bs-target="#castModal"
-                                        >
-                                            <div>
-                                                <span className="credits-label">Stars</span>
-                                                {cast.slice(0, 3).map((person, i) => (
-                                                    <span key={i}>
-                                                        {person.name}
-                                                        {i < Math.min(cast.length, 3) - 1 && " • "}
-                                                    </span>
-                                                ))}
-                                            </div>
-                                            <span className="bi bi-chevron-compact-right"></span>
-                                        </button>
-                                    )}
-                                </div>
+                            )}
+                        </div>
+                        {movie.recommendations && movie.recommendations.length > 0 && (
+                            <div>
+                                <h2 className="title">Recommendations</h2>
+                                <Splide options={moviesOptions} hasTrack={false} className="movie-slide">
+                                    <SplideTrack>
+                                        {movie.recommendations.map((movie) => (
+                                            <SplideSlide key={movie.id}>
+                                                <MovieCard movie={movie} />
+                                            </SplideSlide>
+                                        ))}
+                                    </SplideTrack>
+                                    <SlideArrows />
+                                </Splide>
                             </div>
-                        </div>
-                        <div>
-                            <h2 className="title">Recommendations</h2>
-                            <Splide options={moviesOptions} hasTrack={false} className="movie-slide">
-                                <SplideTrack>
-                                    {movie.recommendations.results.map((movie) => (
-                                        <SplideSlide key={movie.id}>
-                                            <MovieCard movie={movie} />
-                                        </SplideSlide>
-                                    ))}
-                                </SplideTrack>
-                                <SlideArrows />
-                            </Splide>
-                        </div>
+                        )}
                     </div>
 
                     {movie?.trailer && (
@@ -249,32 +254,36 @@ const Movie = () => {
                         </Modal>
                     )}
 
-                    {movie.reviews.length > 0 && (
+                    {movie.reviews && movie.reviews.length > 0 && (
                         <ReviewsModal id="reviewsModal" title="Reviews" reviews={movie.reviews} />
                     )}
 
-                    {credits && <MovieCreditsModal id="creditsModal" title="Credits" credits={credits} />}
+                    {credits && (
+                        <>
+                            <MovieCreditsModal id="creditsModal" title="Credits" credits={credits} />
 
-                    {credits && directing.length > 0 && directingDept && (
-                        <MovieCreditsModal
-                            id="directorsModal"
-                            title={directingDept.name}
-                            credits={credits}
-                            filterDepartment="directing"
-                        />
-                    )}
+                            {directing.length > 0 && directingDept && (
+                                <MovieCreditsModal
+                                    id="directorsModal"
+                                    title={directingDept.name}
+                                    credits={credits}
+                                    filterDepartment="directing"
+                                />
+                            )}
 
-                    {credits && writing.length > 0 && writingDept && (
-                        <MovieCreditsModal
-                            id="writingModal"
-                            title={writingDept.name}
-                            credits={credits}
-                            filterDepartment="writing"
-                        />
-                    )}
+                            {writing.length > 0 && writingDept && (
+                                <MovieCreditsModal
+                                    id="writingModal"
+                                    title={writingDept.name}
+                                    credits={credits}
+                                    filterDepartment="writing"
+                                />
+                            )}
 
-                    {credits?.cast && (
-                        <MovieCreditsModal id="castModal" title="Cast" credits={credits} showCastOnly={true} />
+                            {credits.cast && (
+                                <MovieCreditsModal id="castModal" title="Cast" credits={credits} showCastOnly />
+                            )}
+                        </>
                     )}
                 </>
             )}

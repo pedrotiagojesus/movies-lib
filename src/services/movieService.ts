@@ -1,9 +1,14 @@
 import api from "./api";
 
-export const getMovie = async (id: string): Promise<Movie> => {
-    const res = await api.get("movie", {
+// Types
+import { MovieMapped } from "@typesLocal/movie.types";
+
+export const getMovie = async (id: string): Promise<MovieMapped> => {
+    const res = await api.get(`movie/${id}`, {
         params: {
-            id: id,
+            append_to_response:
+                "credits,images,videos,reviews,recommendations",
+                // "recommendations,external_ids,release_dates,watch/providers",
         },
     });
     return res.data;
@@ -26,18 +31,6 @@ export const discoverMovies = async ({
     };
     if (genre) params.with_genres = genre;
     const res = await api.get("discover/movie", {
-        params: params,
-    });
-    return res.data;
-};
-
-export const searchMovies = async ({ query, page, genre }: { query: string; page: number; genre?: string }) => {
-    const params: Record<string, string> = {
-        query,
-        page: page.toString(),
-    };
-    if (genre) params.with_genres = genre;
-    const res = await api.get("movie/search", {
         params: params,
     });
     return res.data;

@@ -1,4 +1,4 @@
-import { ImageMapped } from "./index.types";
+import { ImageMapped } from "../index.types";
 
 export interface PersonMapped {
     id: number;

@@ -5,7 +5,7 @@ export interface MovieMapped {
     title: string;
     tagline: string;
     release_date: string;
-    genres: TMDBGenreItem[];
+    genres: MovieGenreItem[];
     budget: number;
     revenue: number;
     runtime: number;
@@ -55,7 +55,7 @@ export interface MovieReviewMapped {
     id: string;
     author: string;
     username: string;
-    avatar_path: string | null;
+    avatar_url: string | null;
     content: string;
     created_at: string;
 }
@@ -87,7 +87,7 @@ export interface MovieExternalIdsMapped {
 
 export interface MovieReleaseDatesMapped {
     certification: string | null;
-    releaseDate: string | null;
+    release_date: string | null;
     type: number | null;
     note: string | null;
     language: string | null;
@@ -107,6 +107,11 @@ export interface MovieWatchProviderMapped {
     provider_id: number;
     provider_name: string;
     display_priority: number;
+}
+
+export interface MovieGenreItem {
+    id: number;
+    name: string;
 }
 
 export type MovieBannerMapped = string | null;

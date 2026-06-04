@@ -4,7 +4,7 @@ import { useRef } from "react";
 // CSS
 import "./MovieCard.css";
 
-import { MovieListItemMapped } from "@typesLocal/mapped/moviesList.types";
+import { MovieListItemMapped } from "@typesLocal/moviesList.types";
 
 interface MovieCardProps {
     movie: MovieListItemMapped;

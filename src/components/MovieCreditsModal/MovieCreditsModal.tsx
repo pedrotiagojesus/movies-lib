@@ -5,10 +5,13 @@ import "./MovieCreditsModal.css";
 import Modal from "@components/Modal/Modal";
 import PeopleCard from "@components/PeopleCard/PeopleCard";
 
+// Types
+import { MovieCastMapped, MovieCreditsMapped, MovieCrewMember } from "@typesLocal/movie.types";
+
 interface MovieCreditsModalProps {
     id: string;
     title: string;
-    credits: MovieCredits;
+    credits: MovieCreditsMapped;
     filterDepartment?: string;
     showCastOnly?: boolean;
 }
@@ -70,7 +73,7 @@ const MovieCreditsModal = ({ id, title, credits, filterDepartment, showCastOnly 
                     <section id={d.code} key={`section-${d.code}`}>
                         <h3 className="title">{d.name}</h3>
                         <div className="people-grid">
-                            {credits.crew[d.code].map((p: MovieCrew) => (
+                            {credits.crew[d.code].map((p: MovieCrewMember) => (
                                 <PeopleCard person={p} key={`credits-crew-${d.code}-p.id-${p.id}`} />
                             ))}
                         </div>
@@ -80,7 +83,7 @@ const MovieCreditsModal = ({ id, title, credits, filterDepartment, showCastOnly 
                 <section id="cast">
                     <h3 className="title">Cast</h3>
                     <div className="people-grid">
-                        {credits.cast.map((p: MovieCast) => (
+                        {credits.cast.map((p: MovieCastMapped) => (
                             <PeopleCard person={p} key={`credits-cast-${p.id}`} />
                         ))}
                     </div>

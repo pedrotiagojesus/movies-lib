@@ -6,7 +6,10 @@ import "./PeopleCard.css";
 // Hooks
 import { useCloseModal } from "@hooks/useCloseModal";
 
-type PersonCardData = MovieCrew | MovieCast;
+// Types
+import { MovieCastMapped, MovieCrewMember } from "@typesLocal/movie.types";
+
+type PersonCardData = MovieCrewMember | MovieCastMapped;
 
 interface PeopleCardProps {
     person: PersonCardData;

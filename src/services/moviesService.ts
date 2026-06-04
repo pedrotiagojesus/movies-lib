@@ -1,7 +1,7 @@
 import api from "./api";
 
 // Types
-import { MovieListMapped } from "@typesLocal/mapped/moviesList.types";
+import { MovieListMapped } from "@typesLocal/moviesList.types";
 
 export const topRatedMovies = async ({ page }: { page: number }): Promise<MovieListMapped> => {
     const params: Record<string, string> = {

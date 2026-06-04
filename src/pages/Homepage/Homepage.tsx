@@ -15,7 +15,10 @@ import SlideArrows from "@components/SlideArrows";
 import { useTrending } from "@hooks/useTrending";
 import { useTopRated } from "@hooks/useTopRated";
 import { useUpcoming } from "@hooks/useUpcoming";
-import { MovieListItemMapped } from "@typesLocal/mapped/moviesList.types";
+
+// Types
+import { MovieListItemMapped } from "@typesLocal/moviesList.types";
+import { TimeWindow } from "@typesLocal/index.types";
 
 const Homepage = () => {
     const [timeWindow, setTimeWindow] = useState<TimeWindow>("day");

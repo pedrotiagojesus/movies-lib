@@ -4,7 +4,8 @@ import { useQuery } from "@tanstack/react-query";
 import { movies } from "@services/trendingService";
 
 // Type
-import { MovieListMapped } from "@typesLocal/mapped/moviesList.types";
+import { MovieListMapped } from "@typesLocal/moviesList.types";
+import { TimeWindow } from "@typesLocal/index.types";
 
 type TrendingParams = {
     timeWindow: TimeWindow;

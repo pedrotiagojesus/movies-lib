@@ -1,8 +1,13 @@
 import { useRef, useState, useEffect } from "react";
+
+// CSS
 import "./ReviewCard.css";
 
+// Types
+import { MovieReviewMapped } from "@typesLocal/movie.types";
+
 interface ReviewCardProps {
-    review: MovieReview;
+    review: MovieReviewMapped;
 }
 
 const ReviewCard = ({ review }: ReviewCardProps) => {
@@ -16,11 +21,7 @@ const ReviewCard = ({ review }: ReviewCardProps) => {
         }
     }, [review.content]);
 
-    const avatar = review.avatar_path
-        ? review.avatar_path.startsWith("http")
-            ? review.avatar_path
-            : `https://image.tmdb.org/t/p/w185${review.avatar_path}`
-        : null;
+    const avatar = review.avatar_url;
 
     const date = new Date(review.created_at).toLocaleDateString("en-US", {
         year: "numeric",

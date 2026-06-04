@@ -15,8 +15,8 @@ const Search = () => {
     const [searchParams] = useSearchParams();
 
     const query = searchParams.get("q") ?? "";
-    const page = Number(searchParams.get("page")) || 1;
-    const genre = searchParams.get("genre") ?? undefined;
+    const page = searchParams.get("page") || undefined;
+    const genre = searchParams.get("genre") || undefined;
 
     const { data, isLoading, isError } = useSearchMovies({
         query,

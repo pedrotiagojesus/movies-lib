@@ -4,7 +4,7 @@ import { useQuery } from "@tanstack/react-query";
 import { topRatedMovies } from "@services/moviesService";
 
 // Type
-import { MovieListMapped } from "@typesLocal/mapped/moviesList.types";
+import { MovieListMapped } from "@typesLocal/moviesList.types";
 
 type TopRatedParams = {
     page?: number;

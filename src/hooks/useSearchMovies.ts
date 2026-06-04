@@ -1,19 +1,19 @@
 import { useQuery } from "@tanstack/react-query";
 
 // Service
-import { searchMovies } from "@services/movieService";
+import { searchMovies } from "@services/searchService";
 
 // Types
-import { SearchResponse } from "@typesLocal/search";
+import { MovieListMapped } from "@typesLocal/moviesList.types";
 
 type SearchParams = {
     query: string;
-    page?: number;
+    page?: string;
     genre?: string;
 };
 
-export function useSearchMovies({ query, page = 1, genre }: SearchParams) {
-    return useQuery<SearchResponse>({
+export function useSearchMovies({ query, page, genre }: SearchParams) {
+    return useQuery<MovieListMapped>({
         queryKey: ["search", query, page, genre],
         queryFn: () =>
             searchMovies({

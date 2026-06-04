@@ -17,7 +17,7 @@ const Person = () => {
     const personId = id || "";
 
     const { data: person, isLoading: isLoadingPerson } = usePerson(personId);
-    const credits = person?.credits ?? { cast: [], crew: [] };
+    const credits = person?.movie_credits ?? { cast: [], crew: [] };
     const images = person?.images || [];
 
     if (!person || isLoadingPerson) {
@@ -67,9 +67,7 @@ const Person = () => {
                     </div>
                     <div className="col-md-9">
                         <h1 className="title">{person.name}</h1>
-                        {person.department && (
-                            <p className="person-department">{person.department}</p>
-                        )}
+                        {person.department && <p className="person-department">{person.department}</p>}
 
                         <div className="person-meta">
                             {person.birthday && (
@@ -145,7 +143,9 @@ const Person = () => {
                                         <span className="filmography-year">
                                             {item.release_date ? item.release_date.slice(0, 4) : "—"}
                                         </span>
-                                        <Link to={`/movie/${item.id}`} className="filmography-title">{item.title}</Link>
+                                        <Link to={`/movie/${item.id}`} className="filmography-title">
+                                            {item.title}
+                                        </Link>
                                         {item.character && (
                                             <span className="filmography-role">as {item.character}</span>
                                         )}
@@ -167,7 +167,9 @@ const Person = () => {
                                         <span className="filmography-year">
                                             {item.release_date ? item.release_date.slice(0, 4) : "—"}
                                         </span>
-                                        <Link to={`/movie/${item.id}`} className="filmography-title">{item.title}</Link>
+                                        <Link to={`/movie/${item.id}`} className="filmography-title">
+                                            {item.title}
+                                        </Link>
                                         {item.job && <span className="filmography-role">({item.job})</span>}
                                     </li>
                                 ))}
@@ -181,15 +183,18 @@ const Person = () => {
                 <section className="mt-5 mb-5">
                     <h2 className="title">Photos</h2>
                     <div className="row mt-3">
-                        {images.slice(0, 12).map((img, i) => (
-                            <div key={i} className="col-6 col-md-3 mb-3">
-                                <img
-                                    src={img.image}
-                                    alt={`${person.name} ${i + 1}`}
-                                    className="img-fluid rounded person-photo-grid"
-                                />
-                            </div>
-                        ))}
+                        {images.slice(0, 12).map(
+                            (img, i) =>
+                                img.image && (
+                                    <div key={i} className="col-6 col-md-3 mb-3">
+                                        <img
+                                            src={img.image}
+                                            alt={`${person.name} ${i + 1}`}
+                                            className="img-fluid rounded person-photo-grid"
+                                        />
+                                    </div>
+                                ),
+                        )}
                     </div>
                 </section>
             )}
