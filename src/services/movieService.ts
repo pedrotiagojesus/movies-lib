@@ -7,8 +7,7 @@ export const getMovie = async (id: string): Promise<MovieMapped> => {
     const res = await api.get(`movie/${id}`, {
         params: {
             append_to_response:
-                "credits,images,videos,reviews,recommendations",
-                // "recommendations,external_ids,release_dates,watch/providers",
+                "credits,images,videos,reviews,recommendations,external_ids,release_dates,keywords,similar,watch/providers",
         },
     });
     return res.data;

@@ -7,7 +7,7 @@ import "./MoviesTopRated.css";
 import { useTopRated } from "@hooks/useTopRated";
 
 // Components
-import Loading from "@components/Loading";
+import Loading from "@components/Loading/Loading";
 import MovieCard from "@components/MovieCard/MovieCard";
 import Pagination from "@components/Pagination";
 

@@ -58,7 +58,7 @@ const MovieCreditsModal = ({ id, title, credits, filterDepartment, showCastOnly 
     return (
         <Modal id={id} className={["modal-dialog-scrollable", "credits-modal"]} title={title} size="xl">
             <nav id="credits-nav" className="credits-sidebar nav flex-column">
-                {credits.departments.map((d: MovieCrewDepartment) => (
+                {credits.departments.map((d) => (
                     <a className="nav-link" href={`#${d.code}`} key={d.code}>
                         {d.name}
                     </a>
@@ -69,7 +69,7 @@ const MovieCreditsModal = ({ id, title, credits, filterDepartment, showCastOnly 
             </nav>
 
             <div className="credits-content" data-bs-spy="scroll" data-bs-target="#credits-nav">
-                {credits.departments.map((d: MovieCrewDepartment) => (
+                {credits.departments.map((d) => (
                     <section id={d.code} key={`section-${d.code}`}>
                         <h3 className="title">{d.name}</h3>
                         <div className="people-grid">

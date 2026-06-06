@@ -24,11 +24,15 @@ import Person from "@pages/Person/Person";
 import MoviesUpcoming from "@pages/MoviesUpcoming/MoviesUpcoming";
 import MoviesTopRated from "@pages/MoviesTopRated/MoviesTopRated";
 
+// Components
+import ScrollToTop from "@components/ScrollToTop";
+
 const rootElement = document.getElementById("root");
 if (rootElement) {
     ReactDOM.createRoot(rootElement).render(
         <QueryClientProvider client={queryClient}>
             <BrowserRouter basename="/movies-lib/">
+                <ScrollToTop />
                 <Routes>
                     <Route path="/" element={<App />}>
                         <Route index element={<Homepage />} />

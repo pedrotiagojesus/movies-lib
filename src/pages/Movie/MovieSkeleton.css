@@ -16,13 +16,6 @@
     border-radius: var(--radius-sm);
 }
 
-/* Banner */
-.skeleton-banner {
-    height: 65vh;
-    min-height: 420px;
-    border-radius: 0;
-}
-
 /* Titles */
 .skeleton-title-lg {
     width: 45%;
@@ -88,4 +81,19 @@
     width: 150px;
     height: 225px;
     border-radius: var(--radius-md);
+}
+
+@media only screen and (min-width: 576px) {
+}
+
+@media only screen and (min-width: 768px) {
+}
+
+@media only screen and (min-width: 992px) {
+}
+
+@media only screen and (min-width: 1200px) {
+}
+
+@media only screen and (min-width: 1400px) {
 }

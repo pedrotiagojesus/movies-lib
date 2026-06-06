@@ -4,14 +4,17 @@ const MovieSkeleton = () => {
     return (
         <div id="movie-page">
             {/* Banner */}
-            <div id="movie-banner" className="d-none d-md-flex skeleton-banner">
-                <div className="container">
-                    <div className="skeleton skeleton-title-lg"></div>
-                    <div className="skeleton skeleton-text w-50 mt-2"></div>
-                    <div className="d-flex gap-2 mt-3">
-                        <div className="skeleton skeleton-pill"></div>
-                        <div className="skeleton skeleton-pill"></div>
-                        <div className="skeleton skeleton-pill"></div>
+            <div id="movie-banner" className="skeleton-banner">
+                <div className="container banner-content">
+                    <div className="banner-header"></div>
+                    <div className="banner-footer">
+                        <div className="skeleton skeleton-title-lg"></div>
+                        <div className="skeleton skeleton-text w-50 mt-2"></div>
+                        <div className="d-flex gap-2 mt-3">
+                            <div className="skeleton skeleton-pill"></div>
+                            <div className="skeleton skeleton-pill"></div>
+                            <div className="skeleton skeleton-pill"></div>
+                        </div>
                     </div>
                 </div>
             </div>

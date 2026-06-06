@@ -5,17 +5,22 @@
 /* ── Banner ── */
 #movie-banner {
     width: 100%;
-    height: 65vh;
-    min-height: 420px;
-    background-size: cover;
-    background-position: center top;
+    height: 25vh;
     display: flex;
-    align-items: flex-end;
+    align-items: stretch;
     position: relative;
     z-index: 1;
 }
 
-#movie-banner::after {
+#movie-banner .overlay {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+#movie-banner .overlay::after {
     content: "";
     position: absolute;
     inset: 0;
@@ -25,7 +30,28 @@
         rgba(var(--bs-body-bg-rgb), 0.45) 45%,
         rgba(var(--bs-body-bg-rgb), 1) 100%
     );
-    z-index: -1;
+    z-index: 1;
+}
+
+.banner-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* header top, footer bottom */
+    height: 100%;
+    position: relative;
+    z-index: 2;
+    padding-top: 2rem;
+}
+
+.banner-header {
+    display: flex;
+    justify-content: flex-end; /* right aligned */
+}
+
+.banner-footer {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* left aligned */
 }
 
 /* ── Content layout ── */
@@ -187,4 +213,101 @@
     letter-spacing: 0.06em;
     text-transform: uppercase;
     color: var(--text-muted);
+}
+
+/* ── External link ── */
+#movie-page .external-link {
+    color: #fff;
+}
+#movie-page .external-link:hover {
+    color: var(--accent);
+}
+
+/* ── Genres ── */
+#movie-page .keyword-list {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin-bottom: 1rem;
+}
+
+#movie-page .keyword-list .keyword {
+    padding: 0.3rem 0.85rem;
+    background: var(--surface-raised);
+    border: 1px solid var(--surface-border);
+    color: var(--text-subtle);
+    text-decoration: none;
+    border-radius: var(--radius-pill);
+    font-size: 0.8rem;
+    font-weight: 500;
+    transition:
+        background var(--duration-base) var(--ease-out),
+        border-color var(--duration-base) var(--ease-out),
+        color var(--duration-base) var(--ease-out);
+}
+
+#movie-page .keyword-list .keyword:hover {
+    background: var(--accent-dim);
+    border-color: var(--accent-glow);
+    color: var(--accent);
+}
+
+#movie-page .collection-poster-wrapper {
+    width: 90px;
+}
+
+#movie-page .collection-poster-wrapper::before {
+    display: block;
+    padding-top: 150%;
+    content: "";
+}
+
+#movie-page .collection-poster {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    border-radius: 6px;
+}
+
+/** ── Watch providers ── **/
+.movie-watch .provider-group {
+    margin-bottom: 1rem;
+}
+
+.provider-list {
+    display: flex;
+    gap: 0.4rem;
+    flex-wrap: wrap;
+}
+
+.provider-item {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+}
+
+.provider-logo {
+    width: 28px;
+    height: 28px;
+    border-radius: 6px;
+    object-fit: cover;
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.3);
+}
+
+@media only screen and (min-width: 576px) {
+    #movie-banner {
+        height: 65vh;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+}
+
+@media only screen and (min-width: 992px) {
+}
+
+@media only screen and (min-width: 1200px) {
+}
+
+@media only screen and (min-width: 1400px) {
 }

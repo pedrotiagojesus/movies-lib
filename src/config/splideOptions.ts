@@ -19,7 +19,7 @@ export const moviesOptions: Options = {
     pagination: false,
     mediaQuery: "min",
     breakpoints: {
-        0: { perPage: 4, perMove: 1 },
+        0: { perPage: 2, perMove: 1 },
         576: { perPage: 5, perMove: 1 },
         768: { perPage: 5, perMove: 1 },
         992: { perPage: 6, perMove: 1 },
