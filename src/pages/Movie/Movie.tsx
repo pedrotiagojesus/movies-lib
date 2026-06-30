@@ -30,7 +30,7 @@ const Movie = () => {
     const { id } = useParams();
 
     let { data: movie, isLoading, isError } = useMovie(id!);
-// isLoading = true;
+    // isLoading = true;
 
     const credits: MovieCreditsMapped | null = movie?.credits ?? null;
     const cast = credits?.cast ?? [];
@@ -329,6 +329,28 @@ const Movie = () => {
                                         </div>
                                     </>
                                 )}
+
+                                {movie.production_companies && movie.production_companies.length > 0 && (
+                                    <div className="movie-production mb-4">
+                                        <h3 className="title">Production</h3>
+
+                                        <div className="production-list">
+                                            {movie.production_companies.map((c) => (
+                                                <Link key={c.id} to={`/company/${c.id}`} className="production-item">
+                                                    {c.logo && (
+                                                        <img
+                                                            src={c.logo}
+                                                            alt={c.name}
+                                                            className="production-logo"
+                                                        />
+                                                    )}
+                                                    <span>{c.name}</span>
+                                                </Link>
+                                            ))}
+                                        </div>
+                                    </div>
+                                )}
+
                                 {movie.keywords && movie.keywords.length > 0 && (
                                     <div className="movie-keywords mb-4">
                                         <h3 className="title">Themes</h3>
@@ -345,6 +367,7 @@ const Movie = () => {
                                         </div>
                                     </div>
                                 )}
+
                                 {movie.collection && (
                                     <div className="movie-collection mb-4">
                                         <h3 className="title">Collection</h3>
@@ -383,41 +406,43 @@ const Movie = () => {
                                         <h3 className="title">Where to Watch</h3>
 
                                         {/* Streaming */}
-                                        {movie.watch_providers.flatrate && movie.watch_providers.flatrate.length > 0 && (
-                                            <div className="provider-group">
-                                                <h5 className="provider-label">Streaming</h5>
-                                                <div className="provider-list">
-                                                    {movie.watch_providers.flatrate.map((p) =>
-                                                        p.logo && (
-                                                            <div key={p.provider_id} className="provider-item">
-                                                                <img
-                                                                    src={p.logo}
-                                                                    alt={p.provider_name}
-                                                                    className="provider-logo"
-                                                                />
-                                                            </div>
-                                                        )
-                                                    )}
-
+                                        {movie.watch_providers.flatrate &&
+                                            movie.watch_providers.flatrate.length > 0 && (
+                                                <div className="provider-group">
+                                                    <h5 className="provider-label">Streaming</h5>
+                                                    <div className="provider-list">
+                                                        {movie.watch_providers.flatrate.map(
+                                                            (p) =>
+                                                                p.logo && (
+                                                                    <div key={p.provider_id} className="provider-item">
+                                                                        <img
+                                                                            src={p.logo}
+                                                                            alt={p.provider_name}
+                                                                            className="provider-logo"
+                                                                        />
+                                                                    </div>
+                                                                ),
+                                                        )}
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        )}
+                                            )}
 
                                         {/* Rent */}
                                         {movie.watch_providers.rent && movie.watch_providers.rent.length > 0 && (
                                             <div className="provider-group">
                                                 <h5 className="provider-label">Rent</h5>
                                                 <div className="provider-list">
-                                                    {movie.watch_providers.rent.map((p) =>
-                                                        p.logo && (
-                                                            <div key={p.provider_id} className="provider-item">
-                                                                <img
-                                                                    src={p.logo}
-                                                                    alt={p.provider_name}
-                                                                    className="provider-logo"
-                                                                />
-                                                            </div>
-                                                        )
+                                                    {movie.watch_providers.rent.map(
+                                                        (p) =>
+                                                            p.logo && (
+                                                                <div key={p.provider_id} className="provider-item">
+                                                                    <img
+                                                                        src={p.logo}
+                                                                        alt={p.provider_name}
+                                                                        className="provider-logo"
+                                                                    />
+                                                                </div>
+                                                            ),
                                                     )}
                                                 </div>
                                             </div>
@@ -428,16 +453,17 @@ const Movie = () => {
                                             <div className="provider-group">
                                                 <h5 className="provider-label">Buy</h5>
                                                 <div className="provider-list">
-                                                    {movie.watch_providers.buy.map((p) =>
-                                                        p.logo && (
-                                                            <div key={p.provider_id} className="provider-item">
-                                                                <img
-                                                                    src={p.logo}
-                                                                    alt={p.provider_name}
-                                                                    className="provider-logo"
-                                                                />
-                                                            </div>
-                                                        )
+                                                    {movie.watch_providers.buy.map(
+                                                        (p) =>
+                                                            p.logo && (
+                                                                <div key={p.provider_id} className="provider-item">
+                                                                    <img
+                                                                        src={p.logo}
+                                                                        alt={p.provider_name}
+                                                                        className="provider-logo"
+                                                                    />
+                                                                </div>
+                                                            ),
                                                     )}
                                                 </div>
                                             </div>

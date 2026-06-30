@@ -10,3 +10,8 @@
     align-items: center;
     gap: 1rem;
 }
+
+button.best-movies-genre {
+    font-size: 2rem;
+    line-height: 1.1;
+}

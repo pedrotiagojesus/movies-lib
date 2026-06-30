@@ -15,6 +15,9 @@ import '@splidejs/react-splide/css';
 import "./assets/styles/base.css";
 import "./assets/styles/globals.css";
 
+// Components
+import ScrollToTop from "@components/ScrollToTop";
+
 // Pages
 import App from "./App.jsx";
 import Homepage from "./pages/Homepage/Homepage.js";
@@ -23,9 +26,8 @@ import Search from "./pages/Search/Search.jsx";
 import Person from "@pages/Person/Person";
 import MoviesUpcoming from "@pages/MoviesUpcoming/MoviesUpcoming";
 import MoviesTopRated from "@pages/MoviesTopRated/MoviesTopRated";
-
-// Components
-import ScrollToTop from "@components/ScrollToTop";
+import Collection from "@pages/Collection/Collection";
+import BestOfMovies from "@pages/BestOfMovies/BestOfMovies";
 
 const rootElement = document.getElementById("root");
 if (rootElement) {
@@ -41,6 +43,8 @@ if (rootElement) {
                         <Route path="person/:id" element={<Person />} />
                         <Route path="movies-upcoming" element={<MoviesUpcoming />} />
                         <Route path="movies-top-rated" element={<MoviesTopRated />} />
+                        <Route path="collection/:id" element={<Collection />} />
+                        <Route path="best-of" element={<BestOfMovies />} />
                     </Route>
                 </Routes>
             </BrowserRouter>

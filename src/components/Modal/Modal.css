@@ -37,6 +37,42 @@
     overflow: hidden;
 }
 
+/* ── Best Movies Genre modal ── */
+#best-movies-genre.modal .genre-list {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin-bottom: 1rem;
+}
+
+#best-movies-genre.modal .genre-list .genre {
+    cursor: pointer;
+    padding: 0.3rem 0.85rem;
+    background: var(--surface-raised);
+    border: 1px solid var(--surface-border);
+    color: var(--text-subtle);
+    text-decoration: none;
+    border-radius: var(--radius-pill);
+    font-size: 0.8rem;
+    font-weight: 500;
+    transition:
+        background var(--duration-base) var(--ease-out),
+        border-color var(--duration-base) var(--ease-out),
+        color var(--duration-base) var(--ease-out);
+}
+
+#best-movies-genre.modal .genre-list .genre:hover {
+    background: var(--accent-dim);
+    border-color: var(--accent-glow);
+    color: var(--accent);
+}
+
+#best-movies-genre.modal .genre-list .genre.active {
+    background: var(--accent-dim);
+    border-color: var(--accent-glow);
+    color: var(--accent);
+}
+
 .modal-backdrop--dark {
     --bs-backdrop-opacity: 0.88;
 }

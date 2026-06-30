@@ -6,3 +6,11 @@ declare namespace bootstrap {
         show(): void;
     }
 }
+
+declare global {
+    interface Window {
+        bootstrap: any;
+    }
+}
+
+export {};

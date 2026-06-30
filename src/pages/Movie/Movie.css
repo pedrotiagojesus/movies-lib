@@ -294,6 +294,43 @@
     box-shadow: 0 0 6px rgba(0, 0, 0, 0.3);
 }
 
+/** ── Production companies ── **/
+.production-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.production-item {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    text-decoration: none;
+    color: #fff;
+    border-radius: 4px;
+    transition:
+        background var(--duration-base) var(--ease-out),
+        border-color var(--duration-base) var(--ease-out),
+        color var(--duration-base) var(--ease-out);
+}
+
+.production-item:hover {
+    background: var(--accent-dim);
+    border-color: var(--accent-glow);
+    color: var(--accent);
+}
+
+.production-logo {
+    width: 4rem;
+    height: auto;
+    object-fit: contain;
+    border-radius: 4px;
+    background: #fff;
+    padding: 2px;
+    box-shadow: 0 0 6px rgba(0,0,0,0.2);
+}
+
+
 @media only screen and (min-width: 576px) {
     #movie-banner {
         height: 65vh;

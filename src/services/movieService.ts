@@ -36,6 +36,6 @@ export const discoverMovies = async ({
 };
 
 export const getGenres = async () => {
-    const res = await api.get("genre/movie/list");
+    const res = await api.get("genres/movies");
     return res.data;
 };
