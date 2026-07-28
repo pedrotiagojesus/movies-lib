@@ -2,7 +2,7 @@ import { z } from "zod";
 
 const envSchema = z.object({
     // Basic Configuration
-    VITE_API_ENDPOINT: z.string().default("http://localhost:3000"),
+    VITE_API_ENDPOINT: z.string().default("http://localhost:3001"),
     VITE_API_TIMEOUT: z.string().default("30000").transform(Number).pipe(z.number().positive()),
 });
 
