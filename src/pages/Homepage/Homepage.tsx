@@ -15,18 +15,12 @@ import SlideArrows from "@components/SlideArrows";
 import { useTrending } from "@hooks/useTrending";
 import { useTopRated } from "@hooks/useTopRated";
 import { useUpcoming } from "@hooks/useUpcoming";
-import { useBestOfMovies } from "@hooks/useBestOfMovies";
-import { useGenres } from "@hooks/useGenres";
 
 // Types
 import { MovieListItemMapped } from "@typesLocal/moviesList.types";
 import { TimeWindow } from "@typesLocal/index.types";
-import { MoviesMapped } from "@typesLocal/genres.type";
-import Modal from "@components/Modal/Modal";
-import { closeBootstrapModal } from "@utils/modal";
 
 const Homepage = () => {
-    const currentYear = new Date().getFullYear();
 
     const [timeWindow, setTimeWindow] = useState<TimeWindow>("day");
     const { data: dateTrending, isLoading: isLoadingTrending, isError: isErrorTrending } = useTrending({ timeWindow });
@@ -37,18 +31,6 @@ const Homepage = () => {
 
     const { data: dateUpcoming, isLoading: isLoadingUpcoming, isError: isErrorUpcoming } = useUpcoming();
     const moviesUpcoming = (dateUpcoming?.results ?? []).slice(0, 12);
-
-    const [bestOfMoviesYear, setBestOfMoviesYear] = useState<number | "">("");
-    const [bestOfMoviesGenre, setBestOfMoviesGenre] = useState<number>(27);
-    const {
-        data: dataBestOfMovies,
-        isLoading: isLoadingBestOfMovies,
-        isError: isErrorBestOfMovies,
-    } = useBestOfMovies({ with_genres: bestOfMoviesGenre, primary_release_year: bestOfMoviesYear });
-    const moviesBestOf = (dataBestOfMovies?.results ?? []).slice(0, 12);
-
-    const { data: dataGenres, isLoading: isLoadingGenres, isError: isErrorGenres } = useGenres();
-    const YEARS = Array.from({ length: currentYear - 1870 + 1 }, (_, i) => currentYear - i);
 
     return (
         <div id="homepage" className="container">
@@ -164,100 +146,6 @@ const Homepage = () => {
                     <SlideArrows />
                 </Splide>
             </section>
-
-            <section>
-                <h2 className="title d-flex align-items-center gap-2">
-                    Best
-                    <button
-                        className="btn btn-link p-0 best-movies-genre"
-                        type="button"
-                        data-bs-toggle="modal"
-                        data-bs-target="#best-movies-genre"
-                    >
-                        {dataGenres?.find((g: MoviesMapped) => g.id === bestOfMoviesGenre)?.name || "Genre"}
-                    </button>{" "}
-                    Movies of {/* Year Dropdown */}
-                    <div className="dropdown">
-                        <button
-                            className="btn btn-sm btn-link dropdown-toggle p-0"
-                            type="button"
-                            data-bs-toggle="dropdown"
-                        >
-                            {bestOfMoviesYear ? bestOfMoviesYear : "All time"}
-                        </button>
-
-                        <ul
-                            className="dropdown-menu"
-                            style={{
-                                maxHeight: "200px",
-                                overflowY: "auto",
-                            }}
-                        >
-                            <li>
-                                <button className="dropdown-item" onClick={() => setBestOfMoviesYear("")}>
-                                    All time
-                                </button>
-                            </li>
-
-                            {YEARS.map((year) => (
-                                <li key={year}>
-                                    <button className="dropdown-item" onClick={() => setBestOfMoviesYear(year)}>
-                                        {year}
-                                    </button>
-                                </li>
-                            ))}
-                        </ul>
-                    </div>
-                </h2>
-
-                <div className="d-flex">
-                    <p className="flex-fill">
-                        Best {bestOfMoviesGenre} Movies {bestOfMoviesYear ? `of ${bestOfMoviesYear}` : "of All Time"}
-                    </p>
-
-                    <Link className="btn btn-link" to={`/best-of`}>
-                        See all <i className="bi bi-arrow-right"></i>
-                    </Link>
-                </div>
-
-                {moviesBestOf && moviesBestOf.length === 0 && !isLoadingBestOfMovies && <p>No results</p>}
-                <Splide options={moviesOptions} hasTrack={false} className="movie-slide">
-                    <SplideTrack>
-                        {isLoadingBestOfMovies &&
-                            Array.from({ length: 6 }).map((_, i) => (
-                                <SplideSlide key={i}>
-                                    <MovieCardSkeleton />
-                                </SplideSlide>
-                            ))}
-
-                        {!isLoadingBestOfMovies &&
-                            moviesBestOf &&
-                            moviesBestOf.map((movie: MovieListItemMapped) => (
-                                <SplideSlide key={movie.id}>
-                                    <MovieCard movie={movie} />
-                                </SplideSlide>
-                            ))}
-                    </SplideTrack>
-                    <SlideArrows />
-                </Splide>
-            </section>
-
-            <Modal id="best-movies-genre" title="Select genre">
-                <div className="genre-list">
-                    {dataGenres?.map((genre: MoviesMapped) => (
-                        <span
-                            className={`genre ${genre.id == bestOfMoviesGenre ? "active" : ""}`}
-                            key={genre.id}
-                            onClick={() => {
-                                setBestOfMoviesGenre(genre.id);
-                            }}
-                            data-bs-dismiss="modal"
-                        >
-                            {genre.name}
-                        </span>
-                    ))}
-                </div>
-            </Modal>
         </div>
     );
 };

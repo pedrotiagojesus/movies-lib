@@ -27,7 +27,7 @@ import Person from "@pages/Person/Person";
 import MoviesUpcoming from "@pages/MoviesUpcoming/MoviesUpcoming";
 import MoviesTopRated from "@pages/MoviesTopRated/MoviesTopRated";
 import Collection from "@pages/Collection/Collection";
-import BestOfMovies from "@pages/BestOfMovies/BestOfMovies";
+import Company from "@pages/Company/Company";
 
 const rootElement = document.getElementById("root");
 if (rootElement) {
@@ -44,7 +44,7 @@ if (rootElement) {
                         <Route path="movies-upcoming" element={<MoviesUpcoming />} />
                         <Route path="movies-top-rated" element={<MoviesTopRated />} />
                         <Route path="collection/:id" element={<Collection />} />
-                        <Route path="best-of" element={<BestOfMovies />} />
+                        <Route path="company/:id" element={<Company />} />
                     </Route>
                 </Routes>
             </BrowserRouter>

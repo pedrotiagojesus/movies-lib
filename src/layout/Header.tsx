@@ -27,12 +27,6 @@ const Header = () => {
                     MoviesLib
                 </Link>
 
-                {/* NAVIGATION LINKS */}
-                <div className="nav-links d-none d-md-flex">
-                    <Link to="/movies-top-rated">Top Rated</Link>
-                    <Link to="/movies-people">People</Link>
-                </div>
-
                 {/* SEARCH */}
                 <form role="search" onSubmit={handleSubmit} className="search-form">
                     <input

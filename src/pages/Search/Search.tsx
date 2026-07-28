@@ -7,6 +7,7 @@ import "./Search.css";
 import MovieCard from "@components/MovieCard/MovieCard";
 import Loading from "@components/Loading/Loading";
 import Pagination from "@components/Pagination";
+import UnderConstruction from "@components/UnderConstruction/UnderConstruction";
 
 // Hooks
 import { useSearchMovies } from "@hooks/useSearchMovies";
@@ -17,6 +18,18 @@ const Search = () => {
     const query = searchParams.get("q") ?? "";
     const page = searchParams.get("page") || undefined;
     const genre = searchParams.get("genre") || undefined;
+    const keyword = searchParams.get("keyword") || undefined;
+
+    if (genre || keyword) {
+        return (
+            <div id="search-page" className="container">
+                <h2 className="title">
+                    Results for:
+                </h2>
+                <UnderConstruction />
+            </div>
+        );
+    }
 
     const { data, isLoading, isError } = useSearchMovies({
         query,
