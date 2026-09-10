@@ -4,6 +4,7 @@ const envSchema = z.object({
     // Basic Configuration
     VITE_API_ENDPOINT: z.string().default("http://localhost:3001"),
     VITE_API_TIMEOUT: z.string().default("30000").transform(Number).pipe(z.number().positive()),
+    VITE_TMDB_API_KEY: z.string().default(""),
 });
 
 export type EnvConfig = z.infer<typeof envSchema>;
