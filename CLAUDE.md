@@ -13,9 +13,11 @@ Não há testes. O deploy é automático via GitHub Actions em cada push para `m
 
 ## Configuração
 
-Copiar `.env.example` para `.env`:
+Copiar `.env.example` para `.env` (desenvolvimento local):
 - `VITE_API_ENDPOINT` — URL da API backend (não chama o TMDB diretamente)
 - `VITE_API_TIMEOUT` — timeout do axios em ms
+
+Em produção, o build usa o [.env.production](.env.production), que está versionado. O URL não é secreto porque fica no JS público. Não definir estas variáveis no workflow: as variáveis de ambiente do processo têm prioridade sobre os ficheiros `.env*`.
 
 ## Backoffice
 
