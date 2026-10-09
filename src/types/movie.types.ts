@@ -4,27 +4,27 @@ export interface MovieMapped {
     id: number;
     title: string;
     tagline: string;
-    release_date: string;
+    releaseDate: string;
     genres: MovieGenreItem[];
     budget: number;
     revenue: number;
     runtime: number;
     overview: string;
     language: string;
-    poster_url: string | null;
-    banner_url: string | null;
-    production_companies: MovieProductionCompanyMapped[];
+    posterUrl: string | null;
+    bannerUrl: string | null;
+    productionCompanies: MovieProductionCompanyMapped[];
     rating: number;
-    imdb_link: string | null;
+    imdbLink: string | null;
     credits: MovieCreditsMapped | null;
     images: ImageMapped[] | null;
     trailer: string | null;
-    collection: { id: number; name: string; poster_url: string | null } | null;
+    collection: { id: number; name: string; posterUrl: string | null } | null;
     recommendations: MovieRecommendationMapped[] | null;
     reviews: MovieReviewMapped[] | null;
-    external_ids: MovieExternalIdsMapped | null;
-    release_dates: MovieReleaseDatesMapped | null;
-    watch_providers: MovieWatchProvidersMapped | null;
+    externalIds: MovieExternalIdsMapped | null;
+    releaseDates: MovieReleaseDatesMapped | null;
+    watchProviders: MovieWatchProvidersMapped | null;
     keywords: MovieKeywordsMapped[] | null;
     similar: MovieSimilarsMapped[] | null;
 }
@@ -33,7 +33,7 @@ interface MovieProductionCompanyMapped {
     id: number;
     logo: string | null;
     name: string;
-    origin_country: string;
+    originCountry: string;
 }
 
 export interface MovieCreditsMapped {
@@ -67,19 +67,19 @@ export interface MovieReviewMapped {
     id: string;
     author: string;
     username: string;
-    avatar_url: string | null;
+    avatarUrl: string | null;
     content: string;
-    created_at: string;
+    createdAt: string;
 }
 
 export interface MovieRecommendationMapped {
     id: number;
     title: string;
-    poster_url: string | null;
+    posterUrl: string | null;
     rating: number;
-    original_language: string;
-    release_date: string;
-    genre_ids: number[];
+    originalLanguage: string;
+    releaseDate: string;
+    genreIds: number[];
 }
 
 export interface MovieVideoMapped {
@@ -99,7 +99,7 @@ export interface MovieExternalIdsMapped {
 
 export interface MovieReleaseDatesMapped {
     certification: string | null;
-    release_date: string | null;
+    releaseDate: string | null;
     type: number | null;
     note: string | null;
     language: string | null;
@@ -117,9 +117,9 @@ export interface MovieWatchProvidersMapped {
 
 export interface MovieWatchProviderMapped {
     logo: string | null;
-    provider_id: number;
-    provider_name: string;
-    display_priority: number;
+    providerId: number;
+    providerName: string;
+    displayPriority: number;
 }
 
 export interface MovieGenreItem {
@@ -135,11 +135,11 @@ export interface MovieKeywordsMapped {
 export interface MovieSimilarsMapped {
     id: number;
     title: string;
-    poster_url: string | null;
+    posterUrl: string | null;
     rating: number;
-    original_language: string;
-    release_date: string;
-    genre_ids: number[];
+    originalLanguage: string;
+    releaseDate: string;
+    genreIds: number[];
 }
 
 export type MovieBannerMapped = string | null;

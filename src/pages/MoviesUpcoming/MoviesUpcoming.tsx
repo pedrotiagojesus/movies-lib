@@ -18,7 +18,7 @@ const MoviesUpcoming = () => {
 
     const { data, isLoading, isError } = useUpcoming({ page });
     const movies = data?.results ?? [];
-    const totalPages = data?.total_pages ?? 0;
+    const totalPages = data?.totalPages ?? 0;
 
     return (
         <div id="movies-upcoming-page" className="container">

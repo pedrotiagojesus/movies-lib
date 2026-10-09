@@ -21,9 +21,9 @@ const ReviewCard = ({ review }: ReviewCardProps) => {
         }
     }, [review.content]);
 
-    const avatar = review.avatar_url;
+    const avatar = review.avatarUrl;
 
-    const date = new Date(review.created_at).toLocaleDateString("en-US", {
+    const date = new Date(review.createdAt).toLocaleDateString("en-US", {
         year: "numeric",
         month: "short",
         day: "numeric",

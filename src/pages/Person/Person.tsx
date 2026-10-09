@@ -17,7 +17,7 @@ const Person = () => {
     const personId = id || "";
 
     const { data: person, isLoading: isLoadingPerson } = usePerson(personId);
-    const credits = person?.movie_credits ?? { cast: [], crew: [] };
+    const credits = person?.movieCredits ?? { cast: [], crew: [] };
     const images = person?.images || [];
 
     if (!person || isLoadingPerson) {
@@ -53,9 +53,9 @@ const Person = () => {
             <section className="mt-4">
                 <div className="row">
                     <div className="col-md-3">
-                        {person.profile_image ? (
+                        {person.profileImage ? (
                             <img
-                                src={person.profile_image}
+                                src={person.profileImage}
                                 alt={person.name}
                                 className="img-fluid rounded person-photo"
                             />
@@ -75,7 +75,7 @@ const Person = () => {
                                     <span className="meta-label">Born</span>
                                     <span>
                                         {person.birthday}
-                                        {person.place_of_birth && ` • ${person.place_of_birth}`}
+                                        {person.placeOfBirth && ` • ${person.placeOfBirth}`}
                                     </span>
                                 </div>
                             )}
@@ -137,11 +137,11 @@ const Person = () => {
                         <ul className="list-unstyled filmography-list">
                             {castCredits
                                 .slice()
-                                .sort((a, b) => (b.release_date || "").localeCompare(a.release_date || ""))
+                                .sort((a, b) => (b.releaseDate || "").localeCompare(a.releaseDate || ""))
                                 .map((item) => (
-                                    <li key={`${item.credit_id}-${item.id}`} className="filmography-item">
+                                    <li key={`${item.creditId}-${item.id}`} className="filmography-item">
                                         <span className="filmography-year">
-                                            {item.release_date ? item.release_date.slice(0, 4) : "—"}
+                                            {item.releaseDate ? item.releaseDate.slice(0, 4) : "—"}
                                         </span>
                                         <Link to={`/movie/${item.id}`} className="filmography-title">
                                             {item.title}
@@ -161,11 +161,11 @@ const Person = () => {
                         <ul className="list-unstyled filmography-list">
                             {crewCredits
                                 .slice()
-                                .sort((a, b) => (b.release_date || "").localeCompare(a.release_date || ""))
+                                .sort((a, b) => (b.releaseDate || "").localeCompare(a.releaseDate || ""))
                                 .map((item) => (
-                                    <li key={`${item.credit_id}-${item.id}`} className="filmography-item">
+                                    <li key={`${item.creditId}-${item.id}`} className="filmography-item">
                                         <span className="filmography-year">
-                                            {item.release_date ? item.release_date.slice(0, 4) : "—"}
+                                            {item.releaseDate ? item.releaseDate.slice(0, 4) : "—"}
                                         </span>
                                         <Link to={`/movie/${item.id}`} className="filmography-title">
                                             {item.title}

@@ -11,9 +11,9 @@ interface MovieCardProps {
 }
 
 const MovieCard = ({ movie }: MovieCardProps) => {
-    const hasPoster = movie.poster_url !== null;
-    const backgroundImage = hasPoster ? `url(${movie.poster_url})` : undefined;
-    const year = movie.release_date ? new Date(movie.release_date).getFullYear() : "";
+    const hasPoster = movie.posterUrl !== null;
+    const backgroundImage = hasPoster ? `url(${movie.posterUrl})` : undefined;
+    const year = movie.releaseDate ? new Date(movie.releaseDate).getFullYear() : "";
 
     const navigate = useNavigate();
     const pointerStart = useRef<{ x: number; y: number }>({ x: 0, y: 0 });
@@ -51,7 +51,7 @@ const MovieCard = ({ movie }: MovieCardProps) => {
             </div>
 
             <div className="badge-info">
-                <span className="badge">{movie.original_language}</span>
+                <span className="badge">{movie.originalLanguage}</span>
                 <span className="badge">{year}</span>
                 <span className="badge show">
                     <i className="bi bi-star-fill"></i> {movie.rating.toFixed(1)}

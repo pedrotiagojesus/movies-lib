@@ -18,7 +18,7 @@ const MoviesTopRated = () => {
 
     const { data, isLoading, isError } = useTopRated({ page });
     const movies = data?.results ?? [];
-    const totalPages = data?.total_pages ?? 0;
+    const totalPages = data?.totalPages ?? 0;
 
     return (
         <div id="movies-top-rated-page" className="container">

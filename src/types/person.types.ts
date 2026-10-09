@@ -7,11 +7,11 @@ export interface PersonMapped {
     birthday: string | null;
     deathday: string | null;
     department: string;
-    place_of_birth: string | null;
+    placeOfBirth: string | null;
     popularity: number;
-    profile_image: string | null;
+    profileImage: string | null;
     images: ImageMapped[];
-    movie_credits: PersonCreditsMapped;
+    movieCredits: PersonCreditsMapped;
     // credits: PersonCreditsMapped;
 }
 
@@ -22,26 +22,26 @@ export interface PersonCreditsMapped {
 
 export interface PersonCastMapped {
     id: number;
-    credit_id: string;
+    creditId: string;
     title: string;
-    poster_url: string | null;
+    posterUrl: string | null;
     rating: number;
-    original_language: string;
-    release_date: string;
+    originalLanguage: string;
+    releaseDate: string;
     popularity: number;
-    genre_ids: number[];
+    genreIds: number[];
     character: string;
 }
 
 export interface PersonCrewMapped {
     id: number;
-    credit_id: string;
+    creditId: string;
     title: string;
-    poster_url: string | null;
+    posterUrl: string | null;
     rating: number;
-    original_language: string;
-    release_date: string;
-    genre_ids: number[];
+    originalLanguage: string;
+    releaseDate: string;
+    genreIds: number[];
     job: string;
     name: string;
 }

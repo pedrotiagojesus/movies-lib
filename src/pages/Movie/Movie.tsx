@@ -42,7 +42,7 @@ const Movie = () => {
     const writingDept = credits?.departments.find((d) => d.code === "writing");
 
     const runtime = minutesToHoursMinutes(movie?.runtime);
-    const dominantColor = useDominantColor(movie?.poster_url);
+    const dominantColor = useDominantColor(movie?.posterUrl);
 
     return (
         <div id="movie-page">
@@ -61,22 +61,22 @@ const Movie = () => {
                         <div
                             className="overlay"
                             style={{
-                                backgroundImage: movie.banner_url
-                                    ? `url(${movie.banner_url})`
-                                    : movie.poster_url
-                                      ? `url(${movie.poster_url})`
+                                backgroundImage: movie.bannerUrl
+                                    ? `url(${movie.bannerUrl})`
+                                    : movie.posterUrl
+                                      ? `url(${movie.posterUrl})`
                                       : "linear-gradient(135deg, #111, #333)",
-                                filter: movie.banner_url ? "none" : "blur(8px)",
-                                backgroundPosition: movie.banner_url ? "center top" : "center",
+                                filter: movie.bannerUrl ? "none" : "blur(8px)",
+                                backgroundPosition: movie.bannerUrl ? "center top" : "center",
                             }}
                         ></div>
                         <div className="container banner-content">
                             <div className="banner-header">
-                                {movie.external_ids && (
+                                {movie.externalIds && (
                                     <div className="external-links d-flex gap-3 flex-wrap">
-                                        {movie.external_ids.imdb && (
+                                        {movie.externalIds.imdb && (
                                             <a
-                                                href={movie.external_ids.imdb}
+                                                href={movie.externalIds.imdb}
                                                 target="_blank"
                                                 rel="noopener noreferrer"
                                                 className="external-link"
@@ -85,9 +85,9 @@ const Movie = () => {
                                             </a>
                                         )}
 
-                                        {movie.external_ids.wikidata && (
+                                        {movie.externalIds.wikidata && (
                                             <a
-                                                href={movie.external_ids.wikidata}
+                                                href={movie.externalIds.wikidata}
                                                 target="_blank"
                                                 rel="noopener noreferrer"
                                                 className="external-link"
@@ -96,9 +96,9 @@ const Movie = () => {
                                             </a>
                                         )}
 
-                                        {movie.external_ids.facebook && (
+                                        {movie.externalIds.facebook && (
                                             <a
-                                                href={movie.external_ids.facebook}
+                                                href={movie.externalIds.facebook}
                                                 target="_blank"
                                                 rel="noopener noreferrer"
                                                 className="external-link"
@@ -107,9 +107,9 @@ const Movie = () => {
                                             </a>
                                         )}
 
-                                        {movie.external_ids.instagram && (
+                                        {movie.externalIds.instagram && (
                                             <a
-                                                href={movie.external_ids.instagram}
+                                                href={movie.externalIds.instagram}
                                                 target="_blank"
                                                 rel="noopener noreferrer"
                                                 className="external-link"
@@ -118,9 +118,9 @@ const Movie = () => {
                                             </a>
                                         )}
 
-                                        {movie.external_ids.twitter && (
+                                        {movie.externalIds.twitter && (
                                             <a
-                                                href={movie.external_ids.twitter}
+                                                href={movie.externalIds.twitter}
                                                 target="_blank"
                                                 rel="noopener noreferrer"
                                                 className="external-link"
@@ -151,7 +151,7 @@ const Movie = () => {
                                 <div className="row">
                                     <div className="col-sm-4">
                                         <img
-                                            src={`${movie.poster_url}`}
+                                            src={`${movie.posterUrl}`}
                                             alt={movie.title}
                                             className="img-fluid mb-3 mb-md-4"
                                             style={{
@@ -173,7 +173,7 @@ const Movie = () => {
 
                                             <span className="meta-item">
                                                 <i className="bi bi-calendar2-event-fill"></i>{" "}
-                                                {date(movie.release_date)}
+                                                {date(movie.releaseDate)}
                                             </span>
 
                                             {movie.budget > 0 && (
@@ -194,13 +194,13 @@ const Movie = () => {
                                                 </>
                                             )}
 
-                                            {movie.release_dates?.certification && (
+                                            {movie.releaseDates?.certification && (
                                                 <>
                                                     <span className="separator">•</span>
                                                     <span className="meta-item">
                                                         <i className="bi bi-shield-fill-exclamation"></i>{" "}
-                                                        <abbr title={movie.release_dates.description || ""}>
-                                                            {movie.release_dates.certification}
+                                                        <abbr title={movie.releaseDates.description || ""}>
+                                                            {movie.releaseDates.certification}
                                                         </abbr>
                                                     </span>
                                                 </>
@@ -330,12 +330,12 @@ const Movie = () => {
                                     </>
                                 )}
 
-                                {movie.production_companies && movie.production_companies.length > 0 && (
+                                {movie.productionCompanies && movie.productionCompanies.length > 0 && (
                                     <div className="movie-production mb-4">
                                         <h3 className="title">Production</h3>
 
                                         <div className="production-list">
-                                            {movie.production_companies.map((c) => (
+                                            {movie.productionCompanies.map((c) => (
                                                 <Link key={c.id} to={`/company/${c.id}`} className="production-item">
                                                     {c.logo && (
                                                         <img
@@ -378,7 +378,7 @@ const Movie = () => {
                                             >
                                                 <div className="ratio ratio-2x3 collection-poster-wrapper">
                                                     <img
-                                                        src={movie.collection.poster_url || undefined}
+                                                        src={movie.collection.posterUrl || undefined}
                                                         alt={movie.collection.name}
                                                         className="collection-poster"
                                                         style={{
@@ -401,23 +401,23 @@ const Movie = () => {
                                     </div>
                                 )}
 
-                                {movie.watch_providers && (
+                                {movie.watchProviders && (
                                     <div className="movie-watch mb-4">
                                         <h3 className="title">Where to Watch</h3>
 
                                         {/* Streaming */}
-                                        {movie.watch_providers.flatrate &&
-                                            movie.watch_providers.flatrate.length > 0 && (
+                                        {movie.watchProviders.flatrate &&
+                                            movie.watchProviders.flatrate.length > 0 && (
                                                 <div className="provider-group">
                                                     <h5 className="provider-label">Streaming</h5>
                                                     <div className="provider-list">
-                                                        {movie.watch_providers.flatrate.map(
+                                                        {movie.watchProviders.flatrate.map(
                                                             (p) =>
                                                                 p.logo && (
-                                                                    <div key={p.provider_id} className="provider-item">
+                                                                    <div key={p.providerId} className="provider-item">
                                                                         <img
                                                                             src={p.logo}
-                                                                            alt={p.provider_name}
+                                                                            alt={p.providerName}
                                                                             className="provider-logo"
                                                                         />
                                                                     </div>
@@ -428,17 +428,17 @@ const Movie = () => {
                                             )}
 
                                         {/* Rent */}
-                                        {movie.watch_providers.rent && movie.watch_providers.rent.length > 0 && (
+                                        {movie.watchProviders.rent && movie.watchProviders.rent.length > 0 && (
                                             <div className="provider-group">
                                                 <h5 className="provider-label">Rent</h5>
                                                 <div className="provider-list">
-                                                    {movie.watch_providers.rent.map(
+                                                    {movie.watchProviders.rent.map(
                                                         (p) =>
                                                             p.logo && (
-                                                                <div key={p.provider_id} className="provider-item">
+                                                                <div key={p.providerId} className="provider-item">
                                                                     <img
                                                                         src={p.logo}
-                                                                        alt={p.provider_name}
+                                                                        alt={p.providerName}
                                                                         className="provider-logo"
                                                                     />
                                                                 </div>
@@ -449,17 +449,17 @@ const Movie = () => {
                                         )}
 
                                         {/* Buy */}
-                                        {movie.watch_providers.buy && movie.watch_providers.buy.length > 0 && (
+                                        {movie.watchProviders.buy && movie.watchProviders.buy.length > 0 && (
                                             <div className="provider-group">
                                                 <h5 className="provider-label">Buy</h5>
                                                 <div className="provider-list">
-                                                    {movie.watch_providers.buy.map(
+                                                    {movie.watchProviders.buy.map(
                                                         (p) =>
                                                             p.logo && (
-                                                                <div key={p.provider_id} className="provider-item">
+                                                                <div key={p.providerId} className="provider-item">
                                                                     <img
                                                                         src={p.logo}
-                                                                        alt={p.provider_name}
+                                                                        alt={p.providerName}
                                                                         className="provider-logo"
                                                                     />
                                                                 </div>
@@ -470,9 +470,9 @@ const Movie = () => {
                                         )}
 
                                         {/* Link oficial */}
-                                        {movie.watch_providers.link && (
+                                        {movie.watchProviders.link && (
                                             <a
-                                                href={movie.watch_providers.link}
+                                                href={movie.watchProviders.link}
                                                 target="_blank"
                                                 rel="noopener noreferrer"
                                                 className="btn btn-sm btn-outline-primary mt-2 w-100"
@@ -483,7 +483,7 @@ const Movie = () => {
                                     </div>
                                 )}
 
-                                {!movie.watch_providers && (
+                                {!movie.watchProviders && (
                                     <div className="movie-watch mb-4">
                                         <h3 className="title">Where to Watch</h3>
                                         <p className="text-muted small">
